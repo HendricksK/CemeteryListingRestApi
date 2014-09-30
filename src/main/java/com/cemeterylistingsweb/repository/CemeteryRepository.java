@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
  *
  * @author Kurvin Hendricks
  */
+
 @Repository
 public interface CemeteryRepository extends JpaRepository<Cemetery, Long>{
     

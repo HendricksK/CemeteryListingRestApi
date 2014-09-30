@@ -28,7 +28,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan("com.cemeterylistingsweb")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.cemeterylistingsweb.respository")
+@EnableJpaRepositories(basePackages = "com.cemeterylistingsweb.repository")
 public class ConnectionConfig {
 
     @Bean

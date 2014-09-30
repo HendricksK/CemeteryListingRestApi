@@ -81,12 +81,10 @@ public class CemeteryTest {
          repo = ctx.getBean(CemeteryRepository.class);
          Cemetery oldCemetery = repo.findOne(id);
          Cemetery updateCemetery = new Cemetery.Builder()
-                 .setContactName(oldCemetery.getContactName())
+                 .Cemetery(oldCemetery)
                  .setContactNumber("0215554412")
-                 .setLocation(oldCemetery.getLocationID())
                  .build();
          
-         repo.delete(repo.findOne(id));
          repo.save(updateCemetery);
          id = updateCemetery.getId();
      }

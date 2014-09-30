@@ -7,14 +7,14 @@
 package com.cemeterylistingsweb.repository;
 
 import com.cemeterylistingsweb.domain.UserRole;
-import javax.persistence.Entity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Kurvin Hendricks
  */
-@Entity
+@Repository
 public interface UserRoleRepository extends JpaRepository<UserRole, Long>{
     
 }

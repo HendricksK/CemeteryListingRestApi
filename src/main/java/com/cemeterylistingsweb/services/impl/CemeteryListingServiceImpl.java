@@ -14,6 +14,7 @@ import com.cemeterylistingsweb.services.CemeteryListingService;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,10 +23,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CemeteryListingServiceImpl implements CemeteryListingService{
+    
     @Autowired
-    private CemeteryRepository cemRepo;
+    CemeteryRepository cemRepo;
     @Autowired
-    private PublishedDeceasedListingRepository deadRepo;
+    PublishedDeceasedListingRepository deadRepo;
+    
     @Override
     public List<Cemetery> findAllCemeteries() {
         List<Cemetery> cemList = cemRepo.findAll();
