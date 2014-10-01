@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cemeterylistingsweb.presentation.rest;
+package com.cemeterylistingsweb.presentation;
 
 import com.cemeterylistingsweb.domain.Cemetery;
 import com.cemeterylistingsweb.services.CemeteryListingService;
