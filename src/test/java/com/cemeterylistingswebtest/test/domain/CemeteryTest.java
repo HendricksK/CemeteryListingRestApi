@@ -68,12 +68,12 @@ public class CemeteryTest {
          Assert.assertEquals(repo.findOne(id).getContactNumber(), "0215698412");
          
          
-         Assert.assertEquals(repo.findOne(id).getLocationID().getCemeteryName(), "Palm Springs");
-         Assert.assertEquals(repo.findOne(id).getLocationID().getCountry(), "America");
-         Assert.assertEquals(repo.findOne(id).getLocationID().getDistrict_state(), "Washington");
-         Assert.assertEquals(repo.findOne(id).getLocationID().getLocationOfCemetery(), "12.06.12:45.63.89");
-         Assert.assertEquals(repo.findOne(id).getLocationID().getProvince_State(), "New Jersey");
-         Assert.assertEquals(repo.findOne(id).getLocationID().getTown(), "Marlboro");
+         Assert.assertEquals(repo.findOne(id).getLocation().getCemeteryName(), "Palm Springs");
+         Assert.assertEquals(repo.findOne(id).getLocation().getCountry(), "America");
+         Assert.assertEquals(repo.findOne(id).getLocation().getDistrict_state(), "Washington");
+         Assert.assertEquals(repo.findOne(id).getLocation().getLocationOfCemetery(), "12.06.12:45.63.89");
+         Assert.assertEquals(repo.findOne(id).getLocation().getProvince_State(), "New Jersey");
+         Assert.assertEquals(repo.findOne(id).getLocation().getTown(), "Marlboro");
      }
      
      @Test(dependsOnMethods="read")
@@ -96,12 +96,12 @@ public class CemeteryTest {
          Assert.assertEquals(repo.findOne(id).getContactNumber(), "0215554412");
          
          
-         Assert.assertEquals(repo.findOne(id).getLocationID().getCemeteryName(), "Palm Springs");
-         Assert.assertEquals(repo.findOne(id).getLocationID().getCountry(), "America");
-         Assert.assertEquals(repo.findOne(id).getLocationID().getDistrict_state(), "Washington");
-         Assert.assertEquals(repo.findOne(id).getLocationID().getLocationOfCemetery(), "12.06.12:45.63.89");
-         Assert.assertEquals(repo.findOne(id).getLocationID().getProvince_State(), "New Jersey");
-         Assert.assertEquals(repo.findOne(id).getLocationID().getTown(), "Marlboro");
+         Assert.assertEquals(repo.findOne(id).getLocation().getCemeteryName(), "Palm Springs");
+         Assert.assertEquals(repo.findOne(id).getLocation().getCountry(), "America");
+         Assert.assertEquals(repo.findOne(id).getLocation().getDistrict_state(), "Washington");
+         Assert.assertEquals(repo.findOne(id).getLocation().getLocationOfCemetery(), "12.06.12:45.63.89");
+         Assert.assertEquals(repo.findOne(id).getLocation().getProvince_State(), "New Jersey");
+         Assert.assertEquals(repo.findOne(id).getLocation().getTown(), "Marlboro");
      }
      
      

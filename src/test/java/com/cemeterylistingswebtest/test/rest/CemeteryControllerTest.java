@@ -32,7 +32,7 @@ public class CemeteryControllerTest {
     private CemeteryListingService cs;
     private Long id;
     
-    @Test
+    @Test(enabled = true)
     public void testCreate() {
        System.out.println("Cemetery Testing");
          
@@ -50,7 +50,7 @@ public class CemeteryControllerTest {
                  .setContactNumber("0215698412")
                  .setLocation(local)
                  .build();
-     
+        
         HttpEntity<Cemetery> requestEntity = new HttpEntity<>(newCemetery, getContentType());
 //        Make the HTTP POST request, marshaling the request to JSON, and the response to a String
         ResponseEntity<String> responseEntity = 
