@@ -52,7 +52,7 @@ public class Cemetery implements Serializable{
         return id;
     }
 
-    public Location getLocationID() {
+    public Location getLocation() {
         return location;
     }
 

@@ -7,11 +7,7 @@
 package com.cemeterylistingsweb.domain;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Embeddable;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  *
@@ -19,10 +15,6 @@ import javax.persistence.Id;
  */
 @Embeddable
 public class Location implements Serializable{
-    /*private static final long serialVersionUID = 1L;
-    @Id // deaulft
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;*/
     String country;
     String province_State;
     String district_state;
@@ -34,7 +26,6 @@ public class Location implements Serializable{
         this.cemeteryName = aThis.cemeteryName;
         this.country = aThis.country;
         this.district_state = aThis.district_state;
-        //this.id = aThis.locationID;
         this.locationOfCemetery = aThis.locationOfCemetery;
         this.province_State = aThis.province_State;
         this.town = aThis.town;
@@ -44,18 +35,13 @@ public class Location implements Serializable{
         this.cemeteryName = aThis.cemeteryName;
         this.country = aThis.country;
         this.district_state = aThis.district_state;
-        //this.id = aThis.id;
         this.locationOfCemetery = aThis.locationOfCemetery;
         this.province_State = aThis.province_State;
         this.town = aThis.town;
     }
     
     public Location(){};
-
-    /*public Long getLocationID() {
-        return id;
-    }*/
-
+    
     public String getCountry() {
         return country;
     }
@@ -81,18 +67,13 @@ public class Location implements Serializable{
     }
     
     public static class Builder{
-        Long locationID;
+       
         String country;
         String province_State;
         String district_state;
         String town;
         String cemeteryName;
         String locationOfCemetery;
-
-        public Builder setLocationID(Long locationID) {
-            this.locationID = locationID;
-            return this;
-        }
 
         public Builder setCountry(String country) {
             this.country = country;
