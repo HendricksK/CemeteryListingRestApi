@@ -8,6 +8,7 @@ package com.cemeterylistingswebtest.test.rest;
 import com.cemeterylistingsweb.domain.Cemetery;
 import com.cemeterylistingsweb.domain.Location;
 import com.cemeterylistingsweb.services.CemeteryListingService;
+import static com.cemeterylistingswebtest.test.domain.CemeteryTest.repo;
 import java.util.Collections;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -25,7 +26,6 @@ import org.testng.annotations.Test;
  * @author Kurvin Hendricks
  */
 public class CemeteryControllerTest {
-    
     
     private final RestTemplate restTemplate = new RestTemplate();
     private final static String URL = "http://localhost:8081/CemeteryListingsWebApp/";
@@ -58,8 +58,60 @@ public class CemeteryControllerTest {
         System.out.println(" THE RESPONSE BODY " + responseEntity.getBody());
         System.out.println(" THE RESPONSE STATUS CODE " + responseEntity.getStatusCode());
         System.out.println(" THE RESPONSE IS HEADERS " + responseEntity.getHeaders());
+        
+        Assert.assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
+        id = newCemetery.getId();
+    }
+    
+    @Test(enabled = false, dependsOnMethods = "testCreate")
+    public void testClubUpdate() {
+        // LEFT AS AN EXERCISE FOR YOU
+        // GET THE CLUB and THEN CHANGE AND MAKE A COPY
+        //THEN SEND TO THE SERVER USING A PUT OR POST
+        // THEN READ BACK TO SEE IF YOUR CHANGE HAS HAPPENED
+         Long me = new Long(17);
+         Cemetery oldCemetery = cs.find(me);
+         Cemetery updateCemetery = new Cemetery.Builder()
+                 .Cemetery(oldCemetery)
+                 .setContactNumber("0215554412")
+                 .build();
+         
+         repo.save(updateCemetery);
+         id = updateCemetery.getId();
+
+        HttpEntity<Cemetery> requestEntity = new HttpEntity<>(updateCemetery, getContentType());
+//        Make the HTTP POST request, marshaling the request to JSON, and the response to a String
+        ResponseEntity<String> responseEntity = restTemplate.
+                exchange(URL + "api/cemetery/update", HttpMethod.PUT, requestEntity, String.class);
+        System.out.println(" THE RESPONSE BODY " + responseEntity.getBody());
+        System.out.println(" THE RESPONSE STATUS CODE " + responseEntity.getStatusCode());
+        System.out.println(" THE RESPONSE IS HEADERS " + responseEntity.getHeaders());
         Assert.assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
 
+    }
+
+    @Test(enabled = false)
+    public void testreadClubById() {
+        String cemeteryID = "2";
+        HttpEntity<?> requestEntity = getHttpEntity();
+        ResponseEntity<Cemetery> responseEntity = restTemplate.exchange(URL + "api/cemetery/id/" + cemeteryID, HttpMethod.GET, requestEntity, Cemetery.class);
+        Cemetery cemetery = responseEntity.getBody();
+
+        Assert.assertNotNull(cemetery);
+
+    }
+
+    @Test(enabled = false)
+    public void testgetAllClubs() {
+        HttpEntity<?> requestEntity = getHttpEntity();
+        ResponseEntity<Cemetery[]> responseEntity = restTemplate.exchange(URL + "api/cemetery/show", HttpMethod.GET, requestEntity, Cemetery[].class);
+        Cemetery[] cemeteries = responseEntity.getBody();
+        for (Cemetery cemetery : cemeteries) {
+            System.out.println("The Club Name is " + cemetery.getContactName());
+
+        }
+
+        Assert.assertTrue(cemeteries.length > 0);
     }
     
     private HttpEntity<?> getHttpEntity() {
