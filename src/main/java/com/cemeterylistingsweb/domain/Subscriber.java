@@ -39,7 +39,7 @@ public class Subscriber implements Serializable{
     @JoinColumn(name="userRole")
     UserRole userRoleID;
     java.sql.Date subscriptionDate;
-    String validUntil;
+    java.sql.Date validUntil;
     
     public Subscriber(){}
 
@@ -105,7 +105,7 @@ public class Subscriber implements Serializable{
         return subscriptionDate;
     }
 
-    public String getValidUntil() {
+    public java.sql.Date getValidUntil() {
         return validUntil;
     }
         
@@ -119,7 +119,7 @@ public class Subscriber implements Serializable{
         java.sql.Date lastContributionYear;
         UserRole userRoleID;
         java.sql.Date subscriptionDate;
-        String validUntil;
+        java.sql.Date validUntil;
 
         public Builder setSubscriberID(Long subscriberID) {
             this.subscriberID = subscriberID;
@@ -166,7 +166,7 @@ public class Subscriber implements Serializable{
             return this;
         }
 
-        public Builder setValidUntil(String validUntil) {
+        public Builder setValidUntil(java.sql.Date validUntil) {
             this.validUntil = validUntil;
             return this;
         }

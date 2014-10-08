@@ -8,11 +8,18 @@ package com.cemeterylistingsweb.services.impl;
 
 import com.cemeterylistingsweb.domain.Cemetery;
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
+import com.cemeterylistingsweb.domain.Subscriber;
 import com.cemeterylistingsweb.repository.CemeteryRepository;
 import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
+import com.cemeterylistingsweb.repository.SubscriberRepository;
 import com.cemeterylistingsweb.services.CemeteryListingService;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
@@ -28,6 +35,8 @@ public class CemeteryListingServiceImpl implements CemeteryListingService{
     CemeteryRepository cemRepo;
     @Autowired
     PublishedDeceasedListingRepository deadRepo;
+    @Autowired
+    SubscriberRepository subRepo;
     
     @Override
     public List<Cemetery> findAllCemeteries() {
@@ -49,6 +58,31 @@ public class CemeteryListingServiceImpl implements CemeteryListingService{
         return Listings;
     }
     
+    @Override
+    public List<PublishedDeceasedListing> findListingByCemetery(Long cemId, Long subId) {
+        //
+        List<PublishedDeceasedListing> deceasedList = deadRepo.findAll();
+        List<PublishedDeceasedListing> Listings = new ArrayList();
+        Subscriber sub = subRepo.findOne(subId);
+        
+        for(PublishedDeceasedListing listing : deceasedList){
+            
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            Date parsed = null;
+            try {
+                parsed = (Date) format.parse(listing.getDateOfDeath());
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewListingBySubscriberServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            java.sql.Date dod = new java.sql.Date(parsed.getTime());
+            
+            if(listing.getCemeteryID().equals(cemId) && dod.after(sub.getSubscriptionDate()) && dod.before(sub.getLastContributionYear())){
+                //add to list
+                Listings.add(listing);
+            }
+        }
+        return Listings;
+    }
 
     @Override
     public Cemetery find(Long id) {

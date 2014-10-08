@@ -7,15 +7,15 @@
 package com.cemeterylistingsweb.services;
 
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
+import java.sql.Date;
 import java.util.List;
-import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Zaakir
+ * @author Ryno
  */
-@Service
-public interface SearchSurname extends Services<PublishedDeceasedListing,Long>{
-    public List<PublishedDeceasedListing> getAllSurname(String surname);
-    public List<PublishedDeceasedListing> getAllSurname(String surname, Long subId);
+public interface ViewListingByDateService extends Services<PublishedDeceasedListing, Long>{
+    public List<PublishedDeceasedListing> findListingByDOB(String dob);
+    public List<PublishedDeceasedListing> findListingByDOD(String dod);
+    
 }
