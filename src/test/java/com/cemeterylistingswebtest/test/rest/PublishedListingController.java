@@ -6,10 +6,20 @@
 package com.cemeterylistingswebtest.test.rest;
 
 import com.cemeterylistingsweb.domain.Cemetery;
-import com.cemeterylistingsweb.domain.Location;
+import com.cemeterylistingsweb.domain.PersonOtherNames;
+import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
+import com.cemeterylistingsweb.domain.Subscriber;
+import com.cemeterylistingsweb.domain.UserRole;
+import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
+import com.cemeterylistingsweb.repository.SubscriberRepository;
+import com.cemeterylistingsweb.repository.UserRoleRepository;
 import com.cemeterylistingsweb.services.CemeteryListingService;
+import static com.cemeterylistingswebtest.test.domain.CemeteryTest.ctx;
 import static com.cemeterylistingswebtest.test.domain.CemeteryTest.repo;
+import static com.cemeterylistingswebtest.test.domain.PublishedDeceasedListingTest.subRepo;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.List;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -25,42 +35,43 @@ import org.testng.annotations.Test;
  *
  * @author Kurvin Hendricks
  */
-public class CemeteryControllerTest {
-    
+public class PublishedListingController {
     private final RestTemplate restTemplate = new RestTemplate();
     private final static String URL = "http://localhost:8081/CemeteryListingsWebApp/";
     private CemeteryListingService cs;
     private Long id;
     
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testCreate() {
-       System.out.println("Cemetery Testing");
-         
-         Location local = new Location.Builder()
-                 .setCemeteryName("Palm Springs")
-                 .setCountry("America")
-                 .setDistrict_state("Washington")
-                 .setLocationOfCemetery("12.06.12:45.63.89")
-                 .setProvince_State("New Jersey")
-                 .setTown("Marlboro")
-                 .build();
-         
-         Cemetery newCemetery = new Cemetery.Builder()
-                 .setContactName("Palm Springs")
-                 .setContactNumber("0215698412")
-                 .setLocation(local)
-                 .build();
+        Long subID = new Long(17);
+        List<PersonOtherNames> names = null;
         
-        HttpEntity<Cemetery> requestEntity = new HttpEntity<>(newCemetery, getContentType());
+        PublishedDeceasedListing newListing = new PublishedDeceasedListing.Builder()
+                 .setFirstName("Hendrika")
+                 .setSurname("Fourie")
+                 .setMaidenName("Gerber")
+                 .setGender("Female")
+                 .setDateOfBirth("08/06/1969")
+                 .setDateOfDeath("14/02/2005")
+                 .setGraveInscription("Hippiest person eva")
+                 .setGraveNumber("2456")
+                 .setImageOfBurialSite("/images/001.jpg")
+                 .setLastKnownContactName("Berry")
+                 .setLastKnownContactNumber("0725576482")
+                 .setSubscriberSubmitID(subID)
+                 .setNames(names)
+                 .build();
+         
+        HttpEntity<PublishedDeceasedListing> requestEntity = new HttpEntity<>(newListing, getContentType());
 //        Make the HTTP POST request, marshaling the request to JSON, and the response to a String
         ResponseEntity<String> responseEntity = 
-        restTemplate.exchange(URL + "api/cemetery/create", HttpMethod.POST, requestEntity, String.class);
+        restTemplate.exchange(URL + "api/publishedListings/create", HttpMethod.POST, requestEntity, String.class);
         System.out.println(" THE RESPONSE BODY " + responseEntity.getBody());
         System.out.println(" THE RESPONSE STATUS CODE " + responseEntity.getStatusCode());
         System.out.println(" THE RESPONSE IS HEADERS " + responseEntity.getHeaders());
         
         Assert.assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
-        id = newCemetery.getId();
+        id = newListing.getPublishedListingID();
     }
     
     @Test(enabled = false, dependsOnMethods = "testCreate")

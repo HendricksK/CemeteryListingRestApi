@@ -243,8 +243,9 @@ public class PublishedDeceasedListing implements Serializable{
             return this;
         }
 
-        public void setNames(List<PersonOtherNames> names) {
+        public Builder setNames(List<PersonOtherNames> names) {
             this.names = names;
+            return this;
         }
         
         
