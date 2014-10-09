@@ -8,16 +8,8 @@ package com.cemeterylistingswebtest.test.rest;
 import com.cemeterylistingsweb.domain.Cemetery;
 import com.cemeterylistingsweb.domain.PersonOtherNames;
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
-import com.cemeterylistingsweb.domain.Subscriber;
-import com.cemeterylistingsweb.domain.UserRole;
-import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
-import com.cemeterylistingsweb.repository.SubscriberRepository;
-import com.cemeterylistingsweb.repository.UserRoleRepository;
 import com.cemeterylistingsweb.services.CemeteryListingService;
-import static com.cemeterylistingswebtest.test.domain.CemeteryTest.ctx;
 import static com.cemeterylistingswebtest.test.domain.CemeteryTest.repo;
-import static com.cemeterylistingswebtest.test.domain.PublishedDeceasedListingTest.subRepo;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import org.springframework.http.HttpEntity;
@@ -37,7 +29,7 @@ import org.testng.annotations.Test;
  */
 public class PublishedListingController {
     private final RestTemplate restTemplate = new RestTemplate();
-    private final static String URL = "http://localhost:8084/CemeteryListingsWebApp/";
+    private final static String URL = "http://localhost:1527/CemeteryListingsWebApp/";
     private CemeteryListingService cs;
     private Long id;
     

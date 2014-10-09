@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.cemeterylistingswebtest.test.rest;
 
 import com.cemeterylistingsweb.domain.Cemetery;
 import com.cemeterylistingsweb.domain.Location;
-import com.cemeterylistingsweb.services.CemeteryListingService;
-import static com.cemeterylistingswebtest.test.domain.CemeteryTest.repo;
+import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
+import com.cemeterylistingsweb.services.SearchSurname;
+import static com.cemeterylistingswebtest.test.domain.PublishedDeceasedListingTest.repoList;
 import java.util.Collections;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -23,44 +25,51 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author Kurvin Hendricks
+ * @author Zaakir
  */
-public class CemeteryControllerTest {
+public class SearchSurnameControllerTest {
+    
+    public SearchSurnameControllerTest() {
+    }
     
     private final RestTemplate restTemplate = new RestTemplate();
     private final static String URL = "http://localhost:8084/CemeteryListingsWebApp/";
-    private CemeteryListingService cs;
+    private SearchSurname cs;
     private Long id;
-    
+
     @Test(enabled = false)
     public void testCreate() {
-       System.out.println("Cemetery Testing");
+       System.out.println("PublishedDeceasedListing Testing");
          
-         Location local = new Location.Builder()
-                 .setCemeteryName("Palm Springs")
-                 .setCountry("America")
-                 .setDistrict_state("Washington")
-                 .setLocationOfCemetery("12.06.12:45.63.89")
-                 .setProvince_State("New Jersey")
-                 .setTown("Marlboro")
-                 .build();
-         
-         Cemetery newCemetery = new Cemetery.Builder()
-                 .setContactName("Palm Springs")
-                 .setContactNumber("0215698412")
-                 .setLocation(local)
+         PublishedDeceasedListing newListing = new PublishedDeceasedListing.Builder()
+                 .setFirstName("Hendrika")
+                 .setSurname("Fourie")
+                 .setMaidenName("Gerber")
+                 .setGender("Female")
+                 .setDateOfBirth("08/06/1969")
+                 .setDateOfDeath("14/02/2005")
+                 .setGraveInscription("Hippiest person eva")
+                 .setGraveNumber("2456")
+                 .setImageOfBurialSite("/images/001.jpg")
+                 .setLastKnownContactName("Berry")
+                 .setLastKnownContactNumber("0725576482")
+                 //.setCemeteryID(newCemetery.getId())
+                 //subscriberApprovedID
+                 //subscriber submitted id
+                 //names
+                 
                  .build();
         
-        HttpEntity<Cemetery> requestEntity = new HttpEntity<>(newCemetery, getContentType());
+        HttpEntity<PublishedDeceasedListing> requestEntity = new HttpEntity<>(newListing, getContentType());
 //        Make the HTTP POST request, marshaling the request to JSON, and the response to a String
         ResponseEntity<String> responseEntity = 
-        restTemplate.exchange(URL + "api/cemetery/create", HttpMethod.POST, requestEntity, String.class);
+        restTemplate.exchange(URL + "api/SearchSurname/create", HttpMethod.POST, requestEntity, String.class);
         System.out.println(" THE RESPONSE BODY " + responseEntity.getBody());
         System.out.println(" THE RESPONSE STATUS CODE " + responseEntity.getStatusCode());
         System.out.println(" THE RESPONSE IS HEADERS " + responseEntity.getHeaders());
         
         Assert.assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
-        id = newCemetery.getId();
+        id = newListing.getPublishedListingID();
     }
     
     @Test(enabled = false, dependsOnMethods = "testCreate")
@@ -70,32 +79,32 @@ public class CemeteryControllerTest {
         //THEN SEND TO THE SERVER USING A PUT OR POST
         // THEN READ BACK TO SEE IF YOUR CHANGE HAS HAPPENED
          Long me = new Long(17);
-         Cemetery oldCemetery = cs.find(me);
+         PublishedDeceasedListing oldpdl = cs.find(me);
          
-         Cemetery updateCemetery = new Cemetery.Builder()
-                 .Cemetery(oldCemetery)
-                 .setContactNumber("0215554412")
+         PublishedDeceasedListing updatepdl = new PublishedDeceasedListing.Builder()
+                 .PublishedDeceasedListing(oldpdl)
+                 .setGender("male")
                  .build();
          
-         repo.save(updateCemetery);
-         id = updateCemetery.getId();
+         repoList.save(updatepdl);
+         id = updatepdl.getPublishedListingID();
 
-        HttpEntity<Cemetery> requestEntity = new HttpEntity<>(updateCemetery, getContentType());
+        HttpEntity<PublishedDeceasedListing> requestEntity = new HttpEntity<>(updatepdl, getContentType());
 //        Make the HTTP POST request, marshaling the request to JSON, and the response to a String
         ResponseEntity<String> responseEntity = restTemplate.
-                exchange(URL + "api/cemetery/update", HttpMethod.PUT, requestEntity, String.class);
+                exchange(URL + "api/SearchSurname/update", HttpMethod.PUT, requestEntity, String.class);
         System.out.println(" THE RESPONSE BODY " + responseEntity.getBody());
         System.out.println(" THE RESPONSE STATUS CODE " + responseEntity.getStatusCode());
         System.out.println(" THE RESPONSE IS HEADERS " + responseEntity.getHeaders());
         Assert.assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
 
     }
-
-    @Test(enabled = false)
+    
+     @Test(enabled = false)
     public void testreadClubById() {
         String cemeteryID = "2";
         HttpEntity<?> requestEntity = getHttpEntity();
-        ResponseEntity<Cemetery> responseEntity = restTemplate.exchange(URL + "api/cemetery/id/" + cemeteryID, HttpMethod.GET, requestEntity, Cemetery.class);
+        ResponseEntity<Cemetery> responseEntity = restTemplate.exchange(URL + "api/SearchSurname/id/" + cemeteryID, HttpMethod.GET, requestEntity, Cemetery.class);
         Cemetery cemetery = responseEntity.getBody();
 
         Assert.assertNotNull(cemetery);
@@ -105,7 +114,7 @@ public class CemeteryControllerTest {
     @Test(enabled = false)
     public void testgetAllClubs() {
         HttpEntity<?> requestEntity = getHttpEntity();
-        ResponseEntity<Cemetery[]> responseEntity = restTemplate.exchange(URL + "api/cemetery/show", HttpMethod.GET, requestEntity, Cemetery[].class);
+        ResponseEntity<Cemetery[]> responseEntity = restTemplate.exchange(URL + "api/SearchSurname/show", HttpMethod.GET, requestEntity, Cemetery[].class);
         Cemetery[] cemeteries = responseEntity.getBody();
         for (Cemetery cemetery : cemeteries) {
             System.out.println("The Club Name is " + cemetery.getContactName());
@@ -114,7 +123,6 @@ public class CemeteryControllerTest {
 
         Assert.assertTrue(cemeteries.length > 0);
     }
-    
     private HttpEntity<?> getHttpEntity() {
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.setAccept(Collections.singletonList(new MediaType("application", "json")));
@@ -128,4 +136,6 @@ public class CemeteryControllerTest {
         requestHeaders.setContentType(new MediaType("application", "json"));
         return requestHeaders;
     }
+
+    
 }
