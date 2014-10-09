@@ -27,6 +27,12 @@ public class CemeteryController {
     @Autowired
     CemeteryListingService cs;
     
+    //so this is how we return pages they need to be jsp form though so will do some playing around and see what i can do 
+    @RequestMapping(value = "home", method = RequestMethod.GET)
+    public String Landing(){
+        return "newhtml";
+    }
+    
     @RequestMapping(value = "create",method = RequestMethod.POST) // This the uri e.g http://localhost:8084/askweb/api/club/create
     @ResponseBody //Converts output or response to JSON String
     public String create(@RequestBody Cemetery cemetery) { // @RequestBody for converting incoming JSON call to Object
@@ -40,6 +46,8 @@ public class CemeteryController {
     public List<Cemetery> getAll(){
         return cs.findAll();
     }
+    
+    
     
     @RequestMapping(value = "update",method = RequestMethod.PUT) //This the uri e.g http://localhost:8084/askweb/api/club/update
     @ResponseBody
@@ -56,5 +64,7 @@ public class CemeteryController {
         System.out.println(" ID called ");
         return cs.find(id);
     }
+    
+    
     
 }

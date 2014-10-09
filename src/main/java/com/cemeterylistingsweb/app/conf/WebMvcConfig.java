@@ -49,7 +49,7 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
     public UrlBasedViewResolver setupViewResolver() {
         UrlBasedViewResolver resolver = new UrlBasedViewResolver();
         resolver.setPrefix(VIEWS);
-        resolver.setSuffix(".jsp");
+        resolver.setSuffix(".html");
         resolver.setViewClass(JstlView.class);
         return resolver;
     }
