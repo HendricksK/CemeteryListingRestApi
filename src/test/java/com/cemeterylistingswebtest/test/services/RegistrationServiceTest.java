@@ -42,23 +42,7 @@ public class RegistrationServiceTest {
     public static SubscriberRepository repo;
     public static CemeteryRepository cemRepo;
     public RegistrationService regServ;
-     @Test
-     public void registerSubscriber() {
-            regServ = ctx.getBean(RegistrationService.class);
-            repo = ctx.getBean(SubscriberRepository.class);
-            
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.YEAR, 2008);
-            calendar.set(Calendar.MONTH, Calendar.FEBRUARY);
-            calendar.set(Calendar.DATE, 4);
-        
-            java.sql.Date javaSqlDate = new java.sql.Date(calendar.getTime().getTime());
-          
-            regServ.registerSubscriber("manfredOsulivan@horseRaddish.com", "Manfred", "Osulivan", "ManiFredOssy", "jesus",javaSqlDate , 2);
-            Assert.assertFalse(repo.findAll().isEmpty());
-            
-     }
-     
+    
      @Test
      public void registerCemetery(){
           regServ = ctx.getBean(RegistrationService.class);
