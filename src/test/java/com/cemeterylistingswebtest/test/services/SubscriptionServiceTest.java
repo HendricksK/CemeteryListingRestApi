@@ -41,7 +41,7 @@ public class SubscriptionServiceTest {
     public  SubscriptionService subServ;
     
     
-     @Test
+     @Test(enabled=false)
      public void registerSubscriber() {
             subServ = ctx.getBean(SubscriptionService.class);
             repo = ctx.getBean(SubscriberRepository.class);
@@ -62,7 +62,7 @@ public class SubscriptionServiceTest {
             
      }
      
-     @Test
+     @Test(enabled=false)
      public void updateSubscription(){
          repo = ctx.getBean(SubscriberRepository.class);
          
@@ -77,7 +77,7 @@ public class SubscriptionServiceTest {
         id = update.getSubscriberID();
      }
      
-     @Test
+     @Test(enabled=false)
      public void deleteSubsctription(){
          repo = ctx.getBean(SubscriberRepository.class); 
          userRepo = ctx.getBean(UserRoleRepository.class);
