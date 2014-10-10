@@ -33,7 +33,7 @@ public class PublishedListingController {
     private CemeteryListingService cs;
     private Long id;
     
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void testCreate() {
         Long subID = new Long(17);
         List<PersonOtherNames> names = null;

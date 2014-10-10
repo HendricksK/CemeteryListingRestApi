@@ -39,7 +39,7 @@ public class SearchSurnameControllerTest {
     private SearchSurname cs;
     private Long id;
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void testCreate() {
        System.out.println("PublishedDeceasedListing Testing");
          

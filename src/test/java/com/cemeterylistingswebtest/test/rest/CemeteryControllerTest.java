@@ -32,7 +32,7 @@ public class CemeteryControllerTest {
     private CemeteryListingService cs;
     private Long id;
     
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void testCreate() {
        System.out.println("Cemetery Testing");
          

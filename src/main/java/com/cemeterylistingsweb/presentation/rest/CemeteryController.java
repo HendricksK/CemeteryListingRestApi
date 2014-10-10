@@ -27,6 +27,11 @@ public class CemeteryController {
     @Autowired
     CemeteryListingService cs;
     
+    
+    @RequestMapping(value = "home", method = RequestMethod.GET)
+    public String testing(){
+        return "newhtml1";
+    }
     //so this is how we return pages they need to be jsp form though so will do some playing around and see what i can do 
     @RequestMapping(value = "cemeterylistings", method = RequestMethod.GET)
     public String getCemeterlistings(){
@@ -66,7 +71,6 @@ public class CemeteryController {
     @RequestMapping(value = "id/{id}",method = RequestMethod.GET) //http://localhost:8084/askweb/api/club/1234
     @ResponseBody
     public Cemetery getClub(@PathVariable Long id) { //@PathVariable used to bind the id value
-        
         System.out.println(" ID called ");
         return cs.find(id);
     }

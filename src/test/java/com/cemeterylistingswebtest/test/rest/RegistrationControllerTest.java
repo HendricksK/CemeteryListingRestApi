@@ -38,7 +38,7 @@ public class RegistrationControllerTest {
     private RegistrationService cs;
     private Long id;
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void testCreate() {
        System.out.println("Registration Testing");
          Calendar calendar = Calendar.getInstance();
