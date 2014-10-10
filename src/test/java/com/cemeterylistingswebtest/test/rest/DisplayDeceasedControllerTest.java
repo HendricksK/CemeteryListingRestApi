@@ -7,10 +7,12 @@
 package com.cemeterylistingswebtest.test.rest;
 
 import com.cemeterylistingsweb.domain.Cemetery;
+import com.cemeterylistingsweb.domain.PersonOtherNames;
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import com.cemeterylistingsweb.services.PublishListingService;
 import static com.cemeterylistingswebtest.test.domain.PublishedDeceasedListingTest.repoList;
 import java.util.Collections;
+import java.util.List;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -28,14 +30,17 @@ import org.testng.annotations.Test;
  */
 public class DisplayDeceasedControllerTest {
     private final RestTemplate restTemplate = new RestTemplate();
-    private final static String URL = "http://localhost:8084/CemeteryListingsWebApp/";
+    private final static String URL = "http://localhost:8081/CemeteryListingsWebApp/";
     private PublishListingService cs;
     private Long id;
     
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testCreate() {
        System.out.println("PublishListingService Testing");
          
+         Long subID = new Long(17);
+        List<PersonOtherNames> names = null;
+        
         PublishedDeceasedListing newListing = new PublishedDeceasedListing.Builder()
                  .setFirstName("Hendrika")
                  .setSurname("Fourie")
@@ -48,12 +53,8 @@ public class DisplayDeceasedControllerTest {
                  .setImageOfBurialSite("/images/001.jpg")
                  .setLastKnownContactName("Berry")
                  .setLastKnownContactNumber("0725576482")
-                 .setCemeteryID(12345l)
-                 //.setCemeteryID(newCemetery.getId())
-                 //subscriberApprovedID
-                 //subscriber submitted id
-                 //names
-                 
+                 .setSubscriberSubmitID(subID)
+                 .setNames(names)
                  .build();
         
         HttpEntity<PublishedDeceasedListing> requestEntity = new HttpEntity<>(newListing, getContentType());

@@ -17,12 +17,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  *
  * @author Kurvin Hendricks
  */
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RequiresApprovalDeceasedListing implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id // deaulft 

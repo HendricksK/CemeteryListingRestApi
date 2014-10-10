@@ -29,7 +29,7 @@ import org.testng.annotations.Test;
  */
 public class PublishedListingController {
     private final RestTemplate restTemplate = new RestTemplate();
-    private final static String URL = "http://localhost:1527/CemeteryListingsWebApp/";
+    private final static String URL = "http://localhost:8081/CemeteryListingsWebApp/";
     private CemeteryListingService cs;
     private Long id;
     

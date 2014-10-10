@@ -12,18 +12,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  *
  * @author Kurvin Hendricks
  */
 @Entity
+
 public class PersonOtherNames implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String names;
-    private Long publishedListingID;
+    public long publishedListingID;
 
     public PersonOtherNames() {
     }
@@ -55,7 +57,7 @@ public class PersonOtherNames implements Serializable {
     public static class Builder{
         private Long id;
         private String names;
-        private Long publishedListingID;
+        public Long publishedListingID;
 
         public Builder setId(Long id) {
             this.id = id;

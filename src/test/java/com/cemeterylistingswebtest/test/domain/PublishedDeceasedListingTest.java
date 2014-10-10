@@ -93,7 +93,6 @@ public class PublishedDeceasedListingTest {
                  .setImageOfBurialSite("/images/001.jpg")
                  .setLastKnownContactName("Berry")
                  .setLastKnownContactNumber("0725576482")
-
                  .setSubscriberSubmitID(subID)
                  .build();
          

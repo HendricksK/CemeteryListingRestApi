@@ -34,11 +34,11 @@ public class RegistrationControllerTest {
     }
 
     private final RestTemplate restTemplate = new RestTemplate();
-    private final static String URL = "http://localhost:8084/CemeteryListingsWebApp/";
+    private final static String URL = "http://localhost:8081/CemeteryListingsWebApp/";
     private RegistrationService cs;
     private Long id;
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testCreate() {
        System.out.println("Registration Testing");
          Calendar calendar = Calendar.getInstance();

@@ -36,12 +36,12 @@ public class LoginControllerTest {
     }
 
      private final RestTemplate restTemplate = new RestTemplate();
-    private final static String URL = "http://localhost:8084/CemeteryListingsWebApp/";
+    private final static String URL = "http://localhost:8081/CemeteryListingsWebApp/";
     private LoginService cs;
     private Long id;
     
     
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testCreate() {
         Long subID = new Long(17);
        Calendar calendar = Calendar.getInstance();
@@ -60,7 +60,7 @@ public class LoginControllerTest {
                 .setEmail("manfredOsulivan@horseRaddish.com")
                 .setFirstName("Manfred")
                 .setSurname("Osulivan")
-                .setPwd("jesus")
+                .setPwd("applesandsuch")
                 .setUsername("ManiFredOssy")
                 .setSubscriptionDate(javaSqlDate)
                 .setUserRoleID(user)

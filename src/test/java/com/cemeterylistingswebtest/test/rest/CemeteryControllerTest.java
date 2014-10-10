@@ -28,11 +28,11 @@ import org.testng.annotations.Test;
 public class CemeteryControllerTest {
     
     private final RestTemplate restTemplate = new RestTemplate();
-    private final static String URL = "http://localhost:8084/CemeteryListingsWebApp/";
+    private final static String URL = "http://localhost:8081/CemeteryListingsWebApp/";
     private CemeteryListingService cs;
     private Long id;
     
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testCreate() {
        System.out.println("Cemetery Testing");
          

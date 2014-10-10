@@ -4,7 +4,7 @@
          
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/index.css">
     </head>
     <body>
         <div class="siteWrapper"> <!-- this is the beginning of site wrapper will contain the entire pages html -->       
@@ -32,13 +32,14 @@
     
                $.ajax({ // ajax call to retrieve all cemeteries json objects 
                     type: "GET",
-                    url: "/CemeteryListingsWebApp/api/cemetery/show",
+                    url: "/CemeteryListingsWebApp/api/publishedListings/show",
                     dataType: "json",
                     success: function (data) {
                         console.log('success');
+                        console.log(data);
                         //console.log(data[0]['contactName']);
                         
-                        for(var i = 0; i < data.length; i++) {
+                        /*for(var i = 0; i < data.length; i++) {
                             var obj = data[i];
                                 console.log(obj.id);
                                 console.log(obj.location.country);
@@ -52,7 +53,7 @@
 // building html objects here
 $(".siteContent").append("<div>" + 'cemetery ID : ' + obj.id + ' Location - Country : ' + obj.location.country + ' Cemetery Name : ' + obj.location.cemeteryName +"</div>" + "<br>"); 
                             
-        }
+        }*/
                         
                         //$(".data").append(data[0]['contactName']) + "hello";// write success in " "
                     },

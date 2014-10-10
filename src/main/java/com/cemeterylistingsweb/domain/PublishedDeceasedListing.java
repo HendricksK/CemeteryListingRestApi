@@ -18,12 +18,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  *
  * @author ME
  */
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PublishedDeceasedListing implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id // deaulft 
