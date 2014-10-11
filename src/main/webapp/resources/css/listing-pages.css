@@ -4,6 +4,30 @@
 
 }
 
+.siteContent{
+	margin-top : 5%;
+	background-color: #BDBDBD;
+}
+
+.siteContent .listings{
+    width : 80%;
+    margin-left: 10%;
+    line-height: 2.0em;
+    font-family: serif;
+}
+
+.siteContent  .listings button{
+	width : 10px;
+	height : 10px;
+	border: 2px;
+    border-radius: 50px;
+	margin-left: 15%;
+}
+
+.siteContent .listings td{
+    height:25px;
+}
+
 .pageWrapper{
 
 	height:auto;

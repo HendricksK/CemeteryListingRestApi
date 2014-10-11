@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <head>
-         
+    <head>  
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/index.css">
+        <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/listing-pages.css">
     </head>
-    <body>
-        <div class="siteWrapper"> <!-- this is the beginning of site wrapper will contain the entire pages html -->       
-                <div class="siteContent">  <!-- this is the beginning of site content will contain all the content --> 
-                    <h1>Jquery Test</h1>
-                    <input type="button" name="post" value="post" id="me">
-                </div>
+    <body class="siteWrapper">
+         <div class="pageHeader">
+        <a href="#" class="logo"><img src="/CemeteryListingsWebApp/resources/images/logo2.jpg"></a>
+                <ul class="navList">
+                    <li><a href="/CemeteryListingsWebApp/">Home</a></li>
+                    <li><a href="api/cemetery/cemeterylistings">Cemetery Listings</a></li>
+                    <li><a href="#">Deceased Listings</a></li>
+                    <li><a href="#">Contact US</a></li>
+                </ul>   
+
+                <ul class="socialListNav">
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/fbbtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/instagrambtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/tweetbtn.png" class="simpleLogo"></a></li>
+                </ul>   
+
             </div>
+            <div class="dummyHeader"></div>
+                <div class="pageWrapper">        <!-- this is the beginning of site wrapper will contain the entire pages html -->       
+                    <div class="siteContent">  
+                        <table class="listings"></table><!-- this is the beginning of site content will contain all the content --> 
+                        <!--<h1>Jquery Test</h1>
+                        <input type="button" name="post" value="post" id="me"> -->
+                    </div>
+                </div>
         <!-- Script begins here -->
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
         
@@ -20,7 +37,6 @@
            console.log('hi');
     	   
     	   var countData = 0;
-
                $.ajax({ // ajax call to retrieve all cemeteries json objects 
                     type: "GET",
                     url: "/CemeteryListingsWebApp/api/cemetery/show",
@@ -42,9 +58,12 @@
                                 console.log(obj.contactName);
                                 console.log(obj.contactNumber);
 // building html objects here
-$(".siteContent").append("<li>" + '<a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.id+'"> hello' + '</a>' + 'cemetery ID : ' + obj.id + ' Location - Country : ' + obj.location.country + ' Cemetery Name : ' + obj.location.cemeteryName + '<button class="goToDetails" text='+obj.id+' value='+obj.id+'>' +"</li>" + "<br>"); 
+$(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.id+'">' + '</a></td>' + '<td>Cemetery Name : ' + obj.location.cemeteryName + '</td>' + ' <td> Location - Country : ' + obj.location.country + 
+    '</td>' + '<td> <button class="goToDetails" text="details" value='+obj.id+'>' + '</td>' + "</tr>"); 
                             
         }
+
+
 
         console.log($('li').size());
 
@@ -69,12 +88,8 @@ $(".siteContent").append("<li>" + '<a href='+'"/CemeteryListingsWebApp/api/cemet
                         alert('fail' + status.code);
                     }
                  });
-
 		
 
         </script>
-       
     </body>
-   
-    
 </html>
