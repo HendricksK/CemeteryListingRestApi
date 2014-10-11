@@ -7,11 +7,9 @@
 package com.cemeterylistingsweb.services.impl;
 
 import com.cemeterylistingsweb.domain.RequiresApprovalDeceasedListing;
-import com.cemeterylistingsweb.domain.Subscriber;
 import com.cemeterylistingsweb.repository.CemeteryRepository;
 import com.cemeterylistingsweb.repository.RequiresApprovalDeceasedListingRepository;
-import com.cemeterylistingsweb.repository.SubscriberRepository;
-import com.cemeterylistingsweb.services.DeceasedListingService;
+import com.cemeterylistingsweb.services.ApproveDeceasedListingService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +19,7 @@ import org.springframework.stereotype.Service;
  * @author Ryno
  */
 @Service
-public class DeceasedListingServiceImpl implements DeceasedListingService{
+public class ApproveDeceasedListingServiceImpl implements ApproveDeceasedListingService{
     @Autowired
     RequiresApprovalDeceasedListingRepository deadRepo;
     @Autowired
@@ -54,22 +52,9 @@ public class DeceasedListingServiceImpl implements DeceasedListingService{
     public List<RequiresApprovalDeceasedListing> findAll() {
         return deadRepo.findAll();
     }
-    
-    
     @Override
-    public void updateDeceasedListing(Long id){
-        RequiresApprovalDeceasedListing oldListing = deadRepo.findOne(id);
-         
-         RequiresApprovalDeceasedListing updateListing = new RequiresApprovalDeceasedListing.Builder()
-                 .RequiresApprovalDeceasedListing(oldListing)
-                 
-                 .build();
-         
-         deadRepo.save(updateListing);
+    public boolean approveDeceasedListing(Long id){
+        
+        return false;
     }
-    @Override
-    public void removeDeceasedListing(Long id){
-        deadRepo.delete(id);
-    }
-   
 }

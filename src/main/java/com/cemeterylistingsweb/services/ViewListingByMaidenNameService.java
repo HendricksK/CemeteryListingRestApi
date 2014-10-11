@@ -6,14 +6,13 @@
 
 package com.cemeterylistingsweb.services;
 
-import com.cemeterylistingsweb.domain.Subscriber;
-import java.sql.Date;
+import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
+import java.util.List;
 
 /**
  *
  * @author Ryno
  */
-public interface SubscriptionService extends Services<Subscriber, Long>{
-    public void updateSubscriber(Long subId);
-    public void deleteSubscriber(Long subId);
+public interface ViewListingByMaidenNameService extends Services<PublishedDeceasedListing, Long>{
+    public List<PublishedDeceasedListing> findListingByMaidenName(String name);
 }

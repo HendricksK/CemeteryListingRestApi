@@ -7,11 +7,9 @@
 package com.cemeterylistingsweb.services.impl;
 
 import com.cemeterylistingsweb.domain.RequiresApprovalDeceasedListing;
-import com.cemeterylistingsweb.domain.Subscriber;
 import com.cemeterylistingsweb.repository.CemeteryRepository;
 import com.cemeterylistingsweb.repository.RequiresApprovalDeceasedListingRepository;
-import com.cemeterylistingsweb.repository.SubscriberRepository;
-import com.cemeterylistingsweb.services.DeceasedListingService;
+import com.cemeterylistingsweb.services.AdminRegisterListingService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +19,7 @@ import org.springframework.stereotype.Service;
  * @author Ryno
  */
 @Service
-public class DeceasedListingServiceImpl implements DeceasedListingService{
+public class AdminRegisterListingServiceImpl implements AdminRegisterListingService{
     @Autowired
     RequiresApprovalDeceasedListingRepository deadRepo;
     @Autowired
@@ -55,21 +53,27 @@ public class DeceasedListingServiceImpl implements DeceasedListingService{
         return deadRepo.findAll();
     }
     
-    
     @Override
-    public void updateDeceasedListing(Long id){
-        RequiresApprovalDeceasedListing oldListing = deadRepo.findOne(id);
-         
-         RequiresApprovalDeceasedListing updateListing = new RequiresApprovalDeceasedListing.Builder()
-                 .RequiresApprovalDeceasedListing(oldListing)
+    public void registerDeceasedListing(String fn, String ln, String maiden, String gender, String dob, String dod, String inscription, String graveNum, String graveImage, String contactname, String contactNum, Long subID){
+        RequiresApprovalDeceasedListing newListing = new RequiresApprovalDeceasedListing.Builder()
+                 .setFirstName(fn)
+                 .setSurname(ln)
+                 .setMaidenName(maiden)
+                 .setGender(gender)
+                 .setDateOfBirth(dob)
+                 .setDateOfDeath(dod)
+                 .setGraveInscription(inscription)
+                 .setGraveNumber(graveNum)
+                 .setImageOfBurialSite(graveImage)
+                 .setLastKnownContactName(contactname)
+                 .setLastKnownContactNumber(contactNum)
+                 .setSubscriberSubmitID(subID)
+                 //cemetery id
+                 
+                 //names
                  
                  .build();
          
-         deadRepo.save(updateListing);
+         deadRepo.save(newListing);
     }
-    @Override
-    public void removeDeceasedListing(Long id){
-        deadRepo.delete(id);
-    }
-   
 }

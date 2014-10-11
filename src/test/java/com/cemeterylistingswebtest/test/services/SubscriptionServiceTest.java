@@ -53,7 +53,7 @@ public class SubscriptionServiceTest {
         
             java.sql.Date javaSqlDate = new java.sql.Date(calendar.getTime().getTime());
           
-            subServ.registerSubscriber("manfredOsulivan@horseRaddish.com", "Manfred", "Osulivan", "ManiFredOssy", "jesus",javaSqlDate , 2);
+            //subServ.registerSubscriber("manfredOsulivan@horseRaddish.com", "Manfred", "Osulivan", "ManiFredOssy", "jesus",javaSqlDate , 2);
             List listAll = subServ.findAll();
             Subscriber sub = (Subscriber) listAll.get(0);
             id=sub.getSubscriberID();

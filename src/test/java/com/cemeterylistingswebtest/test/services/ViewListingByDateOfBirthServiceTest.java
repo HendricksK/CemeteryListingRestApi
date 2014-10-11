@@ -13,14 +13,13 @@ import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
 import com.cemeterylistingsweb.repository.SubscriberRepository;
 import com.cemeterylistingsweb.repository.UserRoleRepository;
 import com.cemeterylistingsweb.services.LoginService;
-import com.cemeterylistingsweb.services.ViewListingBySubscriberService;
+import com.cemeterylistingsweb.services.ViewListingByDateOfBirthService;
 import com.cemeterylistingswebtest.test.ConnectionConfigTest;
+import static com.cemeterylistingswebtest.test.domain.PublishedDeceasedListingTest.ctx;
+import static com.cemeterylistingswebtest.test.domain.PublishedDeceasedListingTest.repoList;
+import static com.cemeterylistingswebtest.test.domain.PublishedDeceasedListingTest.subRepo;
+import static com.cemeterylistingswebtest.test.domain.PublishedDeceasedListingTest.userRepo;
 import static com.cemeterylistingswebtest.test.services.LoginServiceTest.ctx;
-import static com.cemeterylistingswebtest.test.services.LoginServiceTest.repo;
-import static com.cemeterylistingswebtest.test.services.ViewListingByDateOfBirthServiceTest.ctx;
-import static com.cemeterylistingswebtest.test.services.ViewListingByDateOfBirthServiceTest.repoList;
-import static com.cemeterylistingswebtest.test.services.ViewListingByDateOfBirthServiceTest.subRepo;
-import static com.cemeterylistingswebtest.test.services.ViewListingByDateOfBirthServiceTest.userRepo;
 import java.util.Calendar;
 import java.util.List;
 import junit.framework.Assert;
@@ -37,27 +36,27 @@ import org.testng.annotations.Test;
  *
  * @author Ryno
  */
-public class ViewListingsBySubscriberServiceTest {
+public class ViewListingByDateOfBirthServiceTest {
     
-    public ViewListingsBySubscriberServiceTest() {
+    public ViewListingByDateOfBirthServiceTest() {
     }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     private static Long id, subID, userRoleID;
+    private static Long subID;
     public static ApplicationContext ctx;
-    public static PublishedDeceasedListingRepository repoList;
     public static SubscriberRepository subRepo;
     public static UserRoleRepository userRepo;
-    public static ViewListingBySubscriberService subserv;
+    public static PublishedDeceasedListingRepository repoList;
+    public ViewListingByDateOfBirthService dateServ;
      
     @Test(enabled = false)
-     public void hello() {
-        subserv = ctx.getBean(ViewListingBySubscriberService.class);
+     public void Test() {
+        dateServ = ctx.getBean(ViewListingByDateOfBirthService.class);
         repoList = ctx.getBean(PublishedDeceasedListingRepository.class);
-        subRepo = ctx.getBean(SubscriberRepository.class);
-        userRepo = ctx.getBean(UserRoleRepository.class);
+         subRepo = ctx.getBean(SubscriberRepository.class);
+         userRepo = ctx.getBean(UserRoleRepository.class);
          
          //Initialise date
          Calendar calendar = Calendar.getInstance();
@@ -66,14 +65,6 @@ public class ViewListingsBySubscriberServiceTest {
          calendar.set(Calendar.DATE, 4);
           
          java.sql.Date javaSqlDate = new java.sql.Date(calendar.getTime().getTime());
-         
-         //Initialise date
-         Calendar calendar2 = Calendar.getInstance();
-         calendar2.set(Calendar.YEAR, 2014);
-         calendar2.set(Calendar.MONTH, Calendar.JUNE);
-         calendar2.set(Calendar.DATE, 20);
-          
-         java.sql.Date validDate = new java.sql.Date(calendar2.getTime().getTime());
          
          //Initialise user role                
          UserRole userRole = new UserRole.Builder()
@@ -91,10 +82,11 @@ public class ViewListingsBySubscriberServiceTest {
                 .setUsername("ManiFredOssy")
                 .setSubscriptionDate(javaSqlDate)
                 .setUserRoleID(userRole)
-                 .setValidUntil(validDate)
                 .build();
          subRepo.save(newSub);
          subID = newSub.getSubscriberID();
+         
+         
          
          PublishedDeceasedListing newListing = new PublishedDeceasedListing.Builder()
                  .setFirstName("Hendrika")
@@ -108,18 +100,20 @@ public class ViewListingsBySubscriberServiceTest {
                  .setImageOfBurialSite("/images/001.jpg")
                  .setLastKnownContactName("Berry")
                  .setLastKnownContactNumber("0725576482")
+
                  .setSubscriberSubmitID(subID)
                  .build();
          
          repoList.save(newListing);
          
-         List<PublishedDeceasedListing> pubListDod = subserv.findListingBySubscriber(javaSqlDate, validDate);
-         Assert.assertFalse(pubListDod.isEmpty());
-         //Assert.assertTrue(pubListDod.isEmpty());
+         List<PublishedDeceasedListing> pubListDob = dateServ.findListingByDOB("08/06/1969");
+         Assert.assertFalse(pubListDob.isEmpty());
+         
          repoList.delete(subID);
-        
      }
-
+     
+     
+     
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new AnnotationConfigApplicationContext(ConnectionConfigTest.class);

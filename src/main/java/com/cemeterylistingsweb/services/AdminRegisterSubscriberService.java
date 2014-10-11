@@ -13,7 +13,7 @@ import java.sql.Date;
  *
  * @author Ryno
  */
-public interface SubscriptionService extends Services<Subscriber, Long>{
-    public void updateSubscriber(Long subId);
-    public void deleteSubscriber(Long subId);
+public interface AdminRegisterSubscriberService extends Services<Subscriber, Long>{
+    public void registerSubscriber(String email, String first, String surname, String uname, String pword, Date sqlDate, int roleLevel);
+    
 }

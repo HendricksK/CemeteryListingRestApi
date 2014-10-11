@@ -44,45 +44,7 @@ public class CemeteryListingServiceImpl implements CemeteryListingService{
         return cemList;
     }
 
-    @Override
-    public List<PublishedDeceasedListing> findListingByCemetery(Long cemId) {
-        //
-        List<PublishedDeceasedListing> deceasedList = deadRepo.findAll();
-        List<PublishedDeceasedListing> Listings = new ArrayList();
-        for(PublishedDeceasedListing listing : deceasedList){
-            if(listing.getCemeteryID().equals(cemId)){
-                //add to list
-                Listings.add(listing);
-            }
-        }
-        return Listings;
-    }
-    
-    @Override
-    public List<PublishedDeceasedListing> findListingByCemetery(Long cemId, Long subId) {
-        //
-        List<PublishedDeceasedListing> deceasedList = deadRepo.findAll();
-        List<PublishedDeceasedListing> Listings = new ArrayList();
-        Subscriber sub = subRepo.findOne(subId);
-        
-        for(PublishedDeceasedListing listing : deceasedList){
-            
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-            Date parsed = null;
-            try {
-                parsed = (Date) format.parse(listing.getDateOfDeath());
-            } catch (ParseException ex) {
-                Logger.getLogger(ViewListingBySubscriberServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            java.sql.Date dod = new java.sql.Date(parsed.getTime());
-            
-            if(listing.getCemeteryID().equals(cemId) && dod.after(sub.getSubscriptionDate()) && dod.before(sub.getLastContributionYear())){
-                //add to list
-                Listings.add(listing);
-            }
-        }
-        return Listings;
-    }
+   
 
     @Override
     public Cemetery find(Long id) {

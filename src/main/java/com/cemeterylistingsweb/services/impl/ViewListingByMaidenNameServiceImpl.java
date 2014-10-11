@@ -9,9 +9,7 @@ package com.cemeterylistingsweb.services.impl;
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
 import com.cemeterylistingsweb.repository.RequiresApprovalDeceasedListingRepository;
-import com.cemeterylistingsweb.repository.SubscriberRepository;
-import com.cemeterylistingsweb.services.ViewListingByDateService;
-import java.sql.Date;
+import com.cemeterylistingsweb.services.ViewListingByMaidenNameService;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +20,11 @@ import org.springframework.stereotype.Service;
  * @author Ryno
  */
 @Service
-public class ViewListingByDateServiceImpl implements ViewListingByDateService{
+public class ViewListingByMaidenNameServiceImpl implements ViewListingByMaidenNameService{
     @Autowired
     PublishedDeceasedListingRepository publishRepo;
     @Autowired
-    SubscriberRepository subRepo;
-    
+    RequiresApprovalDeceasedListingRepository waitRepo;
     
     @Override
     public PublishedDeceasedListing find(Long id) {
@@ -56,28 +53,27 @@ public class ViewListingByDateServiceImpl implements ViewListingByDateService{
     public List<PublishedDeceasedListing> findAll() {
         return publishRepo.findAll();
     }
-    public List<PublishedDeceasedListing> findListingByDOB(String dob){
-        
-        List<PublishedDeceasedListing> lists=publishRepo.findAll();
-        //find listing by dob
-        List<PublishedDeceasedListing> list = new ArrayList();
-        for(PublishedDeceasedListing pubListing : lists ){
-            if(pubListing.getDateOfBirth().equals(dob))
-                list.add(pubListing);
-        }
-        
-            return list;
-    }
-    public List<PublishedDeceasedListing> findListingByDOD(String dod){
-        List<PublishedDeceasedListing> lists=publishRepo.findAll();
-        //find listing by dob
-        List<PublishedDeceasedListing> list = new ArrayList();
-        for(PublishedDeceasedListing pubListing : lists ){
-            if(pubListing.getDateOfDeath().equals(dod))
-                list.add(pubListing);
-        }
-
-        return list;
-    }
     
+    public List<PublishedDeceasedListing> findListingByMaidenName(String name){
+         List<PublishedDeceasedListing> names = new ArrayList();
+       
+        
+        List<PublishedDeceasedListing> all = publishRepo.findAll();
+        
+        if(name.isEmpty() || name.equals(""))
+                return all;
+       
+        for (PublishedDeceasedListing all1 : all) {
+            
+            if (all1.getMaidenName().equals(name)) {
+                names.add(all1);
+            }
+            else if(all1.getSurname().startsWith(name))
+                names.add(all1);
+            else if(all1.getSurname().contains(name))
+                names.add(all1);
+        }
+            
+                return names;
+    }
 }

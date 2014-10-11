@@ -6,14 +6,12 @@
 
 package com.cemeterylistingsweb.services;
 
-import com.cemeterylistingsweb.domain.Subscriber;
-import java.sql.Date;
+import com.cemeterylistingsweb.domain.UserRole;
 
 /**
  *
  * @author Ryno
  */
-public interface SubscriptionService extends Services<Subscriber, Long>{
-    public void updateSubscriber(Long subId);
-    public void deleteSubscriber(Long subId);
+public interface AdminRegisterUserRoleService extends Services<UserRole, Long>{
+    public void RegisterUserRole(int level);
 }

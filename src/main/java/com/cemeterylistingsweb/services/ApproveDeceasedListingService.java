@@ -6,12 +6,12 @@
 
 package com.cemeterylistingsweb.services;
 
-import com.cemeterylistingsweb.domain.Location;
+import com.cemeterylistingsweb.domain.RequiresApprovalDeceasedListing;
 
 /**
  *
  * @author Ryno
  */
-public interface LocationListingService extends Services<Location, Long>{
-    
+public interface ApproveDeceasedListingService extends Services<RequiresApprovalDeceasedListing, Long>{
+     public boolean approveDeceasedListing(Long id);
 }

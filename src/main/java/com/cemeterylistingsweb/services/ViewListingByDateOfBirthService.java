@@ -14,8 +14,8 @@ import java.util.List;
  *
  * @author Ryno
  */
-public interface ViewListingByDateService extends Services<PublishedDeceasedListing, Long>{
+public interface ViewListingByDateOfBirthService extends Services<PublishedDeceasedListing, Long>{
     public List<PublishedDeceasedListing> findListingByDOB(String dob);
-    public List<PublishedDeceasedListing> findListingByDOD(String dod);
+   
     
 }

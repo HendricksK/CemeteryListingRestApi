@@ -9,7 +9,7 @@ package com.cemeterylistingswebtest.test.rest;
 import com.cemeterylistingsweb.domain.Cemetery;
 import com.cemeterylistingsweb.domain.Subscriber;
 import com.cemeterylistingsweb.domain.UserRole;
-import com.cemeterylistingsweb.services.RegistrationService;
+import com.cemeterylistingsweb.services.AdminRegisterSubscriberService;
 import static com.cemeterylistingswebtest.test.domain.SubscriberTest.repo;
 import java.util.Calendar;
 import java.util.Collections;
@@ -35,7 +35,7 @@ public class RegistrationControllerTest {
 
     private final RestTemplate restTemplate = new RestTemplate();
     private final static String URL = "http://localhost:8081/CemeteryListingsWebApp/";
-    private RegistrationService cs;
+    private AdminRegisterSubscriberService cs;
     private Long id;
 
     @Test(enabled = false)

@@ -12,8 +12,7 @@ import com.cemeterylistingsweb.domain.RequiresApprovalDeceasedListing;
  *
  * @author Ryno
  */
-public interface DeceasedListingService extends Services<RequiresApprovalDeceasedListing, Long>{
-    public void updateDeceasedListing(Long id);
-    public void removeDeceasedListing(Long id);
-    
+public interface AdminRegisterListingService extends Services<RequiresApprovalDeceasedListing, Long>{
+    public void registerDeceasedListing(String fn, String ln, String maiden, String gender, String dob, String dod, String inscription, String graveNum, String graveImage, String contactname, String contactNum, Long subID);
+ 
 }

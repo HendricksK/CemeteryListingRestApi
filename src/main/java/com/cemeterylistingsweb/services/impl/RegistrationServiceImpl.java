@@ -12,7 +12,7 @@ import com.cemeterylistingsweb.domain.Subscriber;
 import com.cemeterylistingsweb.domain.UserRole;
 import com.cemeterylistingsweb.repository.CemeteryRepository;
 import com.cemeterylistingsweb.repository.SubscriberRepository;
-import com.cemeterylistingsweb.services.RegistrationService;
+import com.cemeterylistingsweb.services.CemeteryRegistrationService;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
  * @author Ryno
  */
 @Service
-public class RegistrationServiceImpl implements RegistrationService{
+public class RegistrationServiceImpl implements CemeteryRegistrationService{
     @Autowired
     SubscriberRepository SubscrRepo;
     @Autowired

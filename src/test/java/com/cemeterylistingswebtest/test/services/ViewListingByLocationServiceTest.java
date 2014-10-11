@@ -8,7 +8,7 @@ package com.cemeterylistingswebtest.test.services;
 
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
-import com.cemeterylistingsweb.services.DisplayAllDeceasedService;
+import com.cemeterylistingsweb.services.ViewListingByLocationService;
 import com.cemeterylistingsweb.services.SearchSurname;
 import com.cemeterylistingswebtest.test.ConnectionConfigTest;
 import static com.cemeterylistingswebtest.test.services.SearchSurnameTest.ctx;
@@ -28,9 +28,9 @@ import org.testng.annotations.Test;
  *
  * @author Zaakir
  */
-public class DisplayAlldeceasedTest {
+public class ViewListingByLocationServiceTest {
     
-    public DisplayAlldeceasedTest() {
+    public ViewListingByLocationServiceTest() {
     }
 private static Long id;
     public static ApplicationContext ctx;
@@ -135,8 +135,8 @@ private static Long id;
         
          
          
-       DisplayAllDeceasedService service;
-         service = ctx.getBean(DisplayAllDeceasedService.class);
+       ViewListingByLocationService service;
+         service = ctx.getBean(ViewListingByLocationService.class);
          
         List<PublishedDeceasedListing> deceased = new ArrayList();
          deceased = service.getAllDeceased(12345l);

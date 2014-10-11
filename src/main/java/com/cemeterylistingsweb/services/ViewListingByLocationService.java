@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @author Zaakir
  */
 @Service
-public interface DisplayAllDeceasedService extends Services<PublishedDeceasedListing,Long>{
+public interface ViewListingByLocationService extends Services<PublishedDeceasedListing,Long>{
     public List<PublishedDeceasedListing> getAllDeceased(long location);
 }

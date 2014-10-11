@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Ryno
  */
-public interface RegistrationService extends Services<Subscriber,Long>{
+public interface CemeteryRegistrationService extends Services<Subscriber,Long>{
     
     public void registerCemetery(Location local, String contactName, String contactNumber);
     public Location registerLocation(String cemName, String Country, String state, String gps, String prov, String town);

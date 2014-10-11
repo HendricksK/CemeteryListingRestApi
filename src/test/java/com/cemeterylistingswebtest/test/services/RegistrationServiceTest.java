@@ -11,7 +11,7 @@ import com.cemeterylistingsweb.repository.CemeteryRepository;
 import com.cemeterylistingsweb.repository.SubscriberRepository;
 import com.cemeterylistingsweb.repository.UserRoleRepository;
 import com.cemeterylistingsweb.services.LoginService;
-import com.cemeterylistingsweb.services.RegistrationService;
+import com.cemeterylistingsweb.services.CemeteryRegistrationService;
 import com.cemeterylistingswebtest.test.ConnectionConfigTest;
 import static com.cemeterylistingswebtest.test.services.LoginServiceTest.ctx;
 import java.util.Calendar;
@@ -41,11 +41,11 @@ public class RegistrationServiceTest {
     public static ApplicationContext ctx;
     public static SubscriberRepository repo;
     public static CemeteryRepository cemRepo;
-    public RegistrationService regServ;
+    public CemeteryRegistrationService regServ;
     
      @Test
      public void registerCemetery(){
-          regServ = ctx.getBean(RegistrationService.class);
+          regServ = ctx.getBean(CemeteryRegistrationService.class);
           cemRepo = ctx.getBean(CemeteryRepository.class);
           
           /*Location local = new Location.Builder()

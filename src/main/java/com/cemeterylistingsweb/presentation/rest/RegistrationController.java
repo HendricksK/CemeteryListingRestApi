@@ -7,7 +7,7 @@
 package com.cemeterylistingsweb.presentation.rest;
 
 import com.cemeterylistingsweb.domain.Subscriber;
-import com.cemeterylistingsweb.services.RegistrationService;
+import com.cemeterylistingsweb.services.AdminRegisterSubscriberService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RegistrationController {
     
     @Autowired
-    RegistrationService cs;
+    AdminRegisterSubscriberService cs;
     
     @RequestMapping(value = "create",method = RequestMethod.POST) // This the uri e.g http://localhost:8084/askweb/api/club/create
     @ResponseBody //Converts output or response to JSON String

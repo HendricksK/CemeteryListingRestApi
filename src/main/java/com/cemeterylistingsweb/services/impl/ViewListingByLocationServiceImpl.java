@@ -8,7 +8,7 @@ package com.cemeterylistingsweb.services.impl;
 
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
-import com.cemeterylistingsweb.services.DisplayAllDeceasedService;
+import com.cemeterylistingsweb.services.ViewListingByLocationService;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  * @author Zaakir
  */
 @Service
-public class DisplayAllDeceasedImpl implements DisplayAllDeceasedService{
+public class ViewListingByLocationServiceImpl implements ViewListingByLocationService{
     
     @Autowired
     private PublishedDeceasedListingRepository repo;

@@ -12,11 +12,16 @@ import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import com.cemeterylistingsweb.repository.CemeteryRepository;
 import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
 import com.cemeterylistingsweb.services.CemeteryListingService;
+import com.cemeterylistingsweb.services.ViewListingByCemetery;
 import com.cemeterylistingswebtest.test.ConnectionConfigTest;
+import static com.cemeterylistingswebtest.test.services.cemeteryListingsServiceTest.ctx;
+import static com.cemeterylistingswebtest.test.services.cemeteryListingsServiceTest.deadRepo;
+import static com.cemeterylistingswebtest.test.services.cemeteryListingsServiceTest.repo;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.util.Assert;
+import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -27,25 +32,23 @@ import org.testng.annotations.Test;
  *
  * @author Ryno
  */
-public class cemeteryListingsServiceTest {
+public class ViewListingByCemeteryTest {
     
-    public cemeteryListingsServiceTest() {
+    public ViewListingByCemeteryTest() {
     }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    // @Test
-    // public void hello() {}
     private static Long id, id2, id3;
     public static ApplicationContext ctx;
     public static CemeteryRepository repo;
     public static PublishedDeceasedListingRepository deadRepo;
-    public CemeteryListingService cemListServ;
+    public ViewListingByCemetery cemListServ;
     
-    @Test
+    @Test(enabled = false)
     public void Test() {
-        cemListServ = ctx.getBean(CemeteryListingService.class);
+        cemListServ = ctx.getBean(ViewListingByCemetery.class);
         repo = ctx.getBean(CemeteryRepository.class);
         deadRepo = ctx.getBean(PublishedDeceasedListingRepository.class);
         
@@ -188,9 +191,10 @@ public class cemeteryListingsServiceTest {
          Assert.notEmpty(deceasedList);
          List<Cemetery> listAllrepo = repo.findAll();
          Assert.notEmpty(listAllrepo);
-         List<Cemetery> listAll = cemListServ.findAllCemeteries();
+         List<Cemetery> listAll = cemListServ.findAll();
          Assert.notEmpty(listAll);
-         
+         List<PublishedDeceasedListing> lists = cemListServ.findListingByCemetery(id);
+         Assert.notEmpty(lists);
          
          //removal
          repo.delete(repo.findOne(id));

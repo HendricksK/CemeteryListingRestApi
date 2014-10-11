@@ -12,14 +12,10 @@ import com.cemeterylistingsweb.domain.UserRole;
 import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
 import com.cemeterylistingsweb.repository.SubscriberRepository;
 import com.cemeterylistingsweb.repository.UserRoleRepository;
-import com.cemeterylistingsweb.services.LoginService;
-import com.cemeterylistingsweb.services.ViewListingByDateService;
+import com.cemeterylistingsweb.services.ViewListingByDateOfBirthService;
+import com.cemeterylistingsweb.services.ViewListingByDateOfDeathService;
 import com.cemeterylistingswebtest.test.ConnectionConfigTest;
-import static com.cemeterylistingswebtest.test.domain.PublishedDeceasedListingTest.ctx;
-import static com.cemeterylistingswebtest.test.domain.PublishedDeceasedListingTest.repoList;
-import static com.cemeterylistingswebtest.test.domain.PublishedDeceasedListingTest.subRepo;
-import static com.cemeterylistingswebtest.test.domain.PublishedDeceasedListingTest.userRepo;
-import static com.cemeterylistingswebtest.test.services.LoginServiceTest.ctx;
+import static com.cemeterylistingswebtest.test.services.ViewListingByDateOfBirthServiceTest.ctx;
 import java.util.Calendar;
 import java.util.List;
 import junit.framework.Assert;
@@ -36,85 +32,26 @@ import org.testng.annotations.Test;
  *
  * @author Ryno
  */
-public class ViewListingByDateServiceTest {
+public class ViewListingByDateOfDeathServiceTest {
     
-    public ViewListingByDateServiceTest() {
+    public ViewListingByDateOfDeathServiceTest() {
     }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    private static Long subID;
+     private static Long subID;
     public static ApplicationContext ctx;
     public static SubscriberRepository subRepo;
     public static UserRoleRepository userRepo;
     public static PublishedDeceasedListingRepository repoList;
-    public ViewListingByDateService dateServ;
+    public ViewListingByDateOfDeathService dateServ;
      
-    @Test(enabled = false)
-     public void Test() {
-        dateServ = ctx.getBean(ViewListingByDateService.class);
-        repoList = ctx.getBean(PublishedDeceasedListingRepository.class);
-         subRepo = ctx.getBean(SubscriberRepository.class);
-         userRepo = ctx.getBean(UserRoleRepository.class);
-         
-         //Initialise date
-         Calendar calendar = Calendar.getInstance();
-         calendar.set(Calendar.YEAR, 2008);
-         calendar.set(Calendar.MONTH, Calendar.FEBRUARY);
-         calendar.set(Calendar.DATE, 4);
-          
-         java.sql.Date javaSqlDate = new java.sql.Date(calendar.getTime().getTime());
-         
-         //Initialise user role                
-         UserRole userRole = new UserRole.Builder()
-                 .setLevel(1)
-                 .build();
-         //userRepo.save(userRole);
-         //userRoleID = userRole.getUserRoleID();
-         
-         //Initialise subscriber
-         Subscriber newSub = new Subscriber.Builder()
-                .setEmail("manfredOsulivan@horseRaddish.com")
-                .setFirstName("Manfred")
-                .setSurname("Osulivan")
-                .setPwd("jesus")
-                .setUsername("ManiFredOssy")
-                .setSubscriptionDate(javaSqlDate)
-                .setUserRoleID(userRole)
-                .build();
-         subRepo.save(newSub);
-         subID = newSub.getSubscriberID();
-         
-         
-         
-         PublishedDeceasedListing newListing = new PublishedDeceasedListing.Builder()
-                 .setFirstName("Hendrika")
-                 .setSurname("Fourie")
-                 .setMaidenName("Gerber")
-                 .setGender("Female")
-                 .setDateOfBirth("08/06/1969")
-                 .setDateOfDeath("14/02/2005")
-                 .setGraveInscription("Hippiest person eva")
-                 .setGraveNumber("2456")
-                 .setImageOfBurialSite("/images/001.jpg")
-                 .setLastKnownContactName("Berry")
-                 .setLastKnownContactNumber("0725576482")
-
-                 .setSubscriberSubmitID(subID)
-                 .build();
-         
-         repoList.save(newListing);
-         
-         List<PublishedDeceasedListing> pubListDob = dateServ.findListingByDOB("08/06/1969");
-         Assert.assertFalse(pubListDob.isEmpty());
-         
-         repoList.delete(subID);
-     }
+    
      
      @Test(enabled = false)
      public void TestDoD() {
-        dateServ = ctx.getBean(ViewListingByDateService.class);
+        dateServ = ctx.getBean(ViewListingByDateOfDeathService.class);
         repoList = ctx.getBean(PublishedDeceasedListingRepository.class);
          subRepo = ctx.getBean(SubscriberRepository.class);
          userRepo = ctx.getBean(UserRoleRepository.class);
@@ -171,14 +108,14 @@ public class ViewListingByDateServiceTest {
          Assert.assertFalse(pubListDod.isEmpty());
          repoList.delete(subID);
      }
-     
+
     @BeforeClass
     public static void setUpClass() throws Exception {
-        ctx = new AnnotationConfigApplicationContext(ConnectionConfigTest.class);
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
+        ctx = new AnnotationConfigApplicationContext(ConnectionConfigTest.class);
     }
 
     @BeforeMethod

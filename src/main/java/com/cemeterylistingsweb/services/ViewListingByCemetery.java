@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Ryno
  */
-public interface CemeteryListingService extends Services<Cemetery,Long>{
-    public List<Cemetery> findAllCemeteries();
-    
+public interface ViewListingByCemetery extends Services<Cemetery,Long>{
+    public List<PublishedDeceasedListing> findListingByCemetery(Long cemId);
+    public List<PublishedDeceasedListing> findListingByCemetery(Long cemId, Long subId);
 }
