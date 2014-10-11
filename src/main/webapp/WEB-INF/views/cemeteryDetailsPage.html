@@ -1,16 +1,54 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/index.css">
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="siteWrapper"> <!-- this is the beginning of site wrapper will contain the entire pages html -->       
+                <div class="siteContent">  <!-- this is the beginning of site content will contain all the content --> 
+                    <h1>Jquery Test</h1>
+                    <input type="button" name="post" value="post" id="me">
+                </div>
+            </div>
+        <!-- Script begins here -->
+        <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
+        
+        <script type="text/javascript">
+          console.log('let me give');
+          var ID = localStorage.cemeteryID;
+          console.log(ID);
+
+          $.ajax({ // ajax call to retrieve all cemeteries json objects 
+                    type: "GET",
+                    url: "/CemeteryListingsWebApp/api/cemetery/id/"+ID+"",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log('success');
+                        console.log(data);
+            
+                            var obj = data;
+                                console.log(obj.id);
+                                console.log(obj.location.country);
+                                console.log(obj.location.province_State);
+                                console.log(obj.location.district_state);
+                                console.log(obj.location.town);
+                                console.log(obj.location.cemeteryName);
+                                console.log(obj.location.locationOfCemetery);
+                                console.log(obj.contactName);
+                                console.log(obj.contactNumber);
+// building html objects here
+$(".siteContent").append("<li>" + '<a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.id+'"> hello' + '</a>' + 'cemetery ID : ' + obj.id + ' Location - Country : ' + obj.location.country + ' Cemetery Name : ' + obj.location.cemeteryName + '<button class="goToDetails" text='+obj.id+' value='+obj.id+'>' +"</li>" + "<br>"); 
+
+	    }
+
+	});
+
+        </script>
+       
     </body>
+   
+    
 </html>

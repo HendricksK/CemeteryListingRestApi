@@ -38,6 +38,11 @@ public class CemeteryController {
         return "cemeteryListingsPage";
     }
     
+    @RequestMapping(value = "newcemetery", method = RequestMethod.GET)
+    public String newCemetery(){
+        return "createCemetery";
+    }
+    
     @RequestMapping(value = "cemetery", method = RequestMethod.GET)
     public String getCemetery(){
         return "cemeteryDetailsPage";

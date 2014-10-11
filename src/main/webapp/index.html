@@ -1,96 +1,43 @@
 <!DOCTYPE html>
 <html>
-    <head>
-         
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="index.css">
-    </head>
-    <body>
-        <div class="siteWrapper"> <!-- this is the beginning of site wrapper will contain the entire pages html -->       
-                <div class="siteContent">  <!-- this is the beginning of site content will contain all the content --> 
-                    <h1>Jquery Test</h1>
-                    <input type="button" name="post" value="post" id="me">
-                </div>
+  <head>
+    <link rel="stylesheet" type="text/css" href="resources/css/blackAndWhite.css">
+</head>
+
+<body class="siteWrapper">
+    <div class="pageHeader">
+        <a href="#" class="logo"><img src="resources/images/logo2.jpg"></a>
+                <ul class="navList">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="api/cemetery/cemeterylistings">Cemetery Listings</a></li>
+                    <li><a href="#">Deceased Listings</a></li>
+                    <li><a href="#">Contact US</a></li>
+                </ul>   
+
+                <ul class="socialListNav">
+                    <li><a href="#"><img src="resources/images/fbbtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="resources/images/instagrambtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="resources/images/tweetbtn.png" class="simpleLogo"></a></li>
+                </ul>   
+
             </div>
-        <!-- Script begins here -->
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+            <div class="dummyHeader"></div>
+    <div class="pageWrapper">
         
-        <script type="text/javascript">
-           console.log('hi');
-                    
-               //var data = [{}];     
-                  /*var beer;
-                    $.getJSON('/CemeteryListingsWebApp/api/cemetery/show',function(json){
-                        beer = json;   
-                        checkDrink();                
-                    });         
+        <div class="contentWrapper">
+                <div class="contentHeader"><img src="resources/images/inferno__condor_uav_s_by_crazyasian1-d7k5etc.jpg" class="contentHeaderImage"></div>
+                <table class="contentTable">
+                    <tr><td><div class="contentPanel"><img src="" class=""></div></td><td><div class="contentPanel"><img src=""></div></td></tr>
 
-                    function checkDrink() {
-                        console.log(beer);
-                    }   */
-    
-               $.ajax({ // ajax call to retrieve all cemeteries json objects 
-                    type: "GET",
-                    url: "/CemeteryListingsWebApp/api/cemetery/show",
-                    dataType: "json",
-                    success: function (data) {
-                        console.log('success');
-                        //console.log(data[0]['contactName']);
-                        
-                        for(var i = 0; i < data.length; i++) {
-                            var obj = data[i];
-                                console.log(obj.id);
-                                console.log(obj.location.country);
-                                console.log(obj.location.province_State);
-                                console.log(obj.location.district_state);
-                                console.log(obj.location.town);
-                                console.log(obj.location.cemeteryName);
-                                console.log(obj.location.locationOfCemetery);
-                                console.log(obj.contactName);
-                                console.log(obj.contactNumber);
-// building html objects here
-$(".siteContent").append("<div>" + 'cemetery ID : ' + obj.id + ' Location - Country : ' + obj.location.country + ' Cemetery Name : ' + obj.location.cemeteryName +"</div>" + "<br>"); 
-                            
-        }
-                        
-                        //$(".data").append(data[0]['contactName']) + "hello";// write success in " "
-                    },
-
-                    error: function (jqXHR, status) {
-                        // error handler
-                        console.log(jqXHR);
-                        alert('fail' + status.code);
-                    }
-                 });
-                 
-        $("#me").on("click", function(){
-            alert('i have been clicked');
-           
-        //var data = [{"id":17,"location":{"country":"America","province_State":"New Jersey","district_state":"Washington","town":"Marlboro","cemeteryName":"Palm Springs","locationOfCemetery":"12.06.12:45.63.89"},"contactName":"Palm Springs","contactNumber":"0215698412"}];
-        var data = 0;
-        $.ajax({
-                    type: "POST", 
-                    url: "/CemeteryListingsWebApp/api/cemetery/create",
-                    data: JSON.stringify({ "contactName": 'mattcat', "contactNumber" : 123456789 }),// now data come in this function stringyfy is needed in order to turn string into json
-                    dataType: "JSON",
-                    contentType: "application/json",
-                    success: function (status, jqXHR) {
-
-                        alert("success");// write success in " "
-                    },
-
-                    error: function (jqXHR, status) {
-                        // error handler
-                        console.log(jqXHR);
-                        //alert('fail ' + status.code);
-                    }
-                 });
-               });
-                 
-        </script>
-       
-    </body>
-   
-    
+                </table>
+        </div>
+    </div>
+    <div class="siteFooter">
+        <ul class="socialList">
+                    <li><a href="#"><img src="resources/images/fbbtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="resources/images/instagrambtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="resources/images/tweetbtn.png" class="simpleLogo"></a></li>
+        </ul>       
+    </div>
+</body>
 </html>

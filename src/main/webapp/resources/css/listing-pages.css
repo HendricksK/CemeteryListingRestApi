@@ -1,0 +1,111 @@
+
+.siteWrapper{
+	background-color: #BDBDBD;
+
+}
+
+.pageWrapper{
+
+	height:auto;
+	width:70%;
+	margin-left: 15%;
+	margin-right: 15%;
+	background-color: white;
+	display: bloack;
+}
+
+.pageHeader{
+	position: fixed;
+	width: 100%;
+	background-color: black;
+	height:7.2%;
+	margin-left: -0.4%;
+	margin-top: -0.4%;
+	opacity: 0.5;
+}
+
+.pageHeader:hover{
+	opacity: 1;
+}
+
+.navList{
+	margin-top: -2%;
+	margin-left: 20%;
+	position:fixed;
+	width:30%;
+}
+.navList li{
+	margin-left: 2%;
+	display: inline;
+}
+
+.navList a{
+	text-decoration: none;
+	color: white;
+	font-family:  sans-serif;
+}
+
+.socialList{
+	width: 30%;
+	margin-left: 60%;
+}
+
+.socialList li{
+	margin-left: 2%;
+	display: inline;
+}
+
+.socialListNav{
+	margin-top: -2%;
+	margin-left: 70%;
+	position:fixed;
+	background-color: white;
+	width: 4.7%;
+	padding-left: 0px;
+	padding-right: 0px;
+	 border-radius: 5px;
+}
+
+.socialListNav li{
+	margin-left: 2%;
+	display: inline;
+	background-color: white;
+}
+
+.simpleLogo{
+	width:25px;
+	height:25px;
+}
+
+.siteFooter{
+	float: left;
+	margin-top: 2%;
+	height: 5%;
+	width:100%;
+}
+
+.log{
+	width:100px;
+	height:25px;
+}
+
+.dummyHeader{
+
+	width: 100%;
+	padding-top: 3.5%;
+	height: 7.2%;
+	display: block;
+}
+
+.contentHeader{
+	width:100%;
+	height: auto;
+	padding-top: 1%;
+	padding-right: 1%;
+	padding-left: 1%;
+	padding-bottom: 1%;
+}
+
+.contentHeaderImage{
+	width: 98%;
+}
