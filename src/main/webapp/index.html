@@ -2,6 +2,8 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="resources/css/blackAndWhite.css">
+    <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/scripts/script.js"></script>
 </head>
 
 <body class="siteWrapper">
@@ -12,7 +14,7 @@
                     <li><a href="api/cemetery/cemeterylistings">Cemetery Listings</a></li>
                     <li><a href="#">Deceased Listings</a></li>
                     <li><a href="#">Contact Us</a></li>
-                    <li> <a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;">Login</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user">Login</a></li>
                 </ul>   
 
                 <ul class="socialListNav">
@@ -41,5 +43,20 @@
                     <li><a href="#"><img src="resources/images/tweetbtn.png" class="simpleLogo"></a></li>
         </ul>       
     </div>
+
+    <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+        var x = localStorage.username;
+
+        if($('.user') != null){
+            if(x == ""){
+                $('.user').text("Login");
+            }else{
+
+                $('.user').text(x);
+            }
+        }
+    </script>
+
 </body>
 </html>

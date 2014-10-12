@@ -3,6 +3,8 @@
   <head>
     <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/blackAndWhite.css">
     <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/login.css">
+    <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/scripts/script.js"></script>
 </head>
 
 <body class="siteWrapper">
@@ -28,7 +30,7 @@
     <div class="siteFooter"> 
     </div>
 
-     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
+     <!--<script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script> -->
         
         <script type="text/javascript">
         	console.log('hi');
@@ -51,6 +53,8 @@
                         console.log(data);
                         console.log(jqXHR);
                         console.log('yes');
+
+                        localStorage.username = username;
                     },
 
                     error: function (data,jqXHR, status) {
@@ -63,6 +67,7 @@
 
         		$('#username').val("");
         		$('#password').val("");
+        		
         	});
 
         </script>
