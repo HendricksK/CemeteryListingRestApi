@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/login.css">
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/scripts/script.js"></script>
+     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/plugins/jquery.cookie.js"></script>
 </head>
 
 <body class="siteWrapper">
@@ -55,6 +56,7 @@
                         console.log('yes');
 
                         localStorage.username = username;
+                        $.cookie('login', username );
                     },
 
                     error: function (data,jqXHR, status) {
