@@ -23,7 +23,7 @@
                		<form id="loginForm">
                             <br>
                             <label class="loginLabel" id="adminID">Admin ID (required)</label>
-                            <input type="text" id="username" class="loginInput" name="cusername">
+                            <input type="text" id="userID" class="loginInput" name="cusername">
                             <label class="loginLabel" id="userLabel">Username (required)</label>
                             <input type="text" id="username" class="loginInput" name="cusername">
                             <label class="loginLabel" id="pwordLabel">Password (required)</label>
@@ -45,9 +45,15 @@
         	$('.loginButton').click(function() {
         		console.log('i have been clicked');
 
+                var id = $('#userID').val();
         	var username = $('#username').val();
         	var password = $('#password').val();
-                        
+                var checkID = null;
+                    
+        
+                if(id == ""){
+                     $('#adminID').text("Please enter admin id");
+                } 
                 if(username == ""){
                      $('#userLabel').text("Please enter a username");
                 } 
@@ -57,21 +63,23 @@
 
                         console.log(username);
                         console.log(password);
-
-                                    $.ajax({
-                                type: "POST", 
-                                url: "/CemeteryListingsWebApp/api/Subscriber/logon",
-                                data: {"user": username ,"pword": password},
+                        console.log(id);
+                        
+                         $.ajax({
+                                type: "GET", 
+                                url: "/CemeteryListingsWebApp/api/Subscriber/id/"+id+"",
+                                //data: {"user": username ,"pword": password},
                                 success: function (data, status, jqXHR) {
                                     //alert("success");// write success in " "
                                     console.log(data);
                                     console.log(jqXHR);
 
-                                    if(data == "true"){
-                                            localStorage.username = username;
-                                            $.cookie('login', username );
-                                        }
-                                    window.location.href = "/CemeteryListingsWebApp/";
+                                    if(data == ""){
+                                        alert('user does not exists');
+                                    }else if((data.username == username ) && (data.pwd == password) && (data.userRoleID.level == 1) ){
+                                        alert('logged in');
+                                    }
+                                    //window.location.href = "/CemeteryListingsWebApp/";
                                 },
 
                                 error: function (data,jqXHR, status) {
@@ -84,6 +92,7 @@
 
                                     $('#username').val("");
                                     $('#password').val("");
+                                    $('#userID').val("");
 
                     }
                 });
