@@ -73,13 +73,14 @@
                                     //alert("success");// write success in " "
                                     console.log(data);
                                     console.log(jqXHR);
-
-                                    if(data == ""){
-                                        alert('user does not exists');
-                                    }else if((data.username == username ) && (data.pwd == password) && (data.userRoleID.level == 1) ){
+                                    
+                                    if((data.username == username ) && (data.pwd == password) && (data.userRoleID.level == 1)){
                                         alert('logged in');
-                                    }
-                                    //window.location.href = "/CemeteryListingsWebApp/";
+                                            window.location.href = "/CemeteryListingsWebApp/api/auth/loggedIn";
+                                    }else if(data == ""){
+                                            alert('user does not exists');
+                                        }
+                                    
                                 },
 
                                 error: function (data,jqXHR, status) {
