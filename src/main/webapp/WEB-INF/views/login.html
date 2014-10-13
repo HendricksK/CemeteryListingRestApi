@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/login.css">
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/scripts/script.js"></script>
-     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/plugins/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/plugins/cookies-plugin/jquery.cookie.js"></script>
 </head>
 
 <body class="siteWrapper">
@@ -19,12 +19,16 @@
     <div class="pageWrapper">
         
         <div class="contentWrapper">
-               <div class="loginForm">
-               		<form>
-               			<input type="text" id="username" class="loginInput">
-               			<input type="password" id="password" class="loginInput">
-               			<input type="button" id="sign-in" class="loginButton" value="Login">
+               <div class="loginForm" style="margin-top: 10%">
+               		<form id="loginForm">
+                            <input class="loginInput" style="visibility: hidden">
+                            <label class="loginLabel" id="userLabel">Username (required)</label>
+                            <input type="text" id="username" class="loginInput" name="cusername">
+                            <label class="loginLabel" id="pwordLabel">Password (required)</label>
+                            <input type="password" id="password" class="loginInput" name="cpassword">
+                            <input type="button" id="sign-in" class="loginButton" value="Login">
                		</form>
+                   
                </div>
         </div>
     </div>
@@ -39,38 +43,48 @@
         	$('.loginButton').click(function() {
         		console.log('i have been clicked');
 
-        		var username = $('#username').val();
-        		var password = $('#password').val();
+        	var username = $('#username').val();
+        	var password = $('#password').val();
+                        
+                if(username == ""){
+                     $('#userLabel').text("Please enter a username");
+                } 
+                if(password == ""){
+                    $('#pwordLabel').text("Please enter a password");
+                }else{
 
-        		console.log(username);
-        		console.log(password);
+                        console.log(username);
+                        console.log(password);
 
-        		$.ajax({
-                    type: "POST", 
-                    url: "/CemeteryListingsWebApp/api/Subscriber/logon",
-                    data: {"user": username ,"pword": password},
-                    success: function (data, status, jqXHR) {
-                        //alert("success");// write success in " "
-                        console.log(data);
-                        console.log(jqXHR);
-                        console.log('yes');
+                                    $.ajax({
+                                type: "POST", 
+                                url: "/CemeteryListingsWebApp/api/Subscriber/logon",
+                                data: {"user": username ,"pword": password},
+                                success: function (data, status, jqXHR) {
+                                    //alert("success");// write success in " "
+                                    console.log(data);
+                                    console.log(jqXHR);
 
-                        localStorage.username = username;
-                        $.cookie('login', username );
-                    },
+                                    if(data == "true"){
+                                            localStorage.username = username;
+                                            $.cookie('login', username , {path: '/'});
+                                        }
+                                    window.location.href = "/CemeteryListingsWebApp/";
+                                },
 
-                    error: function (data,jqXHR, status) {
-                        // error handler
-                        console.log('fail');
-                        console.log(jqXHR);
-                        console.log('fail ' + status.code);
+                                error: function (data,jqXHR, status) {
+                                    // error handler
+                                    console.log('fail');
+                                    console.log(jqXHR);
+                                    console.log('fail ' + status.code);
+                                }
+                             });
+
+                                    $('#username').val("");
+                                    $('#password').val("");
+
                     }
-                 });
-
-        		$('#username').val("");
-        		$('#password').val("");
-        		
-        	});
+                });
 
         </script>
 

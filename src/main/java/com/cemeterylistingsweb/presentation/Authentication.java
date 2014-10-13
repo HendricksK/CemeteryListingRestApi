@@ -22,4 +22,9 @@ public class Authentication {
     public String login(){
         return "login";
     }
+    
+    @RequestMapping(value = "admin", method = RequestMethod.GET)
+    public String adminLogin(){
+        return "adminLogin";
+    }
 }

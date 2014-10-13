@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/listing-pages.css">
+    </head>
+    <body class="siteWrapper">
+         <div class="pageHeader">
+        <a href="#" class="logo"><img src="/CemeteryListingsWebApp/resources/images/logo2.jpg"></a>
+                <ul class="navList"  style="width : 100%">
+                    <li><a href="/CemeteryListingsWebApp/">Home</a></li>
+                    <li><a href="api/cemetery/cemeterylistings">Cemetery Listings</a></li>
+                    <li><a href="#">Deceased Listings</a></li>
+                    <li><a href="#">Contact US</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user">Login</a></li>
+                </ul>   
+
+                <ul class="socialListNav">
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/fbbtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/instagrambtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/tweetbtn.png" class="simpleLogo"></a></li>
+                </ul>   
+
+            </div>
+            <div class="dummyHeader"></div>
+                <div class="pageWrapper">        <!-- this is the beginning of site wrapper will contain the entire pages html -->       
+                    <div class="siteContent">  
+                        <table class="listings"></table><!-- this is the beginning of site content will contain all the content --> 
+                        <!--<h1>Jquery Test</h1>
+                        <input type="button" name="post" value="post" id="me"> -->
+                    </div>
+                </div>
+        <!-- Script begins here -->
+        <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
+        
+        <script type="text/javascript">
+            var nameSearch = localStorage.nameSearch;
+            
+                     $.ajax({
+                                type: "GET", 
+                                url: "/CemeteryListingsWebApp/api/search/nameSearch",
+                                data: {"name": nameSearch},
+                                success: function (data, status, jqXHR) {
+                                  console.log(data);
+                                },
+
+                                error: function (data,jqXHR, status) {
+                                    // error handler
+                                    console.log('fail');
+                                    console.log(jqXHR);
+                                    console.log('fail ' + status.code);
+                                }
+                             });
+        </script>
+    </body>
+</html>

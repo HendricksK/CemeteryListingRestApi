@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="resources/css/blackAndWhite.css">
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/scripts/script.js"></script>
+    <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/plugins/cookies-plugin/jquery.cookie.js"></script>
 </head>
 
 <body class="siteWrapper">
@@ -25,7 +26,11 @@
 
                
             </div>
-            <div class="dummyHeader"></div>
+    <div class="dummyHeader">
+        <label>Search</label>
+        <input type="text" id="searchBar" class="searchBar" name="cusername">
+        <input type="button" id="searchButton" class="searchbutton" value="S">
+    </div>
     <div class="pageWrapper">
         
         <div class="contentWrapper">
@@ -46,6 +51,14 @@
 
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
+        
+        $('#searchButton').click(function() {
+            localStorage.nameSearch = $('.searchBar').val();
+            //alert(localStorage.search);
+            window.location.href = "/CemeteryListingsWebApp/api/search/siteSearch";
+           
+        });
+        
         var x = localStorage.username;
 
         if($('.user') != null){

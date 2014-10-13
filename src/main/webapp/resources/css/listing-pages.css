@@ -42,7 +42,7 @@
 	position: fixed;
 	width: 100%;
 	background-color: black;
-	height:7.2%;
+	height:70px;
 	margin-left: -0.4%;
 	margin-top: -0.4%;
 	opacity: 0.5;
@@ -117,7 +117,7 @@
 
 	width: 100%;
 	padding-top: 3.5%;
-	height: 7.2%;
+	height: 70px;
 	display: block;
 }
 
