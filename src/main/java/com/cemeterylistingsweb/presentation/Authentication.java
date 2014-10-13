@@ -27,4 +27,9 @@ public class Authentication {
     public String adminLogin(){
         return "adminLogin";
     }
+    
+    @RequestMapping(value = "loggedIn", method = RequestMethod.GET)
+    public String adminHome(){
+        return "adminHome";
+    }
 }

@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.cemeterylistingsweb.presentation.rest;
 
-import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
-import com.cemeterylistingsweb.services.SearchSurname;
+import com.cemeterylistingsweb.domain.RequiresApprovalDeceasedListing;
+import com.cemeterylistingsweb.services.ApproveDeceasedListingService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,44 +18,41 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
- * @author Zaakir
+ * @author Kurvin Hendricks
  */
-
 @Controller
-@RequestMapping(value = "api/SearchSurname") 
-public class SearchSurnameController {
-    
+@RequestMapping(value = "api/unpublishedListings") 
+public class UnpublishedDeceasedListingsController {
     @Autowired
-    SearchSurname cs;
+    ApproveDeceasedListingService adls;
     
     @RequestMapping(value = "create",method = RequestMethod.POST) // This the uri e.g http://localhost:8084/askweb/api/club/create
     @ResponseBody //Converts output or response to JSON String
-    public String create(@RequestBody PublishedDeceasedListing PDl) { // @RequestBody for converting incoming JSON call to Object
-        cs.persist(PDl);
+    public String create(@RequestBody RequiresApprovalDeceasedListing PDL) { // @RequestBody for converting incoming JSON call to Object
+        adls.persist(PDL);
         System.out.println(" Create the Called ");
-        return "Club created";
+        return "created";
     }
     
     @RequestMapping(value = "show", method = RequestMethod.GET)
     @ResponseBody
-    public List<PublishedDeceasedListing> getAll(){
-        return cs.findAll();
+    public List<RequiresApprovalDeceasedListing> getAll(){
+        return adls.findAll();
     }
     
     @RequestMapping(value = "update",method = RequestMethod.PUT) //This the uri e.g http://localhost:8084/askweb/api/club/update
     @ResponseBody
-    public String update(@RequestBody PublishedDeceasedListing cemetery) {
-        cs.merge(cemetery);
+    public String update(@RequestBody RequiresApprovalDeceasedListing PDL) {
+        adls.merge(PDL);
         System.out.println(" Update Called ");
-        return "Club Update";
+        return "updated";
     }
     
     @RequestMapping(value = "id/{id}",method = RequestMethod.GET) //http://localhost:8084/askweb/api/club/1234
     @ResponseBody
-    public PublishedDeceasedListing getClub(@PathVariable Long id) { //@PathVariable used to bind the id value
+    public RequiresApprovalDeceasedListing getClub(@PathVariable Long id) { //@PathVariable used to bind the id value
         
         System.out.println(" ID called ");
-        return cs.find(id);
+        return adls.find(id);
     }
-    
 }
