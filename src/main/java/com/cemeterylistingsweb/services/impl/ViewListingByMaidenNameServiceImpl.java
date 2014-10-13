@@ -65,7 +65,7 @@ public class ViewListingByMaidenNameServiceImpl implements ViewListingByMaidenNa
        
         for (PublishedDeceasedListing all1 : all) {
             
-            if (all1.getMaidenName().equals(name)) {
+            if (all1.getMaidenName().equalsIgnoreCase(name)) {
                 names.add(all1);
             }
             else if(all1.getSurname().startsWith(name))
