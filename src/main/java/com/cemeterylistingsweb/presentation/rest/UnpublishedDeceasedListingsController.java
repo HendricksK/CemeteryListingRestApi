@@ -55,4 +55,9 @@ public class UnpublishedDeceasedListingsController {
         System.out.println(" ID called ");
         return adls.find(id);
     }
+    
+    @RequestMapping(value = "details", method = RequestMethod.GET)
+    public String adminHome(){
+        return "unpublishedDetailsPage";
+    }
 }
