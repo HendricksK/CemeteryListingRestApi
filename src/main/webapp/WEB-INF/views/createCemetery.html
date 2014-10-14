@@ -10,16 +10,32 @@
         <div class="siteWrapper"> <!-- this is the beginning of site wrapper will contain the entire pages html -->       
                 <div class="siteContent">  <!-- this is the beginning of site content will contain all the content --> 
                     <h1>Jquery Test</h1>
-                    <form style="width:20%; margin-left:10%;" id="data">
-	                    <input type="text" name="cemeteryName" id="cemeteryName" value="Cemetery Name" style="width:100%">
-	                    <input type="text" name="contactName" id="contactName" value="Contact Name" style="width:100%">
-	                    <input type="text" name="contactNumber" id="contactNumber" value="Contact Number" style="width:100%">
-	                    <input type="text" name="country" id="country" value="Country" style="width:100%">
-	                    <input type="text" name="district_state" id="district_state" value="District" style="width:100%">
-	                    <input type="text" name="locationOfCemetery" id="locationOfCemetery" value="Locatio Of Cemetery eg 12.06.12:45.63.89" style="width:100%">
-	                    <input type="text" name="province_state" id="province_state" value="Province/State" style="width:100%">
-	                    <input type="text" name="town" id="town" value="Town" style="width:100%">
-	                    <input type="button" name="post" value="create cemetery" id="createButton" style="margin-left: 35%">
+                    <form style="width:20%; margin-left:10%;" id="data"> 
+                            <fieldset style="border:0">
+	                    <input type="text" name="cemeteryName" id="cemeteryName" placeholder="Cemetery Name" style="width:100%">
+                            </fieldset>
+                            <fieldset style="border:0">
+	                    <input type="text" name="contactName" id="contactName" placeholder="Contact Name" style="width:100%">
+                            </fieldset>
+                            <fieldset style="border:0">
+	                    <input type="text" name="contactNumber" id="contactNumber" placeholder="Contact Number" style="width:100%">
+                            </fieldset>
+                            <fieldset style="border:0">
+	                    <input type="text" name="country" id="country" placeholder="Country" style="width:100%">
+                            </fieldset>
+                            <fieldset style="border:0">
+	                    <input type="text" name="district_state" id="district_state" placeholder="District" style="width:100%">
+                            </fieldset>
+                            <fieldset style="border:0">
+                            <input type="text" name="locationOfCemetery" id="locationOfCemetery" placeholder="Locatio Of Cemetery eg 12.06.12:45.63.89" style="width:100%">
+                            </fieldset>
+                            <fieldset style="border:0">
+                            <input type="text" name="province_state" id="province_state" placeholder="Province/State" style="width:100%">
+                            </fieldset>
+                            <fieldset style="border:0">
+                            <input type="text" name="town" id="town" placeholder="Town" style="width:100%">
+                            </fieldset>
+                            <input type="button" name="post" value="create cemetery" id="createButton" style="margin-left: 35%">
 	                </form>
                 </div>
             </div>
@@ -35,18 +51,15 @@
                     type: "POST", 
                     url: "/CemeteryListingsWebApp/api/cemetery/create",
                     data: JSON.stringify({"location":{"country":$('#country').val(),"province_State":$('#province_state').val(),"district_state":$('#district_state').val(),"town":$('#town').val(),"cemeteryName":$('#cemeteryName').val(),"locationOfCemetery":$('#locationOfCemetery').val()},"contactName":$('#contactName').val(),"contactNumber":$('#contactNumber').val()}),
-                    //data: JSON.stringify({ "contactName": 'mattcat', "contactNumber" : 123456789 , "ceme"}),// now data come in this function stringyfy is needed in order to turn string into json
                     dataType: "JSON",
                     contentType: "application/json",
                     success: function (status, jqXHR) {
 
-                        alert("success");// write success in " "
+                        window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
                     },
 
                     error: function (jqXHR, status) {
-                        // error handler
-                        console.log(jqXHR);
-                        //alert('fail ' + status.code);
+                       window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
                     }
                  });
 

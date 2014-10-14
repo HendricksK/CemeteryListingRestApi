@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/index.css">
+        <script src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
+    </head>
+    <body>
+        <div class="siteWrapper"> <!-- this is the beginning of site wrapper will contain the entire pages html -->       
+                <div class="siteContent">  <!-- this is the beginning of site content will contain all the content --> 
+                    <h1>Jquery Test</h1>
+                    <form style="width:20%; margin-left:10%;" id="data">
+                        <fieldset style="border:0">
+	                    <input type="text" placeholder="First Name" name="firstName" id="firstName" style="width:100%">
+                        </fieldset>
+                        <fieldset style="border:0">
+	                    <input type="text" name="lastName" id="lastName" placeholder="Last Name" style="width:100%">
+                        </fieldset>
+                        <fieldset style="border:0">
+	                    <input type="text" name="maidenName" id="maidenName" placeholder="Maiden Name" style="width:100%">
+	                    </fieldset>
+                        <fieldset style="border:0">
+                        <input type="text" name="gender" id="gender" placeholder="Gender" style="width:100%">
+	                    </fieldset>
+                        <fieldset style="border:0">
+                        <input type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date Of Birth" style="width:100%">
+	                    </fieldset>
+                        <fieldset style="border:0">
+                        <input type="text" name="dateOfDeath" id="dateOfDeath" placeholder="Date Of Death" style="width:100%">
+	                    </fieldset>
+                        <fieldset style="border:0">
+                        <textarea name="graveInscription" id="graveInscription" placeholder="Grave Inscription" style="width:100%; height : auto">
+                        </textarea>
+                        </fieldset>
+                        <fieldset style="border:0">
+                        <input type="text" name="lastKnownContactName" id="lastKnownContactName" placeholder="Last Known Contact Name" style="width:100%">
+                        </fieldset>
+                        <fieldset style="border:0">
+                        <input type="text" name="lastKnownContactNumber" id="lastKnownContactNumber" placeholder="Last Known Contact Number" style="width:100%">
+                        </fieldset>
+                        <fieldset style="border:0">
+                        <select disabled name="cemeteryID" id="cemeteryID" style="width:10%">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="opel">Opel</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                        <select name="cemeteryName" id="cemeteryName" style="width:80%;">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="opel">Opel</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                        </fieldset>
+                        <fieldset style="border:0">
+                        <textarea name="otherNames" id="otherNames" placeholder="Other Names, seperated by a comma, end with a full stop" style="width:100%; height : auto">
+                        </textarea>
+                        </fieldset>
+                        <fieldset style="border:0">
+                        <input type="text" name="imageOfBurialSite" id="imageOfBurialSite" placeholder="Image Of Burial Site" style="width:100%">
+                        </fieldset>
+                        <input type="button" name="postUnpublishedListing" id="postUnpublishedListing" value="Submit">
+	                </form>
+                </div>
+            </div>
+        <!-- Script begins here -->
+        <!--<script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script> -->
+        
+        <script type="text/javascript">
+        var names = new Array();
+
+        $("#otherNames").keypress(function(e){
+            var value = $(this).val().replace(" ", "");
+            var words = value.split(",");
+            console.log(words);
+            names = words;
+            if(words.length > 5){
+                //alert("Hey! That's more than 5 words!");
+                e.preventDefault();
+            }
+
+        });
+        	console.log('one love');
+
+
+          var x = $( "#cemeteryName option:selected" ).text();
+          console.log(x);
+
+          $('#cemeteryName').click( function() {
+            //$('.second').children().eq(0);
+                console.log($( "#cemeteryName option:selected" ).text());
+                 console.log($( "#cemeteryName option:selected" ).index());
+                 var x = $("#cemeteryName option:selected" ).index();
+                 console.log($('#cemeteryID').children().eq(x).val() + "yeees");
+          });
+        	
+        	$('#postUnpublishedListing').on('click', function() {
+                    //var value = $(this).val().replace(" ", "");
+                    alert(names);
+
+                   
+                    
+        	/*$.ajax({
+                    type: "POST", 
+                    url: "/CemeteryListingsWebApp/api/cemetery/unpublishedDeceasedListing",
+                    data: JSON.stringify({"location":{"country":$('#country').val(),"province_State":$('#province_state').val(),"district_state":$('#district_state').val(),"town":$('#town').val(),"cemeteryName":$('#cemeteryName').val(),"locationOfCemetery":$('#locationOfCemetery').val()},"contactName":$('#contactName').val(),"contactNumber":$('#contactNumber').val()}),
+                    //data: JSON.stringify({ "contactName": 'mattcat', "contactNumber" : 123456789 , "ceme"}),// now data come in this function stringyfy is needed in order to turn string into json
+                    dataType: "JSON",
+                    contentType: "application/json",
+                    success: function (status, jqXHR) {
+
+                        alert("success");// write success in " "
+                    },
+
+                    error: function (jqXHR, status) {
+                        // error handler
+                        console.log(jqXHR);
+                        //alert('fail ' + status.code);
+                    }
+                 });
+                */
+                console.log('hey');
+			});
+
+        </script>
+       
+    </body>
+   
+    
+</html>

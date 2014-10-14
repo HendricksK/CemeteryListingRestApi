@@ -68,9 +68,9 @@ public class ViewListingByMaidenNameServiceImpl implements ViewListingByMaidenNa
             if (all1.getMaidenName().equalsIgnoreCase(name)) {
                 names.add(all1);
             }
-            else if(all1.getSurname().startsWith(name))
+            else if(all1.getMaidenName().startsWith(name))
                 names.add(all1);
-            else if(all1.getSurname().contains(name))
+            else if(all1.getMaidenName().contains(name))
                 names.add(all1);
         }
             
