@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Ryno
  */
-public interface ViewListingByMaidenNameService extends Services<PublishedDeceasedListing, Long>{
-    public List<PublishedDeceasedListing> findListingByMaidenName(String name);
-    public List<PublishedDeceasedListing> findListingByMaidenName(String name, Long subID);
+public interface ViewListingByGraveNumberService extends Services<PublishedDeceasedListing, Long>{
+    public List<PublishedDeceasedListing> findListingByGraveNumber(String number);
+    public List<PublishedDeceasedListing> findListingByGraveNumber(String number, Long SubId);
 }

@@ -17,4 +17,5 @@ import java.util.List;
  */
 public interface ViewListingBySubscriberService extends Services<Subscriber, Long>{
     public List<PublishedDeceasedListing> findListingBySubscriber(Date subDate, Date validDate);
+    public List<PublishedDeceasedListing> findListingBySubscriber(Long subID);
 }

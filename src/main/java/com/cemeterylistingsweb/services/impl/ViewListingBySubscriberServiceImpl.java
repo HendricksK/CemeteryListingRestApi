@@ -90,4 +90,35 @@ public class ViewListingBySubscriberServiceImpl implements ViewListingBySubscrib
 
         return list;
     }
+    
+     public List<PublishedDeceasedListing> findListingBySubscriber(Long subID){
+        List<PublishedDeceasedListing> publists=publishRepo.findAll();
+        //find listing by dob
+        Subscriber sub = SubscrRepo.findOne(subID);
+        
+        List<PublishedDeceasedListing> list = new ArrayList();
+        for(PublishedDeceasedListing pubListing : publists ){
+            
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            Date parsed = null;
+            try {
+                parsed = format.parse(pubListing.getDateOfDeath());
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewListingBySubscriberServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            java.sql.Date dod = new java.sql.Date(parsed.getTime());
+            
+            //Date dod = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(pubListing.getDateOfDeath());
+            System.out.println(dod);
+            
+            
+            if(dod.after(sub.getSubscriptionDate()) && dod.before(sub.getValidUntil()) )
+                System.out.println(dod);
+                System.out.println("added"
+                        + "");
+                list.add(pubListing);
+        }
+
+        return list;
+    }
 }

@@ -76,4 +76,27 @@ public class ViewListingByMaidenNameServiceImpl implements ViewListingByMaidenNa
             
                 return names;
     }
+    
+    public List<PublishedDeceasedListing> findListingByMaidenName(String name, Long subID){
+        List<PublishedDeceasedListing> names = new ArrayList();
+       
+        
+        List<PublishedDeceasedListing> all = publishRepo.findAll();
+        
+        if(name.isEmpty() || name.equals(""))
+                return all;
+       
+        for (PublishedDeceasedListing all1 : all) {
+            
+            if (all1.getMaidenName().equalsIgnoreCase(name)) {
+                names.add(all1);
+            }
+            else if(all1.getSurname().startsWith(name))
+                names.add(all1);
+            else if(all1.getSurname().contains(name))
+                names.add(all1);
+        }
+            
+                return names;
+    }
 }
