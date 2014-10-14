@@ -20,44 +20,52 @@
         <div class="siteContent">
              <h1> Unpublished Listings Details </h1>
              <div class="details" style = "width : 100%; margin-left : 20%">
-                 <form style="width:20%; margin-left:10%;" id="data">
+                 <form style="width:50%;" id="data">
                         <fieldset style="border:0">
-	                    <input disabled type="text" placeholder="First Name" name="firstName" id="firstName" style="width:100%">
+	                    <input disabled type="text" placeholder="First Name" name="firstName" id="firstName" style="width:50%">
                         </fieldset>
                         <fieldset style="border:0">
-	                    <input disabled type="text" name="lastName" id="lastName" placeholder="Last Name" style="width:100%">
+	                    <input disabled type="text" name="lastName" id="lastName" placeholder="Last Name" style="width:50%">
                         </fieldset>
                         <fieldset style="border:0">
-	                    <input disabled type="text" name="maidenName" id="maidenName" placeholder="Maiden Name" style="width:100%">
+	                    <input disabled type="text" name="maidenName" id="maidenName" placeholder="Maiden Name" style="width:50%">
 	                    </fieldset>
                         <fieldset style="border:0">
-                        <input disabled type="text" name="gender" id="gender" placeholder="Gender" style="width:100%">
+                        <input disabled type="text" name="gender" id="gender" placeholder="Gender" style="width:50%">
 	                    </fieldset>
                         <fieldset style="border:0">
-                        <input disabled type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date Of Birth" style="width:100%">
+                        <input disabled type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date Of Birth" style="width:50%">
 	                    </fieldset>
                         <fieldset disabled style="border:0">
-                        <input type="text" name="dateOfDeath" id="dateOfDeath" placeholder="Date Of Death" style="width:100%">
-                        <textarea disabled name="graveInscription" id="graveInscription" placeholder="Grave Inscription" style="width:100%; height : auto">
+                        <input type="text" name="dateOfDeath" id="dateOfDeath" placeholder="Date Of Death" style="width:50%">
+                        </fieldset>
+                        <fieldset style="border:0">
+                        <input disabled type="text" name="graveNumber" id="graveNumber" placeholder="Grave Number" style="width:50%">
+	                </fieldset>
+                        <fieldset disabled style="border:0">
+                        <textarea disabled name="graveInscription" id="graveInscription" placeholder="Grave Inscription" style="width:50%; height : auto">
                         </textarea>
                         </fieldset>
                         <fieldset style="border:0">
-                        <input disabled type="text" name="lastKnownContactName" id="lastKnownContactName" placeholder="Last Known Contact Name" style="width:100%">
+                        <input disabled type="text" name="lastKnownContactName" id="lastKnownContactName" placeholder="Last Known Contact Name" style="width:50%">
                         </fieldset>
                         <fieldset style="border:0">
-                        <input disabled type="text" name="lastKnownContactNumber" id="lastKnownContactNumber" placeholder="Last Known Contact Number" style="width:100%">
+                        <input disabled type="text" name="lastKnownContactNumber" id="lastKnownContactNumber" placeholder="Last Known Contact Number" style="width:50%">
                         </fieldset>
                         <fieldset style="border:0">
-                        <input disabled type="text" name="cemeteryID" id="cemeteryID" placeholder="Cemtery ID" style="width:100%">
+                        <input disabled type="text" name="cemeteryID" id="cemeteryID" placeholder="Cemtery ID" style="width:50%">
                         </fieldset>
                         <fieldset style="border:0">
-                        <textarea disabled name="otherNames" id="otherNames" placeholder="Other Names, seperated by a comma, end with a full stop" style="width:100%; height : auto">
+                        <textarea disabled name="otherNames" id="otherNames" placeholder="Other Names, seperated by a comma, end with a full stop" style="width:50%; height : auto">
                         </textarea>
                         </fieldset>
                         <fieldset style="border:0">
-                        <input disabled type="text" name="imageOfBurialSite" id="imageOfBurialSite" placeholder="Image Of Burial Site" style="width:100%">
+                        <input disabled type="text" name="imageOfBurialSite" id="imageOfBurialSite" placeholder="Image Of Burial Site" style="width:50%">
                         </fieldset>
-                        <input type="button" name="publishListing" id="publishListing" value="Submit">
+                        <fieldset style="border:0">
+                        <input disabled type="text" name="subscriberSubmitID" id="subscriberSubmitID" placeholder="Subscriber ID" style="width:50%">
+                        </fieldset>
+                        <input type="button" name="publishListing" id="publishListing" value="Submit" style="margin-left : 30%">
                         <input type="button" name="deleteUnpublishedListing" id="deleteUnpublishedListing" value="Delete">
 	                </form>
              </div>
@@ -70,8 +78,75 @@
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
         
         <script type="text/javascript">
-           var ID = localStorage.unpublishedID;
+          var ID = localStorage.unpublishedID;
           console.log(ID);
+          var obj = null;
+          
+           $('#publishListing').click(function() {
+                     $.ajax({ // ajax call to retrieve all cemeteries json objects 
+                        type: "POST",
+                        url: "/CemeteryListingsWebApp/api/publishedListings/create",
+                        data: JSON.stringify({"firstName":$('#firstName').val(),
+                            "surname":$('#lastName').val(),
+                            "maidenName":$('#maidenName').val(),
+                            "gender":$('#gender').val(),
+                            "dateOfBirth":$('#dateOfBirth').val(),
+                            "dateOfDeath":$('#dateOfDeath').val(),
+                            "graveInscription":$('#graveInscription').val(),
+                            "graveNumber":$('#graveNumber').val(),
+                            "imageOfBurialSite": $('#imageOfBurialSite').val(),
+                            "lastKnownContactName":$('#lastKnownContactName').val(),
+                            "lastKnownContactNumber":$('#lastKnownContactNumber').val(),
+                            "cemeteryID": $('#cemeteryID').val(),
+                            "subscriberApprovedID":null,
+                            "subscriberSubmitID":$('#subscriberSubmitID').val(),
+                            "names":[]}),
+                        dataType: "JSON",
+                        contentType: "application/json",
+                        success: function (data) {
+                            console.log('success');
+                            console.log(data);
+                            }
+                                });
+                                
+                                $.ajax({ // ajax call to retrieve all cemeteries json objects 
+                                    type: "POST",
+                                    url: "/CemeteryListingsWebApp/api/unpublishedListings/delete/"+obj.requiresApprovalDeceasedListingID+"",
+                                    success: function (data) {
+                                        console.log('success');
+                                        console.log(data);
+                                        }
+                                });
+                                
+                            window.location.href = "/CemeteryListingsWebApp/api/auth/loggedIn";
+                        });
+                
+                $('#deleteUnpublishedListing').click(function() {
+                    $('#firstName').val("");
+                    $('#lastName').val("");
+                    $('#maidenName').val("");
+                    $('#gender').val("");
+                    $('#dateOfBirth').val("");
+                    $('#dateOfDeath').val("");
+                    $('#graveNumber').val("");
+                    $('#graveInscription').val("");
+                    $('#lastKnownContactName').val("");
+                    $('#lastKnownContactNumber').val("");
+                    $('#cemeteryID').val("");
+                    $('#otherNames').val("");
+                    $('#imageOfBurialSite').val("");
+                    $('#subscriberSubmitID').val("");
+                    
+                    
+                    $.ajax({ // ajax call to retrieve all cemeteries json objects 
+                    type: "POST",
+                    url: "/CemeteryListingsWebApp/api/unpublishedListings/delete/"+obj.requiresApprovalDeceasedListingID+"",
+                    success: function (data) {
+                        console.log('success');
+                        console.log(data);
+                        }
+                            });
+                    });
 
           $.ajax({ // ajax call to retrieve all cemeteries json objects 
                     type: "GET",
@@ -81,7 +156,7 @@
                         console.log('success');
                         console.log(data);
             
-                            var obj = data;
+                           obj  = data;
                                                 console.log(obj.requiresApprovalDeceasedListingID);
                                                 console.log(obj.firstName);
                                                 console.log(obj.surname);
@@ -90,26 +165,34 @@
                                                 console.log(obj.graveNumber);
                                                 console.log(obj.imageOfBurialSite);
                 // building html objects here
-                                $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.requiresApprovalDeceasedListingID+'">' + '</a></td>' + '<td> Name : ' + obj.firstName + '</td>' + ' <td> Last Name : ' + obj.surname + 
+                $('#firstName').val(obj.firstName);
+                $('#lastName').val(obj.surname);
+                $('#maidenName').val(obj.maidenName);
+                $('#gender').val(obj.gender);
+                $('#dateOfBirth').val(obj.dateOfBirth);
+                $('#dateOfDeath').val(obj.dateOfDeath);
+                $('#graveNumber').val(obj.graveNumber);
+                $('#graveInscription').val(obj.graveInscription);
+                $('#lastKnownContactName').val(obj.lastKnownContactName);
+                $('#lastKnownContactNumber').val(obj.lastKnownContactNumber);
+                $('#cemeteryID').val(obj.cemeteryID);
+                $('#otherNames').val(obj.names);
+                $('#imageOfBurialSite').val(obj.imageOfBurialSite);
+                $('#subscriberSubmitID').val(obj.subscriberSubmitID);
+                
+                
+                                /*$(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.requiresApprovalDeceasedListingID+'">' + '</a></td>' + '<td> Name : ' + obj.firstName + '</td>' + ' <td> Last Name : ' + obj.surname + 
                                     '</td>' + '</a></td>' + '<td>Mainden Name : ' + obj.maidenName + '</td>' +
                                     '</td>' + '</a></td>' + '<td>Grave Number: ' + obj.graveNumber + '</td>' +
                                     '</td>' + '</a></td>' + '<td>Date Of Birth: ' + obj.dateOfBirth + '</td>' +
                                     '</td>' + '</a></td>' + '<td>Date Of Death: ' + obj.dateOfDeath + '</td>' +
-                                    '<td> <button class="post" text="details" value='+obj.requiresApprovalDeceasedListingID+'>' + '</td>' + "</tr>"); 
+                                    '<td> <button class="post" text="details" value='+obj.requiresApprovalDeceasedListingID+'>' + '</td>' + "</tr>"); */
                             
-                $('.post').click(function() {
-                    console.log('hello'); 
-                });
-	    }
-            
-                
-            });
-        
-        
-
-        </script>
-       
-    </body>
-   
-    
+                },
+            error: function (jqXHR, status) {
+                       //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                    }
+                 });
+</script>      
+</body>
 </html>

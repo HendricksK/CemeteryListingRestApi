@@ -56,6 +56,14 @@ public class UnpublishedDeceasedListingsController {
         return adls.find(id);
     }
     
+    @RequestMapping(value = "delete/{id}",method = RequestMethod.POST) //http://localhost:8084/askweb/api/club/1234
+    @ResponseBody
+    public String deleteClub(@PathVariable Long id) { //@PathVariable used to bind the id value
+        RequiresApprovalDeceasedListing deleteME = adls.find(id);
+        adls.remove(deleteME);
+        return "deleted";
+    }
+    
     @RequestMapping(value = "details", method = RequestMethod.GET)
     public String adminHome(){
         return "unpublishedDetailsPage";

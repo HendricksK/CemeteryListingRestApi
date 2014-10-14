@@ -76,6 +76,7 @@
                                     
                                     if((data.username == username ) && (data.pwd == password) && (data.userRoleID.level == 1)){
                                         alert('logged in');
+                                            localStorage.adminID = username;
                                             window.location.href = "/CemeteryListingsWebApp/api/auth/loggedIn";
                                     }else if(data == ""){
                                             alert('user does not exists');
