@@ -20,8 +20,10 @@
                 <div class="siteContent">  <!-- this is the beginning of site content will contain all the content --> 
                     <h1>New Cemetery</h1>
                     <form style="width:50%; margin-left:20%;" id="data"> 
+                        <!-- username, email, pwd, firstName, surname, lastContributionYear, userRoleID, 
+                        Filled in by admin --subscriptionDate, validUntil  -->
                             <fieldset style="border:0">
-	                    <input type="text" name="cemeteryName" id="cemeteryName" placeholder="Cemetery Name" style="width:50%">
+	                    <input type="text" name="cemeteryName" id="username" placeholder="username" style="width:50%">
                             </fieldset>
                             <fieldset style="border:0">
 	                    <input type="text" name="contactName" id="contactName" placeholder="Contact Name" style="width:50%">
@@ -36,7 +38,7 @@
 	                    <input type="text" name="district_state" id="district_state" placeholder="District" style="width:50%">
                             </fieldset>
                             <fieldset style="border:0">
-                            <input type="text" name="locationOfCemetery" id="locationOfCemetery" placeholder="Location Of Cemetery eg 12.06.12:45.63.89" style="width:50%">
+                            <input type="text" name="locationOfCemetery" id="locationOfCemetery" placeholder="Locatio Of Cemetery eg 12.06.12:45.63.89" style="width:50%">
                             </fieldset>
                             <fieldset style="border:0">
                             <input type="text" name="province_state" id="province_state" placeholder="Province/State" style="width:50%">
@@ -51,33 +53,5 @@
     </div>
         <!-- Script begins here -->
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
-        
-        <script type="text/javascript">
-        	console.log('one love');
-        	//{"country":"America","province_State":"New Jersey","district_state":"Washington","town":"Marlboro","cemeteryName":"Palm Springs","locationOfCemetery":"12.06.12:45.63.89"},"contactName":"jack daniels","contactNumber":"0215917865"
-        	$('#createButton').on('click', function() {
-
-        	$.ajax({
-                    type: "POST", 
-                    url: "/CemeteryListingsWebApp/api/cemetery/create",
-                    data: JSON.stringify({"location":{"country":$('#country').val(),"province_State":$('#province_state').val(),"district_state":$('#district_state').val(),"town":$('#town').val(),"cemeteryName":$('#cemeteryName').val(),"locationOfCemetery":$('#locationOfCemetery').val()},"contactName":$('#contactName').val(),"contactNumber":$('#contactNumber').val()}),
-                    dataType: "JSON",
-                    contentType: "application/json",
-                    success: function (status, jqXHR) {
-
-                        //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
-                    },
-
-                    error: function (jqXHR, status) {
-                       //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
-                    }
-                 });
-
-			});
-
-        </script>
-       
-    </body>
-   
-    
+</body> 
 </html>
