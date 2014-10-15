@@ -23,6 +23,7 @@ public class ApproveSubscriberServiceImpl implements ApproveSubscriberService{
         @Autowired
     SubscriberRepository SubscrRepo;
         
+        @Override
     public  boolean avalaibleUsername(String user){
         List<Subscriber> sublist = SubscrRepo.findAll();
         boolean available=true;
