@@ -13,14 +13,16 @@ import com.cemeterylistingsweb.repository.UserRoleRepository;
 import com.cemeterylistingsweb.services.AdminRegisterUserRoleService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Ryno
  */
+@Service
 public class AdminRegisterUserRoleServiceImpl implements AdminRegisterUserRoleService{
     @Autowired
-    private UserRoleRepository repo;
+    private UserRoleRepository repo; 
     
     @Override
     public UserRole find(Long id) {
