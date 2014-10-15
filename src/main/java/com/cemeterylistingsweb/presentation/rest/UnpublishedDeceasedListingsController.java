@@ -31,7 +31,7 @@ public class UnpublishedDeceasedListingsController {
     public String create(@RequestBody RequiresApprovalDeceasedListing PDL) { // @RequestBody for converting incoming JSON call to Object
         adls.persist(PDL);
         System.out.println(" Create the Called ");
-        return "created";
+        return "createUnpublishedListing";
     }
     
     @RequestMapping(value = "show", method = RequestMethod.GET)

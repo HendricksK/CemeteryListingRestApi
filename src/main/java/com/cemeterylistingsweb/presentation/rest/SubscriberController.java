@@ -23,7 +23,7 @@ public class SubscriberController {
     AdminRegisterSubscriberService arss;
     
     
-    @RequestMapping(value = "newsubscriber", method = RequestMethod.GET)
+    @RequestMapping(value = "createSubscriber", method = RequestMethod.GET)
     public String createSubscriber(){
         return "createSubscriber";
     }
