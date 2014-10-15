@@ -23,9 +23,14 @@ public class SubscriberController {
     AdminRegisterSubscriberService arss;
     
     
-    @RequestMapping(value = "newcemetery", method = RequestMethod.GET)
-    public String newCemetery(){
+    @RequestMapping(value = "newsubscriber", method = RequestMethod.GET)
+    public String createSubscriber(){
         return "createSubscriber";
+    }
+    
+    @RequestMapping(value = "subscriberDetails", method = RequestMethod.GET)
+    public String SubscriberDetails(){
+        return "subscriberDetails";
     }
     
 }
