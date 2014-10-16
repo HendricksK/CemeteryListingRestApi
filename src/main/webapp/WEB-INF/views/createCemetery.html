@@ -9,8 +9,13 @@
 
 <body class="siteWrapper">
     <div class="pageHeader">
-        <a href="#" class="logo"><img src="/CemeteryListingsWebApp/resources/images/logo2.jpg"></a>
+        <a href="#" class="logo"><img src="/CemeteryListingsWebApp/resources/images/logo3.jpg"></a>
                 <ul class="navList" style="width : 100%">
+                   <li><a href="/CemeteryListingsWebApp/">Home</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/cemetery/cemeterylistings">Cemetery Listings</a></li>
+                    <li><a href="#">Deceased Listings</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user">Login</a></li>
                    <li><a href="/CemeteryListingsWebApp/api/auth/loggedIn">Admin</a></li>
                 </ul>   
             </div>
@@ -18,34 +23,22 @@
     <div class="pageWrapper">
         <div class="siteWrapper"> <!-- this is the beginning of site wrapper will contain the entire pages html -->       
                 <div class="siteContent">  <!-- this is the beginning of site content will contain all the content --> 
-                    <h1>New Cemetery</h1>
+                    <h1>Create new Cemetery</h1>
                     <form style="width:50%; margin-left:20%;" id="data"> 
-                            <fieldset style="border:0">
-	                    <input type="text" name="cemeteryName" id="cemeteryName" placeholder="Cemetery Name" style="width:50%">
-                            </fieldset>
-                            <fieldset style="border:0">
-	                    <input type="text" name="contactName" id="contactName" placeholder="Contact Name" style="width:50%">
-                            </fieldset>
-                            <fieldset style="border:0">
-	                    <input type="text" name="contactNumber" id="contactNumber" placeholder="Contact Number" style="width:50%">
-                            </fieldset>
-                            <fieldset style="border:0">
-	                    <input type="text" name="country" id="country" placeholder="Country" style="width:50%">
-                            </fieldset>
-                            <fieldset style="border:0">
-	                    <input type="text" name="district_state" id="district_state" placeholder="District" style="width:50%">
-                            </fieldset>
-                            <fieldset style="border:0">
-                            <input type="text" name="locationOfCemetery" id="locationOfCemetery" placeholder="Location Of Cemetery eg 12.06.12:45.63.89" style="width:50%">
-                            </fieldset>
-                            <fieldset style="border:0">
-                            <input type="text" name="province_state" id="province_state" placeholder="Province/State" style="width:50%">
-                            </fieldset>
-                            <fieldset style="border:0">
-                            <input type="text" name="town" id="town" placeholder="Town" style="width:50%">
-                            </fieldset>
-                            <input type="button" name="post" value="Create cemetery" id="createButton" style="margin-left: 20%">
-	                </form>
+                        
+                        <table width = '90%' align='center'>
+                                <tr><th> </th></tr>
+                                <tr><td>Cemetery Name</td><td><input type="text" name="cemeteryName" id="cemeteryName" placeholder="Cemetery Name" style="width:100%"></td> </tr>
+                                <tr><td>Contact Name </td><td><input type="text" name="contactName" id="contactName" placeholder="Contact Name" style="width:100%"> </td> </tr>
+                                <tr><td>Contact Number </td><td><input type="text" name="contactNumber" id="contactNumber" placeholder="Contact Number" style="width:100%"> </td></tr>
+                                <tr><td>Country </td><td><input type="text" name="country" id="country" placeholder="Country" style="width:100%"> </td></tr>
+                                <tr><td>District </td><td><input type="text" name="district_state" id="district_state" placeholder="District" style="width:100%"> </td></tr>
+                                <tr><td>Location Of Cemetery eg 12.06.12:45.63.89 </td><td><input type="text" name="locationOfCemetery" id="locationOfCemetery" placeholder="Cemetery Location" style="width:100%"> </td></tr>
+                                <tr><td>Province/State</td><td><input type="text" name="province_state" id="province_state" placeholder="Province/State" style="width:100%"></td> </tr>
+                                <tr><td>Town</td><td><input type="text" name="town" id="town" placeholder="Town" style="width:100%"></td> </tr>
+                        </table>
+                        <input type="button" name="post" value="Create cemetery" id="createButton" style="margin-left: 20%">
+                    </form>
                 </div>
             </div>
     </div>
