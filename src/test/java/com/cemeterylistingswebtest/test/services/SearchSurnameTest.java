@@ -129,7 +129,7 @@ public class SearchSurnameTest {
         //call service
          List<PublishedDeceasedListing> deceasedList = deadRepo.findAll();
 
-        List<PublishedDeceasedListing> names = serv.getAllSurname("Wayne");
+        List<PublishedDeceasedListing> names = serv.getAllSurname("White");
          
         Assert.assertEquals(names.isEmpty(), false);
         deadRepo.delete(newListing);
