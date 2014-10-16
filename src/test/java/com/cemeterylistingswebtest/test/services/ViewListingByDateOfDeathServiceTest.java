@@ -40,7 +40,7 @@ public class ViewListingByDateOfDeathServiceTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     private static Long subID;
+     private  Long subID;
     public static ApplicationContext ctx;
     public static SubscriberRepository subRepo;
     public static UserRoleRepository userRepo;
@@ -49,7 +49,7 @@ public class ViewListingByDateOfDeathServiceTest {
      
     
      
-     @Test(enabled = false)
+     @Test(enabled = true)
      public void TestDoD() {
         dateServ = ctx.getBean(ViewListingByDateOfDeathService.class);
         repoList = ctx.getBean(PublishedDeceasedListingRepository.class);
@@ -107,7 +107,7 @@ public class ViewListingByDateOfDeathServiceTest {
          List<PublishedDeceasedListing> pubListDod = dateServ.findListingByDOD("14/02/2005");
          Assert.assertFalse(pubListDod.isEmpty());
          repoList.delete(newListing);
-         repoList.delete(subID);
+         
      }
 
     @BeforeClass

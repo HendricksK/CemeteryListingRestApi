@@ -48,7 +48,7 @@ public class ViewListingByMaidenNameTest {
     public ViewListingByMaidenNameService maidServ;
     public static CemeteryRepository repo;
      
-    @Test(enabled=true)
+    @Test(enabled=false)
      public void hello() {
          maidServ = ctx.getBean(ViewListingByMaidenNameService.class);
         deadRepo = ctx.getBean(PublishedDeceasedListingRepository.class);

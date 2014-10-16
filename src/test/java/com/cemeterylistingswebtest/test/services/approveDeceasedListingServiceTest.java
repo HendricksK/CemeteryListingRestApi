@@ -39,7 +39,7 @@ public class approveDeceasedListingServiceTest {
       boolean approve = adserv.approveDeceasedListing(157l);
       
      
-       Assert.assertFalse(approve);
+       Assert.assertTrue(approve);
       
       
       

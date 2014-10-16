@@ -67,7 +67,7 @@ public class PublishListingServiceTest {
                  .setLevel(2)
                  .build();
          //userRepo.save(userRole);
-         userRoleID = userRole.getUserRoleID();
+         //userRoleID = userRole.getUserRoleID();
          
          //Initialise subscriber
          Subscriber newSub = new Subscriber.Builder()
@@ -112,7 +112,7 @@ public class PublishListingServiceTest {
          //Assert.assertFalse(empty);
          repoList.delete(id);
          repo.delete(subID);
-         userRepo.delete(userRoleID);
+         
          
      }
 

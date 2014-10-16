@@ -52,7 +52,7 @@ public class ViewListingsBySubscriberServiceTest {
     public static UserRoleRepository userRepo;
     public static ViewListingBySubscriberService subserv;
      
-    @Test(enabled = false)
+    @Test(enabled = true)
      public void hello() {
         subserv = ctx.getBean(ViewListingBySubscriberService.class);
         repoList = ctx.getBean(PublishedDeceasedListingRepository.class);

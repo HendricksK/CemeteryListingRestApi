@@ -29,16 +29,17 @@ public class approveSubscriberServiceTest {
     
     ApproveSubscriberService adserv;
     
- @Test (enabled = false)
+ @Test (enabled = true)
   public void Test() {
-      
+      boolean available;
       SubscrRepo = ctx.getBean(SubscriberRepository.class);
       adserv = ctx.getBean(ApproveSubscriberService.class);
       
-      adserv.avalaibleUsername("test");
+      available = adserv.avalaibleUsername("test");
        //Assert.assertTrue(SubscrRepo.findAll().isEmpty());
-      adserv.avalaibleUsername("test");
+      //adserv.avalaibleUsername("test");
       //Assert.assertEquals(SubscrRepo.count(), 0);
+      Assert.assertTrue(available);
       
       
   }

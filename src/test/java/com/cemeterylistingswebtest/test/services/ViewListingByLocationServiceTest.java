@@ -49,7 +49,7 @@ private static Long id, cemId, cemId2;
     // public void hello() {}
     
     
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void Test() {
         service = ctx.getBean(ViewListingByLocationService.class);
         deadRepo = ctx.getBean(PublishedDeceasedListingRepository.class);
@@ -161,8 +161,7 @@ private static Long id, cemId, cemId2;
          deadRepo.save(newListing3);
          deadRepo.save(newListing4);
 
-        List<PublishedDeceasedListing> deceased = new ArrayList();
-         deceased = service.getAllDeceased(cemId);
+        List<PublishedDeceasedListing> deceased = service.getAllDeceased(cemId);
          
         Assert.assertEquals(deceased.size(), 3);
         deadRepo.delete(newListing);

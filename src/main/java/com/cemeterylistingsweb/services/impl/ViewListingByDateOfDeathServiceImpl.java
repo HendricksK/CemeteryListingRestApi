@@ -13,11 +13,13 @@ import com.cemeterylistingsweb.services.ViewListingByDateOfDeathService;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Ryno
  */
+@Service
 public class ViewListingByDateOfDeathServiceImpl implements ViewListingByDateOfDeathService{
     @Autowired
     PublishedDeceasedListingRepository publishRepo;
