@@ -39,7 +39,7 @@
                                 <tr><td>Subscription Date</td><td><input type="password" name="subscriptionDate" id="subscriptionDate" placeholder="" style="width:100%"> </td></tr>
                                 <tr><td>validUntil</td><td><input type="password" name="validUntil" id="validUntil" placeholder="" style="width:100%"> </td></tr>
                            </table>                            
-                           <input type="button" name="post" value="Save Changes (is this what this screen does?)" id="createButton" style="margin-left: 20%">
+                           <input type="button" name="update" value="Save Changes (is this what this screen does?)" id="update" style="margin-left: 20%">
                     </form>
                 </div>
             </div>
@@ -69,6 +69,25 @@
                        //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
                     }
                  });
+            $('#update').click(function() {
+                $.ajax({
+                        type: "PUT", 
+                        url: "/CemeteryListingsWebApp/api/Subscriber/update",
+                        // data: JSON.stringify({"UserRole":{"email":$('#email').val(),"first":$('#first').val(),"surname":$('#surname').val(),"uname":$('#uname').val(),"pword":$('#pword').val(),"sqlDate":null},"roleLevel":null}),
+                        //Kurvin's data: JSON.stringify({"UserRole":{"level":null}, "email":$('#email').val(),"firstName":$('#first').val(),"surname":$('#surname').val(),"username":$('#uname').val(),"pwd":$('#pword').val(),"lastContributionYear":null, "subscriptionDate": null, "validUntil" : null}),
+                        data: JSON.stringify({ "email":$('#email').val(),"firstName":$('#first').val(),"surname":$('#surname').val(),"username":$('#uname').val(),"pwd":$('#pword').val(),"lastContributionYear":null, "subscriptionDate": null, "validUntil" : null}),
+                        dataType: "JSON",
+                        contentType: "application/json",
+                        success: function (status, jqXHR) {
+
+                                                                  //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                        },
+
+                        error: function (jqXHR, status) {
+                                                                 //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                        }
+                    });
+            });
             
         </script>
         <!-- FANCY SCRIPT GOES HERE -->
