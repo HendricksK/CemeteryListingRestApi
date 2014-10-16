@@ -18,6 +18,7 @@
                     <li><a href="/CemeteryListingsWebApp/api/DeceasedListing/publishedlistings">Deceased Listings</a></li>
                     <li><a href="/CemeteryListingsWebApp/api/search/contactus">Contact Us</a></li>
                     <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user">Login</a></li>
+                    <li><a href = "/CemeteryListingsWebApp/" class="logout" id="logout">Logout</a>
                 </ul>   
         <!--
                 <ul class="socialListNav">
@@ -54,6 +55,9 @@
 
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
+        $('#logout').click(function(){
+            localStorage.username = "";
+        });
         
         $('#searchButton').click(function() {
             localStorage.nameSearch = $('.searchBar').val();
