@@ -39,69 +39,8 @@
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
         
         <script type="text/javascript">
-           console.log('hi');
-    	   
-    	   var countData = 0;
-               $.ajax({ // ajax call to retrieve all cemeteries json objects 
-                    type: "GET",
-                    url: "/CemeteryListingsWebApp/api/PublishedDeceasedListing/show",
-                    dataType: "json",
-                    success: function (data) {
-                        console.log('success');
-                        console.log(data);
-                        //console.log(data[0]['contactName']);
-                        countData = data.length;
-                        
-                     
-                        for(var i = 0; i < data.length; i++) 
-                        {
-                            var obj = data[i];
-                                console.log(obj.id);
-                                console.log(obj.location.country);
-                                console.log(obj.location.province_State);
-                                console.log(obj.location.district_state);
-                                console.log(obj.location.town);
-                                console.log(obj.location.cemeteryName);
-                                console.log(obj.location.locationOfCemetery);
-                                console.log(obj.contactName);
-                                console.log(obj.contactNumber);
-// building html objects here
-
-                                $(".listings").append(' <tr>' 
-                                        + '<td>' + obj.location.cemeteryName + '</td>'
-                                        + '<td>' + obj.location.country + '</td>'
-                                        + '<td>' + obj.location.province_State + '</td>'
-                                        + '<td>' + obj.location.district_state + '</td>'
-                                        + '<td>' + obj.location.town + '</td>'
-                                        + '<td> <button  class="goToDetails" text="details" value='+obj.id+'>View Cemetery</button>' + '</td>' + "</tr>");                             
-                        }
-
-                       
-
-        console.log($('li').size());
-
-        	$('button').click(function() {
-				var htmlString = $( this ).eq();	
-        		console.log(htmlString);
-        		console.log(htmlString.context.value);
-
-        		localStorage.cemeteryID = htmlString.context.value;
-    
-                        window.location="/CemeteryListingsWebApp/api/cemetery/cemetery";
-        	});
-
-                        
-                        //$(".data").append(data[0]['contactName']) + "hello";// write success in " "
-                    },
-
-                    error: function (jqXHR, status) {
-                        // error handler
-                        console.log(jqXHR);
-                        alert('fail' + status.code);
-                    }
-                 });
-		
-              var x = localStorage.username;
+            
+                var x = localStorage.username;
 
                 if($('.user') != null){
                     if(x == ""){
@@ -111,7 +50,58 @@
                         $('.user').text(x);
                     }
                 }
-        
+                
+           $.ajax({ // ajax call to retrieve all cemeteries json objects 
+                    type: "GET",
+                    url: "/CemeteryListingsWebApp/api/DeceasedListing/show",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log('success');
+                        console.log(data);
+            
+                        for(var x = 0; x < data.length; x++){
+                            
+                        var obj = data[x]; 
+                           
+                                console.log(obj.requiresApprovalDeceasedListingID);
+                                console.log(obj.firstName);
+                                console.log(obj.surname);
+                                console.log(obj.maidenName);
+                                console.log(obj.dateOfDeath);
+                                console.log(obj.graveNumber);
+                                console.log(obj.imageOfBurialSite);
+                
+                
+                                $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.publishedListingID+'">' + '</a></td>' + '<td> Name : ' + obj.firstName + '</td>' + ' <td> Last Name : ' + obj.surname + 
+                                    '</td>' + '</a></td>' + '<td>Mainden Name : ' + obj.maidenName + '</td>' +
+                                    '</td>' + '</a></td>' + '<td>Grave Number: ' + obj.graveNumber + '</td>' +
+                                    '</td>' + '</a></td>' + '<td>Date Of Birth: ' + obj.dateOfBirth + '</td>' +
+                                    '</td>' + '</a></td>' + '<td>Date Of Death: ' + obj.dateOfDeath + '</td>' +
+                                    '<td> <button class="post" text="details" value='+obj.publishedListingID+'>' + '</td>' + "</tr>");
+                        }
+                        
+                        $('button').click(function() {
+				var htmlString = $( this ).eq();	
+        		console.log(htmlString);
+        		console.log(htmlString.context.value);
+
+        		localStorage.publishedListingsID = htmlString.context.value;
+    
+                        window.location="/CemeteryListingsWebApp/api/DeceasedListing/publishedListingsDetails";
+                    });
+                            
+                },
+            error: function (jqXHR, status) {
+                       
+                    }
+                 });
+
+                       
+
+        console.log($('li').size());
+
+        	
+
         </script>
     </body>
 </html>
