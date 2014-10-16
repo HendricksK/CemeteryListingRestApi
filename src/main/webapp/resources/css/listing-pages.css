@@ -14,14 +14,20 @@
     margin-left: 10%;
     line-height: 2.0em;
     font-family: serif;
+    border: 1px solid black;
+    text-align: left;
 }
 
 .siteContent .listings button{
-	width : 10px;
+	width : 50%;
+	height : 90%;
+	border: 2px;
+    border-radius: 50px;
+    /*width : 10px;
 	height : 10px;
 	border: 2px;
     border-radius: 50px;
-	margin-left: 15%;
+	margin-left: 15%;*/
 }
 
 .siteContent .listings td{

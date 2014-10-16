@@ -27,7 +27,10 @@
             <div class="dummyHeader"></div>
                 <div class="pageWrapper">        <!-- this is the beginning of site wrapper will contain the entire pages html -->       
                     <div class="siteContent">  
-                        <table class="listings"></table><!-- this is the beginning of site content will contain all the content --> 
+                        <table class="listings">
+                            <tr><th>Cemetery Name</th><th>Location - Country</th><th>Select Cemetery</th></tr>
+                            
+                        </table><!-- this is the beginning of site content will contain all the content --> 
                         <!--<h1>Jquery Test</h1>
                         <input type="button" name="post" value="post" id="me"> -->
                     </div>
@@ -48,7 +51,10 @@
                         console.log(data);
                         //console.log(data[0]['contactName']);
                         countData = data.length;
-                        for(var i = 0; i < data.length; i++) {
+                        
+                     
+                        for(var i = 0; i < data.length; i++) 
+                        {
                             var obj = data[i];
                                 console.log(obj.id);
                                 console.log(obj.location.country);
@@ -61,12 +67,13 @@
                                 console.log(obj.contactNumber);
 // building html objects here
 
-$(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.id+'">' + '</a></td>' + '<td>Cemetery Name : ' + obj.location.cemeteryName + '</td>' + ' <td> Location - Country : ' + obj.location.country + 
-    '</td>' + '<td> <button class="goToDetails" text="details" value='+obj.id+'>' + '</td>' + "</tr>"); 
-                            
-        }
+                                $(".listings").append(' <tr>' 
+                                        + '<td>' + obj.location.cemeteryName + '</td>'
+                                        + '<td>' + obj.location.country + '</td>'
+                                        + '<td> <button  class="goToDetails" text="details" value='+obj.id+'>View Cemetery</button>' + '</td>' + "</tr>");                             
+                        }
 
-
+                       
 
         console.log($('li').size());
 
@@ -76,9 +83,8 @@ $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/ceme
         		console.log(htmlString.context.value);
 
         		localStorage.cemeteryID = htmlString.context.value;
-
     
-   					window.location="/CemeteryListingsWebApp/api/cemetery/cemetery";
+                        window.location="/CemeteryListingsWebApp/api/cemetery/cemetery";
         	});
 
                         

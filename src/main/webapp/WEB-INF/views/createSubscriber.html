@@ -53,10 +53,10 @@
 //"chuck@hotmal.com", "first", "last", "chuck27", "encrypted", null, 1);
         	$.ajax({
                     type: "POST", 
-                    url: "/CemeteryListingsWebApp/api/Subscriber/create",
+                    url: "/CemeteryListingsWebApp/api/subscriber/create",
                    // data: JSON.stringify({"UserRole":{"email":$('#email').val(),"first":$('#first').val(),"surname":$('#surname').val(),"uname":$('#uname').val(),"pword":$('#pword').val(),"sqlDate":null},"roleLevel":null}),
                    //Kurvin's data: JSON.stringify({"UserRole":{"level":null}, "email":$('#email').val(),"firstName":$('#first').val(),"surname":$('#surname').val(),"username":$('#uname').val(),"pwd":$('#pword').val(),"lastContributionYear":null, "subscriptionDate": null, "validUntil" : null}),
-                    data: JSON.stringify( "email":$('#email').val(),"firstName":$('#first').val(),"surname":$('#surname').val(),"username":$('#uname').val(),"pwd":$('#pword').val(),"lastContributionYear":null, "subscriptionDate": null, "validUntil" : null}),
+                    data: JSON.stringify({ "email":$('#email').val(),"firstName":$('#first').val(),"surname":$('#surname').val(),"username":$('#uname').val(),"pwd":$('#pword').val(),"lastContributionYear":null, "subscriptionDate": null, "validUntil" : null}),
                     dataType: "JSON",
                     contentType: "application/json",
                     success: function (status, jqXHR) {
