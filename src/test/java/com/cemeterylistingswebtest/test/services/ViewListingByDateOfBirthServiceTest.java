@@ -110,7 +110,7 @@ public class ViewListingByDateOfBirthServiceTest {
          List<PublishedDeceasedListing> pubListDob = dateServ.findListingByDOB("27/07/1985");
          Assert.assertFalse(pubListDob.isEmpty());
          repoList.delete(listingId);
-         repoList.delete(subID);
+         
      }
      
      
