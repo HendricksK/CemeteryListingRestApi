@@ -79,10 +79,11 @@
         
         <script type="text/javascript">
           var ID = localStorage.unpublishedID;
-          console.log(ID);
+          //console.log(ID);
           var obj = null;
           
            $('#publishListing').click(function() {
+                    var names = JSON.parse(localStorage["otherNames"]);
                      $.ajax({ // ajax call to retrieve all cemeteries json objects 
                         type: "POST",
                         url: "/CemeteryListingsWebApp/api/publishedListings/create",
@@ -100,7 +101,7 @@
                             "cemeteryID": $('#cemeteryID').val(),
                             "subscriberApprovedID":null,
                             "subscriberSubmitID":$('#subscriberSubmitID').val(),
-                            "names":[]}),
+                            "names":names}),
                         dataType: "JSON",
                         contentType: "application/json",
                         success: function (data) {
@@ -164,6 +165,9 @@
                                                 console.log(obj.dateOfDeath);
                                                 console.log(obj.graveNumber);
                                                 console.log(obj.imageOfBurialSite);
+                                                
+                                                localStorage.otherNames = JSON.stringify(obj.names);
+                                                
                 // building html objects here
                 $('#firstName').val(obj.firstName);
                 $('#lastName').val(obj.surname);
