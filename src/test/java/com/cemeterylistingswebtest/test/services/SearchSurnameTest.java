@@ -129,10 +129,9 @@ public class SearchSurnameTest {
         //call service
          List<PublishedDeceasedListing> deceasedList = deadRepo.findAll();
 
-        List<PublishedDeceasedListing> names = new ArrayList();
-         names = serv.getAllSurname("Wayne");
+        List<PublishedDeceasedListing> names = serv.getAllSurname("Wayne");
          
-        Assert.assertEquals(names.size(), 1);
+        Assert.assertEquals(names.isEmpty(), false);
         deadRepo.delete(newListing);
         deadRepo.delete(newListing2);
         deadRepo.delete(newListing3);
