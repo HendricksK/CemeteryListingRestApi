@@ -37,7 +37,7 @@
                         </table>
                         <h2>Listings at Cemetery</h2>
                         <table class="deceasedListings">
-                            <tr><th>col 1 </th><th>col 2</th><th>col 3</th></tr>
+                            <!-- <tr><th>col 1 </th><th>col 2</th><th>col 3</th></tr> -->
                             
                         </table>
                     </div>
@@ -85,6 +85,53 @@
 	    }
 
 	});
+        
+        $.ajax({ // ajax call to retrieve all cemeteries json objects 
+                    type: "GET",
+                    url: "/CemeteryListingsWebApp/api/DeceasedListing/show",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log('success');
+                        console.log(data);
+            
+                        for(var x = 0; x < data.length; x++){
+                            
+                        var obj = data[x]; 
+                           
+                                console.log(obj.requiresApprovalDeceasedListingID);
+                                console.log(obj.firstName);
+                                console.log(obj.surname);
+                                console.log(obj.maidenName);
+                                console.log(obj.dateOfDeath);
+                                console.log(obj.graveNumber);
+                                console.log(obj.imageOfBurialSite);
+                
+                
+                                $(".deceasedListings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.publishedListingID+'">' + '</a></td>' + '<td> Name : ' + obj.firstName + '</td>' + ' <td> Last Name : ' + obj.surname + 
+                                    '</td>' + '</a></td>' + '<td>Mainden Name : ' + obj.maidenName + '</td>' +
+                                    '</td>' + '</a></td>' + '<td>Grave Number: ' + obj.graveNumber + '</td>' +
+                                    '</td>' + '</a></td>' + '<td>Date Of Birth: ' + obj.dateOfBirth + '</td>' +
+                                    '</td>' + '</a></td>' + '<td>Date Of Death: ' + obj.dateOfDeath + '</td>' +
+                                    '<td> <button class="post" text="details" value='+obj.publishedListingID+'>' + '</td>' + "</tr>");
+                        }
+                        
+                        $('button').click(function() {
+                             if(localStorage.username == ""){
+                                window.location.href = "/CemeteryListingsWebApp/api/auth/login";
+                                }else{
+                                            var htmlString = $( this ).eq();	
+                                    console.log(htmlString);
+                                    console.log(htmlString.context.value);
+
+                                    localStorage.publishedListingsID = htmlString.context.value;
+
+                                    window.location="/CemeteryListingsWebApp/api/DeceasedListing/publishedListingsDetails";
+                                }
+                            });
+                    }
+                });
+                
+                
         
         //add another script that add the published listings to the deceasedListings table
 

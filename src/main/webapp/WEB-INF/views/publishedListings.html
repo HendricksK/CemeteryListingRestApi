@@ -45,7 +45,7 @@
                 window.location.href = "/CemeteryListingsWebApp/api/unpublishedListings/newUnpublished";
             })
             
-                var x = localStorage.username;
+                var login = localStorage.username;
 
                 if($('.user') != null){
                     if(x == ""){
@@ -86,13 +86,17 @@
                         }
                         
                         $('button').click(function() {
-				var htmlString = $( this ).eq();	
-        		console.log(htmlString);
-        		console.log(htmlString.context.value);
+                             if(localStorage.username == ""){
+                                window.location.href = "/CemeteryListingsWebApp/api/auth/login";
+                                }else{
+                                            var htmlString = $( this ).eq();	
+                                    console.log(htmlString);
+                                    console.log(htmlString.context.value);
 
-        		localStorage.publishedListingsID = htmlString.context.value;
-    
-                        window.location="/CemeteryListingsWebApp/api/DeceasedListing/publishedListingsDetails";
+                                    localStorage.publishedListingsID = htmlString.context.value;
+
+                                    window.location="/CemeteryListingsWebApp/api/DeceasedListing/publishedListingsDetails";
+                                }
                     });
                             
                 },

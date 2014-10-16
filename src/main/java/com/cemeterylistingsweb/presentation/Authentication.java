@@ -32,4 +32,9 @@ public class Authentication {
     public String adminHome(){
         return "adminHome";
     }
+    
+    @RequestMapping(value = "register", method = RequestMethod.GET)
+    public String newSubscriber(){
+        return "createSubscriber";
+    }
 }

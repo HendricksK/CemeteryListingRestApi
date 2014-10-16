@@ -83,7 +83,17 @@
         <script type="text/javascript">
             
             var ID = localStorage.publishedListingsID;
-            
+             var login = localStorage.username;
+
+                if($('.user') != null){
+                    if(login == ""){
+                        $('.user').text("Login");
+                    }else{
+
+                        $('.user').text(login);
+                    }
+                }
+                
          $.ajax({ // ajax call to retrieve all cemeteries json objects 
                     type: "GET",
                     url: "/CemeteryListingsWebApp/api/DeceasedListing/id/"+ID+"",
