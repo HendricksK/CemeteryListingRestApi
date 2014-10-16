@@ -68,4 +68,9 @@ public class UnpublishedDeceasedListingsController {
     public String adminHome(){
         return "unpublishedDetailsPage";
     }
+    
+    @RequestMapping(value = "newUnpublished", method = RequestMethod.GET)
+    public String userCreate(){
+        return "createUnpublishedListing";
+    }
 }

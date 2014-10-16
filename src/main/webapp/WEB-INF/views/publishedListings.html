@@ -11,7 +11,7 @@
                 <ul class="navList"  style="width : 100%">
                     <li><a href="/CemeteryListingsWebApp/">Home</a></li>
                     <li><a href="/CemeteryListingsWebApp/api/cemetery/cemeterylistings">Cemetery Listings</a></li>
-                    <li><a href="#">Deceased Listings</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/DeceasedListing/publishedlistings">Deceased Listings</a></li>
                     <li><a href="#">Contact Us</a></li>
                     <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user">Login</a></li>
                    <li><a href="/CemeteryListingsWebApp/api/auth/loggedIn">Admin</a></li>
@@ -26,7 +26,8 @@
             </div>
             <div class="dummyHeader"></div>
                 <div class="pageWrapper">        <!-- this is the beginning of site wrapper will contain the entire pages html -->       
-                    <div class="siteContent">  
+                    <div class="siteContent"> 
+                        <input type="button" id="createDeceasedListingButton" value="Create new deceased listing">
                         <table class="listings">
                             <tr><th>Cemetery Name</th><th>Location - Country</th><th>Province / State</th><th>District / State</th><th>Town</th><th>Select Cemetery</th></tr>
                             
@@ -39,6 +40,10 @@
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
         
         <script type="text/javascript">
+            
+            $('#createDeceasedListingButton').click(function () {
+                window.location.href = "/CemeteryListingsWebApp/api/unpublishedListings/newUnpublished";
+            })
             
                 var x = localStorage.username;
 

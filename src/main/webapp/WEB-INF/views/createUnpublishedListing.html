@@ -4,12 +4,33 @@
          
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/index.css">
+        <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/listing-pages.css">
         <script src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
     </head>
-    <body>
-        <div class="siteWrapper"> <!-- this is the beginning of site wrapper will contain the entire pages html -->       
-                <div class="siteContent">  <!-- this is the beginning of site content will contain all the content --> 
+    
+    <body class = siteWrapper>
+        
+        <div class="pageHeader">
+        <a href="#" class="logo"><img src="/CemeteryListingsWebApp/resources/images/logo3.jpg"></a>
+                <ul class="navList"  style="width : 100%">
+                    <li><a href="/CemeteryListingsWebApp/">Home</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/cemetery/cemeterylistings">Cemetery Listings</a></li>
+                    <li><a href="#">Deceased Listings</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user">Login</a></li>
+                   <li><a href="/CemeteryListingsWebApp/api/auth/loggedIn">Admin</a></li>
+                </ul>   
+<!--
+                <ul class="socialListNav">
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/fbbtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/instagrambtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/tweetbtn.png" class="simpleLogo"></a></li>
+                </ul>   
+-->
+            </div>
+        <div class="dummyHeader"></div>
+        <div class="pageWrapper">
+            <div class="siteContent">
                     <h1>Jquery Test</h1>
                     <form style="width:20%; margin-left:10%;" id="data">
                         <fieldset style="border:0">
@@ -33,8 +54,8 @@
                         <fieldset style="border:0">
                         <input type="text" name="graveNumber" id="graveNumber" placeholder="Grave Number" style="width:100%">
 	                    </fieldset>
-                        
                         <fieldset style="border:0">
+                            <label>Grave Inscription</label>
                         <textarea name="graveInscription" id="graveInscription" placeholder="Grave Inscription" style="width:100%; height : auto">
                         </textarea>
                         </fieldset>
@@ -44,48 +65,75 @@
                         <fieldset style="border:0">
                         <input type="text" name="lastKnownContactNumber" id="lastKnownContactNumber" placeholder="Last Known Contact Number" style="width:100%">
                         </fieldset>
+                         
                         <fieldset style="border:0">
-                        <select disabled name="cemeteryID" id="cemeteryID" style="width:10%">
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="opel">Opel</option>
-                            <option value="audi">Audi</option>
-                        </select>
-                        <select name="cemeteryName" id="cemeteryName" style="width:80%;">
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="opel">Opel</option>
-                            <option value="audi">Audi</option>
+                          <select name="cemeteryName" id="cemeteryName" style="width:100%;">  
                         </select>
                         </fieldset>
                         <fieldset style="border:0">
+                            <label>Grave Inscription</label>
                         <textarea name="otherNames" id="otherNames" placeholder="Other Names, seperated by a comma, end with a full stop" style="width:100%; height : auto">
                         </textarea>
                         </fieldset>
+                        <fieldset style="border:0">
+                            <input type="text" name="subscriberSubmitID" id="subscriberSubmitID" placeholder="Subscriber ID" style="width:100%">
+                        </fieldset>  
                         <fieldset style="border:0">
                         <input type="text" name="imageOfBurialSite" id="imageOfBurialSite" placeholder="Image Of Burial Site" style="width:100%">
                         </fieldset>
                         <input type="button" name="postUnpublishedListing" id="postUnpublishedListing" value="Submit">
 	                </form>
+                    
+                    
+                   <select name="cemeteryID" id="cemeteryID" style="width:10%; visibility: hidden"></select>
+                        
                 </div>
             </div>
         <!-- Script begins here -->
         <!--<script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script> -->
         
         <script type="text/javascript">
-        var names = new Array();
+              var names = new Array();
+              var selectedCemeteryID;
+              
+                $("#otherNames").keypress(function(e){
+                    var value = $(this).val().replace(" ", "");
+                    var words = value.split(",");
+                    console.log(words);
+                    names = words;
+                    localStorage.unpublishedOtherNames = words;
+                });
+            
+            $.ajax({ // ajax call to retrieve all cemeteries json objects 
+                    type: "GET",
+                    url: "/CemeteryListingsWebApp/api/cemetery/show",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log('success');
+                        console.log(data);
+                        //console.log(data[0]['contactName']);
+                        countData = data.length;
+                        
+                     
+                        for(var i = 0; i < data.length; i++) 
+                        {
+                            var obj = data[i];
+                                console.log(obj.id);
+                              
+                                console.log(obj.location.cemeteryName);
+                                $('#cemeteryID').append('<option>' + obj.id + '</option>');
+                                $('#cemeteryName').append('<option>' + obj.location.cemeteryName + '</option>');
 
-        $("#otherNames").keypress(function(e){
-            var value = $(this).val().replace(" ", "");
-            var words = value.split(",");
-            console.log(words);
-            names = words;
-            if(words.length > 5){
-                //alert("Hey! That's more than 5 words!");
-                e.preventDefault();
-            }
-
-        });
+                        }                            
+                        
+                    },
+                    error: function (jqXHR, status) {
+                        // error handler
+                        console.log(jqXHR);
+                        alert('fail' + status.code);
+                    }
+                 });
+                 
         	console.log('one love');
 
 
@@ -96,8 +144,8 @@
             //$('.second').children().eq(0);
                 console.log($( "#cemeteryName option:selected" ).text());
                  console.log($( "#cemeteryName option:selected" ).index());
-                 var x = $("#cemeteryName option:selected" ).index();
-                 console.log($('#cemeteryID').children().eq(x).val() + "yeees");
+                 selectedCemeteryID = $("#cemeteryName option:selected" ).index();
+                 console.log($('#cemeteryID').children().eq(x).val());
           });
         	
         	$('#postUnpublishedListing').on('click', function() {
@@ -106,25 +154,31 @@
 
                    
                     
-        	/*$.ajax({
-                    type: "POST", 
-                    url: "/CemeteryListingsWebApp/api/cemetery/unpublishedDeceasedListing",
-                    data: JSON.stringify({"location":{"country":$('#country').val(),"province_State":$('#province_state').val(),"district_state":$('#district_state').val(),"town":$('#town').val(),"cemeteryName":$('#cemeteryName').val(),"locationOfCemetery":$('#locationOfCemetery').val()},"contactName":$('#contactName').val(),"contactNumber":$('#contactNumber').val()}),
-                    //data: JSON.stringify({ "contactName": 'mattcat', "contactNumber" : 123456789 , "ceme"}),// now data come in this function stringyfy is needed in order to turn string into json
-                    dataType: "JSON",
-                    contentType: "application/json",
-                    success: function (status, jqXHR) {
-
-                        alert("success");// write success in " "
-                    },
-
-                    error: function (jqXHR, status) {
-                        // error handler
-                        console.log(jqXHR);
-                        //alert('fail ' + status.code);
-                    }
-                 });
-                */
+        	$.ajax({ // ajax call to retrieve all cemeteries json objects 
+                        type: "POST",
+                        url: "/CemeteryListingsWebApp/api/unpublishedListings/create",
+                        data: JSON.stringify({"firstName":$('#firstName').val(),
+                            "surname":$('#lastName').val(),
+                            "maidenName":$('#maidenName').val(),
+                            "gender":$('#gender').val(),
+                            "dateOfBirth":$('#dateOfBirth').val(),
+                            "dateOfDeath":$('#dateOfDeath').val(),
+                            "graveInscription":$('#graveInscription').val(),
+                            "graveNumber":$('#graveNumber').val(),
+                            "imageOfBurialSite": $('#imageOfBurialSite').val(),
+                            "lastKnownContactName":$('#lastKnownContactName').val(),
+                            "lastKnownContactNumber":$('#lastKnownContactNumber').val(),
+                            "cemeteryID": selectedCemeteryID,
+                            "subscriberApprovedID":null,
+                            "subscriberSubmitID":$('#subscriberSubmitID').val(),
+                            "names":[]}),
+                        dataType: "JSON",
+                        contentType: "application/json",
+                        success: function (data) {
+                            console.log('success');
+                            console.log(data);
+                            }
+                                });
                 console.log('hey');
 			});
 
