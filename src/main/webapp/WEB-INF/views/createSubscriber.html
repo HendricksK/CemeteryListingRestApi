@@ -29,11 +29,11 @@
                         Filled in by admin --subscriptionDate, validUntil  -->
                             <table width = '90%' align='center'>
                                 <tr><th> </th></tr>
-                                <tr><td>User name</td><td><input type="text" name="username" id="username" placeholder="User name" style="width:100%"></td> </tr>
-                                <tr><td>First Name </td><td><input type="text" name="firstName" id="firstName" placeholder="First name" style="width:100%"> </td> </tr>
+                                <tr><td>User name</td><td><input type="text" name="uname" id="uname" placeholder="User name" style="width:100%"></td> </tr>
+                                <tr><td>First Name </td><td><input type="text" name="first" id="first" placeholder="First name" style="width:100%"> </td> </tr>
                                 <tr><td>Surname </td><td><input type="text" name="surname" id="surname" placeholder="Surname" style="width:100%"> </td></tr>
                                 <tr><td>E-mail </td><td><input type="text" name="email" id="email" placeholder="E-mail" style="width:100%"> </td></tr>
-                                <tr><td>Password </td><td><input type="password" name="pwd" id="pwd" placeholder="Password" style="width:100%"> </td></tr>
+                                <tr><td>Password </td><td><input type="password" name="pword" id="pword" placeholder="Password" style="width:100%"> </td></tr>
                                 <tr><td>Confirm Password </td><td><input type="password" name="pwd2" id="pwd2" placeholder="Confirm Password" style="width:100%"> </td></tr>
                            </table>                            
                            <input type="button" name="post" value="Create Subscriber" id="createButton" style="margin-left: 20%">
@@ -45,5 +45,30 @@
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
         
         <!-- FANCY SCRIPT GOES HERE -->
+        
+        <script type="text/javascript">
+        	console.log('createSubscriber javascript start');
+        	//{"country":"America","province_State":"New Jersey","district_state":"Washington","town":"Marlboro","cemeteryName":"Palm Springs","locationOfCemetery":"12.06.12:45.63.89"},"contactName":"jack daniels","contactNumber":"0215917865"
+        	$('#createButton').on('click', function() {
+//"chuck@hotmal.com", "first", "last", "chuck27", "encrypted", null, 1);
+        	$.ajax({
+                    type: "POST", 
+                    url: "/CemeteryListingsWebApp/api/subscriber/create",
+                    data: JSON.stringify({"UserRole":{"email":$('#email').val(),"first":$('#first').val(),"surname":$('#surname').val(),"uname":$('#uname').val(),"pword":$('#pword').val(),"sqlDate":null},"roleLevel":null}),
+                    dataType: "JSON",
+                    contentType: "application/json",
+                    success: function (status, jqXHR) {
+
+                        //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                    },
+
+                    error: function (jqXHR, status) {
+                       //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                    }
+                 });
+
+			});
+
+        </script>
 </body> 
 </html>
