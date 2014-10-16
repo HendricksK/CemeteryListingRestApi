@@ -29,7 +29,7 @@ public class approveSubscriberServiceTest {
     
     ApproveSubscriberService adserv;
     
- @Test
+ @Test (enabled = false)
   public void Test() {
       
       SubscrRepo = ctx.getBean(SubscriberRepository.class);
