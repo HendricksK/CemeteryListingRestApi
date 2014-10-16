@@ -46,7 +46,31 @@
     </div>
         <!-- Script begins here -->
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
-        
+        <script>
+            
+            $.ajax({
+                    type: "GET", 
+                    url: "/CemeteryListingsWebApp/api/auth/getUserDetails",
+                    data: {"username": localStorage.username},
+                    dataType: "JSON",
+                    success: function (data, status, jqXHR) {
+                        console.log(data);
+                        $('#username').val(data.username);
+                        $('#firstName').val(data.firstName);
+                        $('#surname').val(data.surname);
+                        $('#email').val(data.email);
+                        $('#pwd').val(data.pwd);
+                        $('#lastContributionYear').val(data.lastContributionYear);
+                        $('#subscriptionDate').val(data.subscriptionDate);
+                        $('#validUntil').val(data.validUntil);
+                    },
+
+                    error: function (jqXHR, status) {
+                       //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                    }
+                 });
+            
+        </script>
         <!-- FANCY SCRIPT GOES HERE -->
 </body> 
 </html>

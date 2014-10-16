@@ -17,7 +17,7 @@
                     <li><a href="/CemeteryListingsWebApp/api/cemetery/cemeterylistings">Cemetery Listings</a></li>
                     <li><a href="/CemeteryListingsWebApp/api/DeceasedListing/publishedlistings">Deceased Listings</a></li>
                     <li><a href="/CemeteryListingsWebApp/api/search/contactus">Contact Us</a></li>
-                    <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user">Login</a></li>
+                    <li><a href="#" style="margin-left:10% !important;" class="user" id="user">Login</a></li>
                     <li><a href = "/CemeteryListingsWebApp/" class="logout" id="logout">Logout</a>
                 </ul>   
         <!--
@@ -55,16 +55,6 @@
 
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
-        $('#logout').click(function(){
-            localStorage.username = "";
-        });
-        
-        $('#searchButton').click(function() {
-            localStorage.nameSearch = $('.searchBar').val();
-            //alert(localStorage.search);
-            window.location.href = "/CemeteryListingsWebApp/api/search/siteSearch";
-           
-        });
         
         var x = localStorage.username;
 
@@ -76,6 +66,27 @@
                 $('.user').text(x);
             }
         }
+        
+        $('#logout').click(function(){
+            localStorage.username = "";
+        });
+        
+        $('#searchButton').click(function() {
+            localStorage.nameSearch = $('.searchBar').val();
+            //alert(localStorage.search);
+            window.location.href = "/CemeteryListingsWebApp/api/search/siteSearch";
+           
+        });
+        
+        $('#user').click(function() {
+                if(localStorage.username == ""){
+                    window.location.href = "/CemeteryListingsWebApp/api/auth/login";
+                }else{
+                     window.location.href = "/CemeteryListingsWebApp/api/subscriber/subscriberDetails";
+                }
+        });
+        
+        
     </script>
 
 </body>
