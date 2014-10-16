@@ -63,7 +63,7 @@ public class RetrieveAllSubscriberDetailsTest {
                  .build();
          
          //userRepo.save(user);
-         //userRoleID = user.getUserRoleID();
+         userRoleID = user.getUserRoleID();
          
          Subscriber newSub = new Subscriber.Builder()
                 .setEmail("manfredOsulivan@horseRaddish.com")
@@ -77,9 +77,13 @@ public class RetrieveAllSubscriberDetailsTest {
             
          
          repo.save(newSub);
+         id = newSub.getSubscriberID();
          
          Subscriber sub = subServ.getSubscriberByUsername("wwonker");
          Assert.assertEquals(sub.getUsername(), "wwonker");
+         
+         repo.delete(id);
+         
      }
 
     @BeforeClass

@@ -6,6 +6,8 @@
 
 package com.cemeterylistingswebtest.test.services;
 
+import com.cemeterylistingsweb.domain.Cemetery;
+import com.cemeterylistingsweb.domain.Location;
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import com.cemeterylistingsweb.repository.CemeteryRepository;
 import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
@@ -39,31 +41,49 @@ public class ViewListingByMaidenNameTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    private static Long id, id2, id3;
+    private static Long id, id2, id3, cemId;
     public static ApplicationContext ctx;
     
     public static PublishedDeceasedListingRepository deadRepo;
     public ViewListingByMaidenNameService maidServ;
+    public static CemeteryRepository repo;
      
-    @Test(enabled=false)
+    @Test(enabled=true)
      public void hello() {
          maidServ = ctx.getBean(ViewListingByMaidenNameService.class);
-        
         deadRepo = ctx.getBean(PublishedDeceasedListingRepository.class);
+        repo = ctx.getBean(CemeteryRepository.class);
         
+        //create cemetery
+        Location local = new Location.Builder()
+                 .setCemeteryName("Palm Springs")
+                 .setCountry("America")
+                 .setDistrict_state("Washington")
+                 .setLocationOfCemetery("12.06.12:45.63.89")
+                 .setProvince_State("New Jersey")
+                 .setTown("Marlboro")
+                 .build();
+         
+         Cemetery newCemetery = new Cemetery.Builder()
+                 .setContactName("Palm Springs")
+                 .setContactNumber("0215698412")
+                 .setLocation(local)
+                 .build();
+          repo.save(newCemetery);
+          cemId = newCemetery.getId();
+          
         PublishedDeceasedListing newListing = new PublishedDeceasedListing.Builder()
-                 .setFirstName("Hendrika")
-                 .setSurname("Fourie")
-                 .setMaidenName("Gerber")
+                 .setFirstName("sally")
+                 .setSurname("white")
+                 .setMaidenName("black")
                  .setGender("Female")
-                 .setDateOfBirth("08/06/1969")
-                 .setDateOfDeath("14/02/2005")
-                 .setGraveInscription("Hippiest person eva")
-                 .setGraveNumber("2456")
-                 .setImageOfBurialSite("/images/001.jpg")
-                 .setLastKnownContactName("Berry")
-                 .setLastKnownContactNumber("0725576482")
-                 .setCemeteryID(id)
+                 .setDateOfBirth("08/06/1980")
+                 .setDateOfDeath("19/02/2014")
+                 .setGraveInscription("dunno who this was")
+                 .setGraveNumber("2786")
+                 .setImageOfBurialSite("/images/006.jpg")
+                 
+                 .setCemeteryID(cemId)
                  //subscriberApprovedID
                  //subscriber submitted id
                  //names
@@ -71,17 +91,16 @@ public class ViewListingByMaidenNameTest {
                  .build();
         
                  PublishedDeceasedListing newListing2 = new PublishedDeceasedListing.Builder()
-                 .setFirstName("Walter")
-                 .setSurname("White")
+                 .setFirstName("gary")
+                 .setSurname("medici")
                  .setGender("Male")
-                 .setDateOfBirth("08/06/1969")
-                 .setDateOfDeath("14/02/2005")
-                 .setGraveInscription("Evilest person eva")
-                 .setGraveNumber("2442")
+                 .setDateOfBirth("08/06/1983")
+                 .setDateOfDeath("14/02/2001")
+                 .setGraveInscription("person")
+                 .setGraveNumber("2832")
                  .setImageOfBurialSite("/images/001.jpg")
-                 .setLastKnownContactName("Berrys")
-                 .setLastKnownContactNumber("0725456482")
-                 .setCemeteryID(id)
+                 
+                 .setCemeteryID(cemId)
                  //subscriberApprovedID
                  //subscriber submitted id
                  //names
@@ -89,18 +108,17 @@ public class ViewListingByMaidenNameTest {
                  .build();
                  
                  PublishedDeceasedListing newListing3 = new PublishedDeceasedListing.Builder()
-                 .setFirstName("Leia")
-                 .setSurname("Skywalker")
-                 .setMaidenName("Kanobi")
+                 .setFirstName("kia")
+                 .setSurname("picanto")
+                 .setMaidenName("panna")
                  .setGender("Female")
-                 .setDateOfBirth("08/06/1969")
-                 .setDateOfDeath("14/02/2005")
+                 .setDateOfBirth("08/06/1978")
+                 .setDateOfDeath("14/02/2007")
                  .setGraveInscription("meh")
-                 .setGraveNumber("2816")
+                 .setGraveNumber("2126")
                  .setImageOfBurialSite("/images/001.jpg")
-                 .setLastKnownContactName("Berry")
-                 .setLastKnownContactNumber("0725554482")
-                 .setCemeteryID(id2)
+                 
+                 .setCemeteryID(cemId)
                  //subscriberApprovedID
                  //subscriber submitted id
                  //names
@@ -108,17 +126,16 @@ public class ViewListingByMaidenNameTest {
                  .build();
                  
                  PublishedDeceasedListing newListing4 = new PublishedDeceasedListing.Builder()
-                 .setFirstName("Bruce")
-                 .setSurname("Wayne")
+                 .setFirstName("benny")
+                 .setSurname("michaels")
                  .setGender("Male")
-                 .setDateOfBirth("08/06/1969")
-                 .setDateOfDeath("14/02/2005")
-                 .setGraveInscription("Batman")
-                 .setGraveNumber("2556")
+                 .setDateOfBirth("08/06/1975")
+                 .setDateOfDeath("14/02/2008")
+                 .setGraveInscription("#5")
+                 .setGraveNumber("2736")
                  .setImageOfBurialSite("/images/001.jpg")
-                 .setLastKnownContactName("Berry")
-                 .setLastKnownContactNumber("0725676482")
-                 .setCemeteryID(id3)
+                 
+                 .setCemeteryID(cemId)
                  //subscriberApprovedID
                  //subscriber submitted id
                  //names
@@ -132,8 +149,12 @@ public class ViewListingByMaidenNameTest {
          
           List<PublishedDeceasedListing> deceasedList = deadRepo.findAll();
             Assert.assertEquals(deceasedList.isEmpty(), false);
-           List<PublishedDeceasedListing> maidenNameList = maidServ.findListingByMaidenName("Kanobi");
+           List<PublishedDeceasedListing> maidenNameList = maidServ.findListingByMaidenName("panna");
             Assert.assertEquals(deceasedList.size(), 1);
+            deadRepo.delete(newListing);
+            deadRepo.delete(newListing2);
+            deadRepo.delete(newListing3);
+            deadRepo.delete(newListing4);
      }
 
     @BeforeClass

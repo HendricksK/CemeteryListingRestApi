@@ -29,7 +29,7 @@ public class adminRegisterUserRoleServiceTest {
     
     private UserRoleRepository repo;
     public static ApplicationContext ctx;
-    
+    Long id;
     AdminRegisterUserRoleService adserv;
     
  @Test
@@ -37,9 +37,9 @@ public class adminRegisterUserRoleServiceTest {
       repo = ctx.getBean(UserRoleRepository.class);
       adserv = ctx.getBean(AdminRegisterUserRoleService.class);
       
-      adserv.RegisterUserRole(66);
+     id = adserv.RegisterUserRoleReturn(66);
       Assert.assertFalse(repo.findAll().isEmpty());
-      
+      repo.delete(id);
       
   }
 

@@ -16,4 +16,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface AdminRegisterUserRoleService extends Services<UserRole, Long>{
     public void RegisterUserRole(int level);
+    public Long RegisterUserRoleReturn(int level);
 }

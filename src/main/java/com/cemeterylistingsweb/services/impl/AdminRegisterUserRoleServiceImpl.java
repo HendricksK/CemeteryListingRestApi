@@ -52,5 +52,14 @@ public class AdminRegisterUserRoleServiceImpl implements AdminRegisterUserRoleSe
          
          repo.save(newRole);
      }
-    
+    @Override
+     public Long RegisterUserRoleReturn(int level){
+         Long id; 
+         UserRole newRole = new UserRole.Builder()
+                 .setLevel(level)
+                 .build();
+         
+         repo.save(newRole);
+         return id = newRole.getUserRoleID();
+     }
 }

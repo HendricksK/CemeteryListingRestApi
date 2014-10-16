@@ -36,10 +36,10 @@ public class approveDeceasedListingServiceTest {
       //deadRepo = ctx.getBean(RequiresApprovalDeceasedListingRepository.class);
       adserv = ctx.getBean(ApproveDeceasedListingService.class);
       
-      //adserv.approveDeceasedListing(157l);
+      boolean approve = adserv.approveDeceasedListing(157l);
       
      
-       Assert.assertFalse(adserv.approveDeceasedListing(157l));
+       Assert.assertFalse(approve);
       
       
       

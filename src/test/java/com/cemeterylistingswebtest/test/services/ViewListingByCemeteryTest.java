@@ -46,7 +46,7 @@ public class ViewListingByCemeteryTest {
     public static PublishedDeceasedListingRepository deadRepo;
     public ViewListingByCemetery cemListServ;
     
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void Test() {
         cemListServ = ctx.getBean(ViewListingByCemetery.class);
         repo = ctx.getBean(CemeteryRepository.class);

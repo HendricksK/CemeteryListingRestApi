@@ -106,16 +106,19 @@ public class ViewListingByDateOfDeathServiceTest {
          
          List<PublishedDeceasedListing> pubListDod = dateServ.findListingByDOD("14/02/2005");
          Assert.assertFalse(pubListDod.isEmpty());
+         repoList.delete(newListing);
          repoList.delete(subID);
      }
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+        ctx = new AnnotationConfigApplicationContext(ConnectionConfigTest.class);
     }
+    
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-        ctx = new AnnotationConfigApplicationContext(ConnectionConfigTest.class);
+        
     }
 
     @BeforeMethod

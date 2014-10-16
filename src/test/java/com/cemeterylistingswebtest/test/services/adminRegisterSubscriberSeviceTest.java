@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
  * @author Zaakir
  */
 public class adminRegisterSubscriberSeviceTest {
-    
+    Long id;
     public static ApplicationContext ctx;
     SubscriberRepository SubscrRepo;
     public AdminRegisterSubscriberService adserv;
@@ -34,8 +34,9 @@ public class adminRegisterSubscriberSeviceTest {
       SubscrRepo = ctx.getBean(SubscriberRepository.class);
       adserv = ctx.getBean(AdminRegisterSubscriberService.class);
       
-      adserv.registerSubscriber("chuck@hotmal.com", "first", "last", "chuck27", "encrypted", null, 1);
+      id = adserv.registerSubscriberReturn("chuck@hotmal.com", "first", "last", "chuck27", "encrypted", null, 1);
       Assert.assertFalse(SubscrRepo.findAll().isEmpty());
+      SubscrRepo.delete(id);
 
   }
 
