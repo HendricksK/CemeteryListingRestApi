@@ -51,7 +51,7 @@ public class ViewListingByDateOfBirthServiceTest {
     public static PublishedDeceasedListingRepository repoList;
     public ViewListingByDateOfBirthService dateServ;
      
-    @Test(enabled = true)
+    @Test(enabled = false)
      public void Test() {
         dateServ = ctx.getBean(ViewListingByDateOfBirthService.class);
         repoList = ctx.getBean(PublishedDeceasedListingRepository.class);

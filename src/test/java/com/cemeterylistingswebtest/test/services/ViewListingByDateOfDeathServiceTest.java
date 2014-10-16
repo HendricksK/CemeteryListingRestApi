@@ -49,7 +49,7 @@ public class ViewListingByDateOfDeathServiceTest {
      
     
      
-     @Test(enabled = true)
+     @Test(enabled = false)
      public void TestDoD() {
         dateServ = ctx.getBean(ViewListingByDateOfDeathService.class);
         repoList = ctx.getBean(PublishedDeceasedListingRepository.class);

@@ -41,7 +41,7 @@ public class SearchSurnameTest {
     // @Test
     // public void hello() {}
     
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void Test() {
         
         deadRepo = ctx.getBean(PublishedDeceasedListingRepository.class);
@@ -129,9 +129,11 @@ public class SearchSurnameTest {
         //call service
          List<PublishedDeceasedListing> deceasedList = deadRepo.findAll();
 
-        List<PublishedDeceasedListing> names = serv.getAllSurname("White");
+        List<PublishedDeceasedListing> surname = new ArrayList();
+        surname = 
+                serv.getAllSurname("White");
          
-        Assert.assertEquals(names.isEmpty(), false);
+        Assert.assertEquals(surname.isEmpty(), false);
         deadRepo.delete(newListing);
         deadRepo.delete(newListing2);
         deadRepo.delete(newListing3);
