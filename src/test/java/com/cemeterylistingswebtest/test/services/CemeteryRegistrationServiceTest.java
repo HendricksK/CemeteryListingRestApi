@@ -62,8 +62,8 @@ public class CemeteryRegistrationServiceTest {
           Long cemID = regServ.registerCemeteryReturn(locals, "jack daniels", "0215917865");
           //regServ.registerCemeteryLocation("Palm Springs", "America", "Washington", "12.06.12:45.63.89", "New Jersey", "Marlboro","jack daniels", "0215917865");
           
-          Assert.assertNotNull(cemRepo.findOne(id).getId());
-          cemRepo.delete(id);
+          Assert.assertNotNull(cemRepo.findOne(cemID).getId());
+          cemRepo.delete(cemID);
      }
      
     
