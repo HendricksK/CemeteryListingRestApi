@@ -1,16 +1,46 @@
 <!DOCTYPE html>
 <html>
     <head>
-         
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/index.css">
+        <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/listing-pages.css">
     </head>
-    <body>
-        <div class="siteWrapper"> <!-- this is the beginning of site wrapper will contain the entire pages html -->       
-                <div class="siteContent">  <!-- this is the beginning of site content will contain all the content --> 
-                    <h1>Jquery Test</h1>
-                    <input type="button" name="post" value="post" id="me">
+    <body class="siteWrapper"> <!-- this is the beginning of site wrapper will contain the entire pages html -->   
+            <div class="pageHeader">
+        <a href="#" class="logo"><img src="/CemeteryListingsWebApp/resources/images/logo3.jpg"></a>
+                <ul class="navList"  style="width : 100%">
+                    <li><a href="/CemeteryListingsWebApp/">Home</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/cemetery/cemeterylistings">Cemetery Listings</a></li>
+                    <li><a href="#">Deceased Listings</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user">Login</a></li>
+                   <li><a href="/CemeteryListingsWebApp/api/auth/loggedIn">Admin</a></li>
+                </ul>   
+<!--
+                <ul class="socialListNav">
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/fbbtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/instagrambtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/tweetbtn.png" class="simpleLogo"></a></li>
+                </ul>   
+-->
+            </div>
+            <div class="dummyHeader"></div>
+                <div class="pageWrapper"> 
+                    <div class="siteContent">  <!-- this is the beginning of site content will contain all the content --> 
+                        <h1>~ Cemetery Details ~</h1>
+                        
+                        <input type="button" name="post" value="post" id="me">
+                        <h2>Cemetery Details</h2>
+                        <table class="cemeteryDetails">
+                            <tr><th> &nbsp; </th><th> &nbsp; </th></tr>
+                            
+                        </table>
+                        <h2>Listings at Cemetery</h2>
+                        <table class="cemeteryListings">
+                            <tr><th>col 1 </th><th>col 2</th><th>col 3</th></tr>
+                            
+                        </table>
+                    </div>
                 </div>
             </div>
         <!-- Script begins here -->
@@ -39,8 +69,18 @@
                                 console.log(obj.location.locationOfCemetery);
                                 console.log(obj.contactName);
                                 console.log(obj.contactNumber);
-// building html objects here
-$(".siteContent").append("<li>" + '<a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.id+'"> hello' + '</a>' + 'cemetery ID : ' + obj.id + ' Location - Country : ' + obj.location.country + ' Cemetery Name : ' + obj.location.cemeteryName + '<button class="goToDetails" text='+obj.id+' value='+obj.id+'>' +"</li>" + "<br>"); 
+                            // building html objects here
+                            $(".cemeteryDetails").append(
+                                    '<tr><td>Cemetery ID</td><td>' + obj.id + '</td>'+
+                                    '<tr><td>Country - Country</td><td> ' + obj.location.country + '</td>'+
+                                    '<tr><td>Province / State</td><td> ' + obj.location.province_State + '</td>'+
+                                    '<tr><td>District / State</td><td> ' + obj.location.district_state + '</td>'+
+                                    '<tr><td>Town</td><td> ' + obj.location.town + '</td>'+
+                                    '<tr><td>Cemetery Name </td><td> ' + obj.location.cemeteryName + '</td>'+
+                                    '<tr><td>Location of Cemetery</td><td> ' + obj.location.locationOfCemetery + '</td>'+
+                                    '<tr><td>Contact Name</td><td> ' + obj.location.contactName + '</td>'+
+                                    '<tr><td>Contact Number</td><td> ' + obj.location.contactNumber + '</td>'+
+                                    '<tr><td><button class="goToDetails" text='+obj.id+' value='+obj.id+'>Random button?</button></td><td>&nbsp;'  + "</td></tr>"); 
 
 	    }
 

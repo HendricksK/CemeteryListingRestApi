@@ -28,7 +28,7 @@
                 <div class="pageWrapper">        <!-- this is the beginning of site wrapper will contain the entire pages html -->       
                     <div class="siteContent">  
                         <table class="listings">
-                            <tr><th>Cemetery Name</th><th>Location - Country</th><th>Select Cemetery</th></tr>
+                            <tr><th>Cemetery Name</th><th>Location - Country</th><th>Province / State</th><th>District / State</th><th>Town</th><th>Select Cemetery</th></tr>
                             
                         </table><!-- this is the beginning of site content will contain all the content --> 
                         <!--<h1>Jquery Test</h1>
@@ -70,6 +70,9 @@
                                 $(".listings").append(' <tr>' 
                                         + '<td>' + obj.location.cemeteryName + '</td>'
                                         + '<td>' + obj.location.country + '</td>'
+                                        + '<td>' + obj.location.province_State + '</td>'
+                                        + '<td>' + obj.location.district_state + '</td>'
+                                        + '<td>' + obj.location.town + '</td>'
                                         + '<td> <button  class="goToDetails" text="details" value='+obj.id+'>View Cemetery</button>' + '</td>' + "</tr>");                             
                         }
 
