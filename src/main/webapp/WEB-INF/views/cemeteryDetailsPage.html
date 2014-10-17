@@ -12,10 +12,10 @@
                 <ul class="navList"  style="width : 100%">
                     <li><a href="/CemeteryListingsWebApp/">Home</a></li>
                     <li><a href="/CemeteryListingsWebApp/api/cemetery/cemeterylistings">Cemetery Listings</a></li>
-                    <li><a href="#">Deceased Listings</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user">Login</a></li>
-                   <li><a href="/CemeteryListingsWebApp/api/auth/loggedIn">Admin</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/DeceasedListing/publishedlistings">Deceased Listings</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/search/contactus">Contact Us</a></li>
+                    <li><a href="#" style="margin-left:10% !important;" class="user" id="user">Login</a></li>
+                    <li><a href = "/CemeteryListingsWebApp/" class="logout" id="logout">Logout</a>
                 </ul>   
 <!--
                 <ul class="socialListNav">
@@ -31,14 +31,14 @@
                         <h1>~ Cemetery Details ~</h1>
                         
                         <!-- <input type="button" name="post" value="post" id="me"> -->
-                        <h2>Cemetery Details</h2>
+                        
                         <table class="cemeteryDetails">
                             <tr><th> &nbsp; </th><th> &nbsp; </th></tr>
                             
                         </table>
                         <h2>Listings at Cemetery</h2>
-                        <table class="deceasedListings">
-                            <!-- <tr><th>col 1 </th><th>col 2</th><th>col 3</th></tr> -->
+                        <table class="deceasedListings" border='1px'>
+                             <tr><th>Name </th><th>Last name</th><th>Maiden name</th><th>Grave number</th><th>Date Of Birth</th><th>Date Of Death</th><th>View Details</th></tr> 
                             
                         </table>
                     </div>
@@ -107,13 +107,15 @@
                                 console.log(obj.graveNumber);
                                 console.log(obj.imageOfBurialSite);
                 
-                
-                                $(".deceasedListings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.publishedListingID+'">' + '</a></td>' + '<td> Name : ' + obj.firstName + '</td>' + ' <td> Last Name : ' + obj.surname + 
-                                    '</td>' + '</a></td>' + '<td>Mainden Name : ' + obj.maidenName + '</td>' +
-                                    '</td>' + '</a></td>' + '<td>Grave Number: ' + obj.graveNumber + '</td>' +
-                                    '</td>' + '</a></td>' + '<td>Date Of Birth: ' + obj.dateOfBirth + '</td>' +
-                                    '</td>' + '</a></td>' + '<td>Date Of Death: ' + obj.dateOfDeath + '</td>' +
-                                    '<td> <button class="post" text="details" value='+obj.publishedListingID+'>' + '</td>' + "</tr>");
+                //h<a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.publishedListingID+'"></a>
+                                $(".deceasedListings").append(' <tr>'
+                                    + '<td>' + obj.firstName +      '</td>'
+                                    + '<td>' + obj.surname +        '</td>' 
+                                    + '<td>' + obj.maidenName +     '</td>'
+                                    + '<td>' + obj.graveNumber +    '</td>' 
+                                    + '<td>' + obj.dateOfBirth +    '</td>'
+                                    + '<td>' + obj.dateOfDeath +    '</td>' +
+                                    '<td> <button class="post" text="details" value='+obj.publishedListingID+'>View Details</button>' + '</td>' + "</tr>");
                         }
                         
                         $('button').click(function() {
