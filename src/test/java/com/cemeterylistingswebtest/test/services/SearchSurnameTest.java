@@ -41,7 +41,7 @@ public class SearchSurnameTest {
     // @Test
     // public void hello() {}
     
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void Test() {
         
         deadRepo = ctx.getBean(PublishedDeceasedListingRepository.class);

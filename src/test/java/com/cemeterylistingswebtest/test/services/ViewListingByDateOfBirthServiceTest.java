@@ -51,7 +51,7 @@ public class ViewListingByDateOfBirthServiceTest {
     public static PublishedDeceasedListingRepository repoList;
     public ViewListingByDateOfBirthService dateServ;
      
-    @Test(enabled = false)
+    @Test(enabled = true)
      public void Test() {
         dateServ = ctx.getBean(ViewListingByDateOfBirthService.class);
         repoList = ctx.getBean(PublishedDeceasedListingRepository.class);
@@ -110,6 +110,7 @@ public class ViewListingByDateOfBirthServiceTest {
          List<PublishedDeceasedListing> pubListDob = dateServ.findListingByDOB("27/07/1985");
          Assert.assertFalse(pubListDob.isEmpty());
          repoList.delete(listingId);
+         subRepo.delete(subID);
          
      }
      
