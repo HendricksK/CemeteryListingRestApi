@@ -27,10 +27,10 @@
             </div>
             <div class="dummyHeader"></div>
                 <div class="pageWrapper">        <!-- this is the beginning of site wrapper will contain the entire pages html -->       
-                    <div class="siteContent"> 
-                        <input type="button" id="createDeceasedListingButton" value="Create new deceased listing">
-                        <table class="listings">
-                            <tr><th>Cemetery Name</th><th>Location - Country</th><th>Province / State</th><th>District / State</th><th>Town</th><th>Select Cemetery</th></tr>
+                    <div class="siteContent" align='center'> 
+                        <input type="button" id="createDeceasedListingButton" value="Create new deceased listing" align='center'>
+                        <table class="listings" border='1px'>
+                            <tr><th>First Name</th><th>Surname</th><th>Maiden Name</th><th>Grave Number</th><th>Date Of Birth</th><th>Date Of Death</th><th>publishedListingID</th></tr>
                             
                         </table><!-- this is the beginning of site content will contain all the content --> 
                         <!--<h1>Jquery Test</h1>
@@ -77,13 +77,16 @@
                                 console.log(obj.graveNumber);
                                 console.log(obj.imageOfBurialSite);
                 
-                
-                                $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.publishedListingID+'">' + '</a></td>' + '<td> Name : ' + obj.firstName + '</td>' + ' <td> Last Name : ' + obj.surname + 
-                                    '</td>' + '</a></td>' + '<td>Mainden Name : ' + obj.maidenName + '</td>' +
-                                    '</td>' + '</a></td>' + '<td>Grave Number: ' + obj.graveNumber + '</td>' +
-                                    '</td>' + '</a></td>' + '<td>Date Of Birth: ' + obj.dateOfBirth + '</td>' +
-                                    '</td>' + '</a></td>' + '<td>Date Of Death: ' + obj.dateOfDeath + '</td>' +
-                                    '<td> <button class="post" text="details" value='+obj.publishedListingID+'>' + '</td>' + "</tr>");
+                //'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.publishedListingID+'">' + '</a>
+                                $(".listings").append(' <tr><td>' 
+                                        + obj.firstName + '</td>' 
+                                        + ' <td> ' + obj.surname +  '</td>' 
+                                        + ' <td>'  + obj.maidenName + '</td>' +
+                                        + ' <td>'  + obj.graveNumber + '</td>' 
+                                        + ' <td>'  + obj.dateOfBirth + '</td>' 
+                                        + ' <td>'  + obj.dateOfDeath + '</td>' 
+                                        + ' <td>'  + obj.publishedListingID+ '</td>' + 
+                                    '<td> <button class="post" text="details" value='+obj.publishedListingID+'>View Listing</button>' + '</td>' + "</tr>");
                         }
                         
                         $('button').click(function() {
