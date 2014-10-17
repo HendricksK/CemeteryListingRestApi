@@ -110,7 +110,7 @@ public class PublishListingServiceTest {
         boolean empty = pubRepo.findAll().isEmpty();
          //Assert.assertEquals(repoList.findAll().size(), 1);
           Assert.assertFalse(empty);
-         Assert.assertFalse(repoList.findAll().isEmpty());
+         Assert.assertNotNull(pubRepo.findOne(id2).getPublishedListingID());
          repoList.delete(id);
          pubRepo.delete(id2);
          repo.delete(subID);
