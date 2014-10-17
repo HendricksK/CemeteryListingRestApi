@@ -47,7 +47,7 @@ public class PublishListingServiceTest {
     public static PublishedDeceasedListingRepository pubRepo;
     public PublishListingService pubServ;
      
-    @Test
+    @Test()
      public void publishTest() {
          pubServ = ctx.getBean(PublishListingService.class);
          repo = ctx.getBean(SubscriberRepository.class);  
@@ -56,9 +56,9 @@ public class PublishListingServiceTest {
          
          //Initialise date
          Calendar calendar = Calendar.getInstance();
-         calendar.set(Calendar.YEAR, 2008);
-         calendar.set(Calendar.MONTH, Calendar.FEBRUARY);
-         calendar.set(Calendar.DATE, 4);
+         calendar.set(Calendar.YEAR, 2010);
+         calendar.set(Calendar.MONTH, Calendar.JUNE);
+         calendar.set(Calendar.DATE, 14);
           
          java.sql.Date javaSqlDate = new java.sql.Date(calendar.getTime().getTime());
          
@@ -71,11 +71,11 @@ public class PublishListingServiceTest {
          
          //Initialise subscriber
          Subscriber newSub = new Subscriber.Builder()
-                .setEmail("manfredOsulivan@horseRaddish.com")
-                .setFirstName("Manfred")
-                .setSurname("Osulivan")
-                .setPwd("jesus")
-                .setUsername("ManiFredOssy")
+                .setEmail("bwillis@gmail.com")
+                .setFirstName("bruce")
+                .setSurname("willis")
+                .setPwd("diehard")
+                .setUsername("bwillis")
                 .setSubscriptionDate(javaSqlDate)
                 .setUserRoleID(userRole)
                 .build();
@@ -84,17 +84,17 @@ public class PublishListingServiceTest {
          
          //Finally Initialise RequiresApprovalDeceasedListing
          RequiresApprovalDeceasedListing newListing = new RequiresApprovalDeceasedListing.Builder()
-                 .setFirstName("Hendrika")
-                 .setSurname("Fourie")
+                 .setFirstName("maggie")
+                 .setSurname("mcClain")
                  .setMaidenName("Gerber")
                  .setGender("Female")
-                 .setDateOfBirth("08/06/1969")
-                 .setDateOfDeath("14/02/2005")
-                 .setGraveInscription("Hippiest person eva")
-                 .setGraveNumber("2456")
-                 .setImageOfBurialSite("/images/001.jpg")
-                 .setLastKnownContactName("Berry")
-                 .setLastKnownContactNumber("0725576482")
+                 .setDateOfBirth("10/06/1967")
+                 .setDateOfDeath("14/03/2006")
+                 .setGraveInscription("was a mother")
+                 .setGraveNumber("2521")
+                 .setImageOfBurialSite("/images/003.jpg")
+                 .setLastKnownContactName("john")
+                 .setLastKnownContactNumber("07273218482")
                  .setSubscriberSubmitID(subID)
                  //cemetery id
                  
@@ -107,9 +107,11 @@ public class PublishListingServiceTest {
          
          pubServ.publishListings(newListing);
         //boolean empty = pubRepo.findAll().isEmpty();
-         Assert.assertFalse(repoList.findAll().isEmpty());
+         Assert.assertEquals(repoList.findAll().size(), 1);
           //Assert.assertTrue(empty);
          //Assert.assertFalse(empty);
+         repoList.delete(id);
+         repo.delete(subID);
          
          
      }

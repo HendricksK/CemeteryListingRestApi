@@ -29,9 +29,9 @@ import org.testng.annotations.Test;
  *
  * @author Ryno
  */
-public class RegistrationServiceTest {
+public class CemeteryRegistrationServiceTest {
     
-    public RegistrationServiceTest() {
+    public CemeteryRegistrationServiceTest() {
     }
 
     // TODO add test methods here.
@@ -59,10 +59,11 @@ public class RegistrationServiceTest {
           
           //All methods of creating location/cemetery work
           Location locals = regServ.registerLocation("Palm Springs", "America", "Washington", "12.06.12:45.63.89", "New Jersey", "Marlboro");
-          regServ.registerCemetery(locals, "jack daniels", "0215917865");
+          Long cemID = regServ.registerCemeteryReturn(locals, "jack daniels", "0215917865");
           //regServ.registerCemeteryLocation("Palm Springs", "America", "Washington", "12.06.12:45.63.89", "New Jersey", "Marlboro","jack daniels", "0215917865");
           
-          Assert.assertFalse(cemRepo.findAll().isEmpty());
+          Assert.assertNotNull(cemRepo.findOne(cemID).getId());
+          cemRepo.delete(cemID);
      }
      
     

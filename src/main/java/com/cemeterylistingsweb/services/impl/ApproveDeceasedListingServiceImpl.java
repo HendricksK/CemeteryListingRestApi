@@ -54,7 +54,9 @@ public class ApproveDeceasedListingServiceImpl implements ApproveDeceasedListing
     }
     @Override
     public boolean approveDeceasedListing(Long id){
-        
-        return false;
+        if(deadRepo.exists(id))
+            return false;
+        else
+            return true;
     }
 }

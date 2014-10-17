@@ -87,6 +87,19 @@ public class RegistrationServiceImpl implements CemeteryRegistrationService{
          
          SubscrRepo.save(newSub);
     }
+     public Long registerCemeteryReturn(Location local, String contactName, String contactNumber){
+         Long id; 
+         Cemetery newCemetery = new Cemetery.Builder()
+                 .setContactName(contactName)
+                 .setContactNumber(contactNumber)
+                 .setLocation(local)
+                 .build();
+     
+        cemRepo.save(newCemetery);
+        
+        return id = newCemetery.getId();
+         
+     }
     
     public void registerCemetery(Location local, String contactName, String contactNumber){
         /*Location local = new Location.Builder()

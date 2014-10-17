@@ -32,7 +32,8 @@ public class SearchSurnameTest {
 
     private static Long id;
     public static ApplicationContext ctx;
-    
+    public SearchSurname serv;
+
     PublishedDeceasedListingRepository deadRepo;
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
@@ -40,26 +41,25 @@ public class SearchSurnameTest {
     // @Test
     // public void hello() {}
     
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void Test() {
         
         deadRepo = ctx.getBean(PublishedDeceasedListingRepository.class);
-       
-        
+        serv = ctx.getBean(SearchSurname.class);
 
         //create published listings
         PublishedDeceasedListing newListing = new PublishedDeceasedListing.Builder()
-                 .setFirstName("Hendrika")
-                 .setSurname("Fourie")
-                 .setMaidenName("Gerber")
-                 .setGender("Female")
-                 .setDateOfBirth("08/06/1969")
-                 .setDateOfDeath("14/02/2005")
-                 .setGraveInscription("Hippiest person eva")
-                 .setGraveNumber("2456")
-                 .setImageOfBurialSite("/images/001.jpg")
-                 .setLastKnownContactName("Berry")
-                 .setLastKnownContactNumber("0725576482")
+                 .setFirstName("jimmy")
+                 .setSurname("hendricks")
+                 
+                 .setGender("Male")
+                 .setDateOfBirth("18/11/1975")
+                 .setDateOfDeath("10/02/2002")
+                 .setGraveInscription("shredder of guitar")
+                 .setGraveNumber("2852")
+                 .setImageOfBurialSite("/images/011.jpg")
+                 .setLastKnownContactName("jack")
+                 .setLastKnownContactNumber("0738476492")
                  //.setCemeteryID(newCemetery.getId())
                  //subscriberApprovedID
                  //subscriber submitted id
@@ -71,13 +71,13 @@ public class SearchSurnameTest {
                  .setFirstName("Walter")
                  .setSurname("White")
                  .setGender("Male")
-                 .setDateOfBirth("08/06/1969")
-                 .setDateOfDeath("14/02/2005")
+                 .setDateOfBirth("08/06/1979")
+                 .setDateOfDeath("14/02/2012")
                  .setGraveInscription("Evilest person eva")
                  .setGraveNumber("2442")
-                 .setImageOfBurialSite("/images/001.jpg")
-                 .setLastKnownContactName("Berrys")
-                 .setLastKnownContactNumber("0725456482")
+                 .setImageOfBurialSite("/images/002.jpg")
+                 .setLastKnownContactName("jesse")
+                 .setLastKnownContactNumber("0725456381")
                 //.setCemeteryID(newCemetery.getId())
                  //subscriberApprovedID
                  //subscriber submitted id
@@ -90,12 +90,12 @@ public class SearchSurnameTest {
                  .setSurname("Skywalker")
                  .setMaidenName("Kanobi")
                  .setGender("Female")
-                 .setDateOfBirth("08/06/1969")
-                 .setDateOfDeath("14/02/2005")
+                 .setDateOfBirth("08/06/1968")
+                 .setDateOfDeath("14/02/2000")
                  .setGraveInscription("meh")
                  .setGraveNumber("2816")
                  .setImageOfBurialSite("/images/001.jpg")
-                 .setLastKnownContactName("Berry")
+                 .setLastKnownContactName("luke")
                  .setLastKnownContactNumber("0725554482")
                  //.setCemeteryID(newCemetery2.getId())
                  //subscriberApprovedID
@@ -108,13 +108,12 @@ public class SearchSurnameTest {
                  .setFirstName("Bruce")
                  .setSurname("Wayne")
                  .setGender("Male")
-                 .setDateOfBirth("08/06/1969")
-                 .setDateOfDeath("14/02/2005")
+                 .setDateOfBirth("08/06/1965")
+                 .setDateOfDeath("14/02/2008")
                  .setGraveInscription("Batman")
                  .setGraveNumber("2556")
                  .setImageOfBurialSite("/images/001.jpg")
-                 .setLastKnownContactName("Berry")
-                 .setLastKnownContactNumber("0725676482")
+                 
                  //.setCemeteryID(newCemetery3.getId())
                  //subscriberApprovedID
                  //subscriber submitted id
@@ -128,19 +127,17 @@ public class SearchSurnameTest {
          deadRepo.save(newListing4);
          
         //call service
-         
-         
          List<PublishedDeceasedListing> deceasedList = deadRepo.findAll();
+
+        List<PublishedDeceasedListing> surname = new ArrayList();
+        surname = 
+                serv.getAllSurname("White");
          
-         
-       SearchSurname service;
-         service = ctx.getBean(SearchSurname.class);
-         
-        List<PublishedDeceasedListing> names = new ArrayList();
-         names = service.getAllSurname("Fourie");
-         
-        Assert.assertEquals(names.size(), 1);
-        
+        Assert.assertEquals(surname.isEmpty(), false);
+        deadRepo.delete(newListing);
+        deadRepo.delete(newListing2);
+        deadRepo.delete(newListing3);
+        deadRepo.delete(newListing4);
     }
          
     

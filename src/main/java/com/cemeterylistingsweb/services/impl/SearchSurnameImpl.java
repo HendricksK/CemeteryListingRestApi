@@ -35,21 +35,21 @@ public class SearchSurnameImpl implements SearchSurname {
          
           List<PublishedDeceasedListing> names = new ArrayList();
        
-        
-        List<PublishedDeceasedListing> all = repo.findAll();
+         List<PublishedDeceasedListing> all=new ArrayList();
+        all = repo.findAll();
         
         if(surname.isEmpty() || surname.equals(""))
                 return all;
        
         for (PublishedDeceasedListing all1 : all) {
             
-            if (all1.getSurname().equals(surname)) {
+            if (surname.equalsIgnoreCase(all1.getSurname())) {
                 names.add(all1);
             }
-            else if(all1.getSurname().startsWith(surname))
+            /*else if(surname.startsWith(all1.getSurname()))
                 names.add(all1);
-            else if(all1.getSurname().contains(surname))
-                names.add(all1);
+            else if(surname.contains(all1.getSurname()))
+                names.add(all1);*/
         }
             
                return names;

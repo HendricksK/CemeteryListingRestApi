@@ -15,5 +15,6 @@ import java.sql.Date;
  */
 public interface AdminRegisterSubscriberService extends Services<Subscriber, Long>{
     public void registerSubscriber(String email, String first, String surname, String uname, String pword, Date sqlDate, int roleLevel);
+    public Long registerSubscriberReturn(String email, String first, String surname, String uname, String pword, Date sqlDate, int roleLevel);
     
 }

@@ -62,7 +62,8 @@ public class ViewListingByDateOfBirthServiceImpl implements ViewListingByDateOfB
         //find listing by dob
         List<PublishedDeceasedListing> list = new ArrayList();
         for(PublishedDeceasedListing pubListing : lists ){
-            if(pubListing.getDateOfBirth().equals(dob))
+            if(//pubListing.getDateOfBirth().equals(dob) || 
+                    dob.equals(pubListing.getDateOfBirth()))
                 list.add(pubListing);
         }
         

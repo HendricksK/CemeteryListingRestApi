@@ -82,4 +82,36 @@ public class AdminRegisterSubscriberServiceImpl implements AdminRegisterSubscrib
          
          SubscrRepo.save(newSub);
     }
+    
+    public Long registerSubscriberReturn(String email, String first, String surname, String uname, String pword, Date sqlDate,int roleLevel  ){
+        /*Calendar calendar = Calendar.getInstance();
+          calendar.set(Calendar.YEAR, 2008);
+          calendar.set(Calendar.MONTH, Calendar.FEBRUARY);
+          calendar.set(Calendar.DATE, 4);
+        
+          java.sql.Date javaSqlDate = new java.sql.Date(calendar.getTime().getTime());
+         */
+                 Long id;
+         UserRole user = new UserRole.Builder()
+                 .setLevel(roleLevel)
+                 .build();
+         
+         //userRepo.save(user);
+         //userRoleID = user.getUserRoleID();
+         
+         Subscriber newSub = new Subscriber.Builder()
+                .setEmail(email)
+                .setFirstName(first)
+                .setSurname(surname)
+                .setPwd(pword)
+                .setUsername(uname)
+                .setSubscriptionDate(sqlDate)
+                .setUserRoleID(user)
+                .build();
+            
+         
+         SubscrRepo.save(newSub);
+         id = newSub.getSubscriberID();
+         return id;
+    }
 }

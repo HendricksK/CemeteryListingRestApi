@@ -13,11 +13,13 @@ import com.cemeterylistingsweb.services.ViewListingByDateOfDeathService;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Ryno
  */
+@Service
 public class ViewListingByDateOfDeathServiceImpl implements ViewListingByDateOfDeathService{
     @Autowired
     PublishedDeceasedListingRepository publishRepo;
@@ -58,7 +60,7 @@ public class ViewListingByDateOfDeathServiceImpl implements ViewListingByDateOfD
         //find listing by dob
         List<PublishedDeceasedListing> list = new ArrayList();
         for(PublishedDeceasedListing pubListing : lists ){
-            if(pubListing.getDateOfDeath().equals(dod))
+            if(dod.equals(pubListing.getDateOfDeath()))
                 list.add(pubListing);
         }
 

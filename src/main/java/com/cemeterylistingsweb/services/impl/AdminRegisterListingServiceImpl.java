@@ -76,4 +76,30 @@ public class AdminRegisterListingServiceImpl implements AdminRegisterListingServ
          
          deadRepo.save(newListing);
     }
+    
+     @Override
+    public Long registerDeceasedListingReturn(String fn, String ln, String maiden, String gender, String dob, String dod, String inscription, String graveNum, String graveImage, String contactname, String contactNum, Long subID){
+        Long id;
+        RequiresApprovalDeceasedListing newListing = new RequiresApprovalDeceasedListing.Builder()
+                 .setFirstName(fn)
+                 .setSurname(ln)
+                 .setMaidenName(maiden)
+                 .setGender(gender)
+                 .setDateOfBirth(dob)
+                 .setDateOfDeath(dod)
+                 .setGraveInscription(inscription)
+                 .setGraveNumber(graveNum)
+                 .setImageOfBurialSite(graveImage)
+                 .setLastKnownContactName(contactname)
+                 .setLastKnownContactNumber(contactNum)
+                 .setSubscriberSubmitID(subID)
+                 //cemetery id
+                 
+                 //names
+                 
+                 .build();
+         
+         deadRepo.save(newListing);
+         return id = newListing.getRequiresApprovalDeceasedListingID();
+    }
 }

@@ -62,8 +62,8 @@ public class ViewListingsBySubscriberServiceTest {
          //Initialise date
          Calendar calendar = Calendar.getInstance();
          calendar.set(Calendar.YEAR, 2008);
-         calendar.set(Calendar.MONTH, Calendar.FEBRUARY);
-         calendar.set(Calendar.DATE, 4);
+         calendar.set(Calendar.MONTH, Calendar.MARCH);
+         calendar.set(Calendar.DATE, 5);
           
          java.sql.Date javaSqlDate = new java.sql.Date(calendar.getTime().getTime());
          
@@ -77,18 +77,18 @@ public class ViewListingsBySubscriberServiceTest {
          
          //Initialise user role                
          UserRole userRole = new UserRole.Builder()
-                 .setLevel(1)
+                 .setLevel(2)
                  .build();
          //userRepo.save(userRole);
          //userRoleID = userRole.getUserRoleID();
          
          //Initialise subscriber
          Subscriber newSub = new Subscriber.Builder()
-                .setEmail("manfredOsulivan@horseRaddish.com")
-                .setFirstName("Manfred")
-                .setSurname("Osulivan")
-                .setPwd("jesus")
-                .setUsername("ManiFredOssy")
+                .setEmail("jackieChan@yahoo.com")
+                .setFirstName("jackie")
+                .setSurname("Chan")
+                .setPwd("whaa")
+                .setUsername("jChan")
                 .setSubscriptionDate(javaSqlDate)
                 .setUserRoleID(userRole)
                  .setValidUntil(validDate)
@@ -97,17 +97,16 @@ public class ViewListingsBySubscriberServiceTest {
          subID = newSub.getSubscriberID();
          
          PublishedDeceasedListing newListing = new PublishedDeceasedListing.Builder()
-                 .setFirstName("Hendrika")
-                 .setSurname("Fourie")
-                 .setMaidenName("Gerber")
+                 .setFirstName("Julie")
+                 .setSurname("Romanov")
+                 .setMaidenName("black")
                  .setGender("Female")
-                 .setDateOfBirth("08/06/1969")
-                 .setDateOfDeath("14/02/2005")
-                 .setGraveInscription("Hippiest person eva")
-                 .setGraveNumber("2456")
+                 .setDateOfBirth("08/06/1974")
+                 .setDateOfDeath("14/02/2009")
+                 .setGraveInscription("triple agent")
+                 .setGraveNumber("2986")
                  .setImageOfBurialSite("/images/001.jpg")
-                 .setLastKnownContactName("Berry")
-                 .setLastKnownContactNumber("0725576482")
+                 
                  .setSubscriberSubmitID(subID)
                  .build();
          
@@ -116,7 +115,8 @@ public class ViewListingsBySubscriberServiceTest {
          List<PublishedDeceasedListing> pubListDod = subserv.findListingBySubscriber(javaSqlDate, validDate);
          Assert.assertFalse(pubListDod.isEmpty());
          //Assert.assertTrue(pubListDod.isEmpty());
-         repoList.delete(subID);
+         repoList.delete(newListing);
+         subRepo.delete(newSub);
         
      }
 

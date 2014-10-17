@@ -8,15 +8,13 @@ package com.cemeterylistingsweb.services;
 
 import com.cemeterylistingsweb.domain.Location;
 import com.cemeterylistingsweb.domain.Subscriber;
-import java.sql.Date;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Ryno
  */
 public interface CemeteryRegistrationService extends Services<Subscriber,Long>{
-    
+    public Long registerCemeteryReturn(Location local, String contactName, String contactNumber);
     public void registerCemetery(Location local, String contactName, String contactNumber);
     public Location registerLocation(String cemName, String Country, String state, String gps, String prov, String town);
     public void registerCemeteryLocation(String cemName, String Country, String state, String gps, String prov, String town,String contactName, String contactNumber );
