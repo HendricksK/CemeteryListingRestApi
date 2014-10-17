@@ -78,13 +78,13 @@
                                 console.log(obj.imageOfBurialSite);
                 
                 //'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.publishedListingID+'">' + '</a>
-                                $(".listings").append(' <tr><td>' 
-                                        + obj.firstName + '</td>' 
-                                        + ' <td> ' + obj.surname +  '</td>' 
-                                        + ' <td>'  + obj.maidenName + '</td>' +
-                                        + ' <td>'  + obj.graveNumber + '</td>' 
-                                        + ' <td>'  + obj.dateOfBirth + '</td>' 
-                                        + ' <td>'  + obj.dateOfDeath + '</td>' 
+                                $(".listings").append(' <tr>'
+                                         + '<td>' + obj.firstName +      '</td>'
+                                    + '<td>' + obj.surname +        '</td>' 
+                                    + '<td>' + obj.maidenName +     '</td>'
+                                    + '<td>' + obj.graveNumber +    '</td>' 
+                                    + '<td>' + obj.dateOfBirth +    '</td>'
+                                    + '<td>' + obj.dateOfDeath +    '</td>' +
                                         + ' <td>'  + obj.publishedListingID+ '</td>' + 
                                     '<td> <button class="post" text="details" value='+obj.publishedListingID+'>View Listing</button>' + '</td>' + "</tr>");
                         }
