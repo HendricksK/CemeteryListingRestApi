@@ -23,8 +23,12 @@
             </div>
             <div class="dummyHeader"></div>
                 <div class="pageWrapper">        <!-- this is the beginning of site wrapper will contain the entire pages html -->       
-                    <div class="siteContent">  
-                        <table class="listings"></table><!-- this is the beginning of site content will contain all the content --> 
+                    <div class="siteContent" align='center'> 
+                        <h2>All Deceased Listings</h2>
+                        <table class="listings" border='1px'>
+                            <tr><th>First Name</th><th>Surname</th><th>Maiden Name</th><th>Grave Number</th><th>Date Of Birth</th><th>Date Of Death</th><th>&nbsp;</th></tr>
+                            
+                        </table>
                         <!--<h1>Jquery Test</h1>
                         <input type="button" name="post" value="post" id="me"> -->
                     </div>
@@ -53,12 +57,70 @@
                                 console.log(obj.graveNumber);
                                 console.log(obj.imageOfBurialSite);
 // building html objects here
-$(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.publishedListingID+'">' + '</a></td>' + '<td> Name : ' + obj.firstName + '</td>' + ' <td> Last Name : ' + obj.surname + 
-    '</td>' + '</a></td>' + '<td>Mainden Name : ' + obj.maidenName + '</td>' +
-    '</td>' + '</a></td>' + '<td>Grave Number: ' + obj.graveNumber + '</td>' +
-    '</td>' + '</a></td>' + '<td>Date Of Birth: ' + obj.dateOfBirth + '</td>' +
-    '</td>' + '</a></td>' + '<td>Date Of Death: ' + obj.dateOfDeath + '</td>' +
-    '<td> <button class="goToDetails" text="details" value='+obj.publishedListingID+'>' + '</td>' + "</tr>"); 
+                                    $(".listings").append(' <tr>'
+                                         + '<td>' + obj.firstName +      '</td>'
+                                    + '<td>' + obj.surname +        '</td>' 
+                                    + '<td>' + obj.maidenName +     '</td>'
+                                    + '<td>' + obj.graveNumber +    '</td>' 
+                                    + '<td>' + obj.dateOfBirth +    '</td>'
+                                    + '<td>' + obj.dateOfDeath +    '</td>' +
+                                        + ' <td>'  + obj.publishedListingID+ '</td>' + 
+                                    '<td> <button class="post" text="details" value='+obj.publishedListingID+'>View Listing</button>' + '</td>' + "</tr>");
+ 
+                        }
+                        
+                        
+                    $('button').click(function() {
+                             if(localStorage.username == ""){
+                                window.location.href = "/CemeteryListingsWebApp/api/auth/login";
+                                }else{
+                                            var htmlString = $( this ).eq();	
+                                    console.log(htmlString);
+                                    console.log(htmlString.context.value);
+
+                                    localStorage.publishedListingsID = htmlString.context.value;
+
+                                    window.location="/CemeteryListingsWebApp/api/DeceasedListing/publishedListingsDetails";
+                                }
+                    });
+                    
+                                },
+
+                                error: function (data,jqXHR, status) {
+                                    // error handler
+                                    console.log('fail');
+                                    console.log(jqXHR);
+                                    console.log('fail ' + status.code);
+                                }
+                             });
+                             
+                             $.ajax({
+                                type: "GET", 
+                                url: "/CemeteryListingsWebApp/api/SearchSurname/nameSearch",
+                                data: {"name": nameSearch},
+                                success: function (data, status, jqXHR) {
+                                  console.log(data);
+                                  
+                                  countData = data.length;
+                        for(var i = 0; i < data.length; i++) {
+                            var obj = data[i];
+                                console.log(obj.publishedListingID);
+                                console.log(obj.firstName);
+                                console.log(obj.surname);
+                                console.log(obj.maidenName);
+                                console.log(obj.dateOfDeath);
+                                console.log(obj.graveNumber);
+                                console.log(obj.imageOfBurialSite);
+// building html objects here
+                                    $(".listings").append(' <tr>'
+                                         + '<td>' + obj.firstName +      '</td>'
+                                    + '<td>' + obj.surname +        '</td>' 
+                                    + '<td>' + obj.maidenName +     '</td>'
+                                    + '<td>' + obj.graveNumber +    '</td>' 
+                                    + '<td>' + obj.dateOfBirth +    '</td>'
+                                    + '<td>' + obj.dateOfDeath +    '</td>' +
+                                        + ' <td>'  + obj.publishedListingID+ '</td>' + 
+                                    '<td> <button class="post" text="details" value='+obj.publishedListingID+'>View Listing</button>' + '</td>' + "</tr>");
  
                         }
                         
@@ -105,12 +167,15 @@ $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/ceme
                                 console.log(obj.graveNumber);
                                 console.log(obj.imageOfBurialSite);
 // building html objects here
-$(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.publishedListingID+'">' + '</a></td>' + '<td> Name : ' + obj.firstName + '</td>' + ' <td> Last Name : ' + obj.surname + 
-    '</td>' + '</a></td>' + '<td>Mainden Name : ' + obj.maidenName + '</td>' +
-    '</td>' + '</a></td>' + '<td>Grave Number: ' + obj.graveNumber + '</td>' +
-    '</td>' + '</a></td>' + '<td>Date Of Birth: ' + obj.dateOfBirth + '</td>' +
-    '</td>' + '</a></td>' + '<td>Date Of Death: ' + obj.dateOfDeath + '</td>' +
-    '<td> <button class="goToDetails" text="details" value='+obj.publishedListingID+'>' + '</td>' + "</tr>"); 
+                                    $(".listings").append(' <tr>'
+                                         + '<td>' + obj.firstName +      '</td>'
+                                    + '<td>' + obj.surname +        '</td>' 
+                                    + '<td>' + obj.maidenName +     '</td>'
+                                    + '<td>' + obj.graveNumber +    '</td>' 
+                                    + '<td>' + obj.dateOfBirth +    '</td>'
+                                    + '<td>' + obj.dateOfDeath +    '</td>' +
+                                        + ' <td>'  + obj.publishedListingID+ '</td>' + 
+                                    '<td> <button class="post" text="details" value='+obj.publishedListingID+'>View Listing</button>' + '</td>' + "</tr>");
  
                         }
                         

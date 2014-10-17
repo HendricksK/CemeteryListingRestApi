@@ -24,8 +24,13 @@
             <div class="dummyHeader"></div>
     <div class="pageWrapper">
         
-        <div class="siteContent">
-             <table class="listings"></table>
+        <div class="siteContent" align='center'>
+            <h2>Submitted listings awaiting approval</h2>
+            <table class="listings">
+                <tr><th>First Name</th><th>Surname</th><th>Maiden Name</th><th>Grave Number</th><th>Date Of Birth</th><th>Date Of Death</th><th>&nbsp;</th></tr>
+                            
+                
+            </table>
         </div>
     </div>
     <div class="siteFooter"> 
@@ -52,12 +57,15 @@
                                                 console.log(obj.graveNumber);
                                                 console.log(obj.imageOfBurialSite);
                 // building html objects here
-                                $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.requiresApprovalDeceasedListingID+'">' + '</a></td>' + '<td> Name : ' + obj.firstName + '</td>' + ' <td> Last Name : ' + obj.surname + 
-                                    '</td>' + '</a></td>' + '<td>Mainden Name : ' + obj.maidenName + '</td>' +
-                                    '</td>' + '</a></td>' + '<td>Grave Number: ' + obj.graveNumber + '</td>' +
-                                    '</td>' + '</a></td>' + '<td>Date Of Birth: ' + obj.dateOfBirth + '</td>' +
-                                    '</td>' + '</a></td>' + '<td>Date Of Death: ' + obj.dateOfDeath + '</td>' +
-                                    '<td> <button class="goToDetails" text="details" value='+obj.requiresApprovalDeceasedListingID+'>' + '</td>' + "</tr>"); 
+                                $(".listings").append(' <tr>'
+                                         + '<td>' + obj.firstName +      '</td>'
+                                    + '<td>' + obj.surname +        '</td>' 
+                                    + '<td>' + obj.maidenName +     '</td>'
+                                    + '<td>' + obj.graveNumber +    '</td>' 
+                                    + '<td>' + obj.dateOfBirth +    '</td>'
+                                    + '<td>' + obj.dateOfDeath +    '</td>' +
+                                        + ' <td>'  + obj.publishedListingID+ '</td>' +
+                                    '<td> <button class="goToDetails" text="details" value='+obj.requiresApprovalDeceasedListingID+'>View Listing</button>' + '</td>' + "</tr>"); 
  
                         }
                         
