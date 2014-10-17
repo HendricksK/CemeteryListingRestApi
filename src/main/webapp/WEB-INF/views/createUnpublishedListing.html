@@ -6,6 +6,26 @@
         <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/listing-pages.css">
         <script src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
          <link rel="icon"  type="image/png"  href="/CemeteryListingsWebApp/resources/images/favicon.ico">
+         
+        <link rel="stylesheet" href="/CemeteryListingsWebApp/resources/js/jquery-ui.css">
+        <script src="/CemeteryListingsWebApp/resources/js/jquery-1.10.2.js"></script>
+        <script src="/CemeteryListingsWebApp/resources/js/jquery-ui.js"></script>
+        <script>
+            $(function() 
+            {
+                $( "#dateOfBirth" ).datepicker();
+                $( "#dateOfDeath" ).datepicker();
+                
+            });
+        </script>
+        <script>
+            function myFunction() 
+            {
+                var x = document.createElement("INPUT");
+                x.setAttribute("type", "file");
+                document.body.appendChild(x);
+            }
+        </script>
     </head>
     
     <body class = siteWrapper>
@@ -20,14 +40,8 @@
                     <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user">Login</a></li>
                    <li><a href="/CemeteryListingsWebApp/api/auth/loggedIn">Admin</a></li>
                 </ul>   
-<!--
-                <ul class="socialListNav">
-                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/fbbtn.png" class="simpleLogo"></a></li>
-                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/instagrambtn.png" class="simpleLogo"></a></li>
-                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/tweetbtn.png" class="simpleLogo"></a></li>
-                </ul>   
--->
-            </div>
+
+        </div>
         <div class="dummyHeader"></div>
         <div class="pageWrapper">
             <div class="siteContent">
@@ -45,57 +59,35 @@
                 </table>
                 -->
                     <h1>Submit Listing for approval</h1>
-                    <form style="width:20%; margin-left:10%;" id="data">
-                        <fieldset style="border:0">
-	                    <input type="text" placeholder="First Name" name="firstName" id="firstName" style="width:100%">
-                        </fieldset>
-                        <fieldset style="border:0">
-	                    <input type="text" name="lastName" id="lastName" placeholder="Last Name" style="width:100%">
-                        </fieldset>
-                        <fieldset style="border:0">
-	                    <input type="text" name="maidenName" id="maidenName" placeholder="Maiden Name" style="width:100%">
-	                    </fieldset>
-                        <fieldset style="border:0">
-                        <input type="text" name="gender" id="gender" placeholder="Gender" style="width:100%">
-	                    </fieldset>
-                        <fieldset style="border:0">
-                        <input type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date Of Birth" style="width:100%">
-	                    </fieldset>
-                        <fieldset style="border:0">
-                        <input type="text" name="dateOfDeath" id="dateOfDeath" placeholder="Date Of Death" style="width:100%">
-	                    </fieldset>
-                        <fieldset style="border:0">
-                        <input type="text" name="graveNumber" id="graveNumber" placeholder="Grave Number" style="width:100%">
-	                    </fieldset>
-                        <fieldset style="border:0">
-                            <label>Grave Inscription</label>
-                        <textarea name="graveInscription" id="graveInscription" placeholder="Grave Inscription" style="width:100%; height : auto">
-                        </textarea>
-                        </fieldset>
-                        <fieldset style="border:0">
-                        <input type="text" name="lastKnownContactName" id="lastKnownContactName" placeholder="Last Known Contact Name" style="width:100%">
-                        </fieldset>
-                        <fieldset style="border:0">
-                        <input type="text" name="lastKnownContactNumber" id="lastKnownContactNumber" placeholder="Last Known Contact Number" style="width:100%">
-                        </fieldset>
-                         
-                        <fieldset style="border:0">
-                          <select name="cemeteryName" id="cemeteryName" style="width:100%;">  
-                        </select>
-                        </fieldset>
-                        <fieldset style="border:0">
-                            <label>Grave Inscription</label>
-                        <textarea name="otherNames" id="otherNames" placeholder="Other Names, seperated by a comma, end with a full stop" style="width:100%; height : auto">
-                        </textarea>
-                        </fieldset>
-                        <fieldset style="border:0">
-                            <input type="text" name="subscriberSubmitID" id="subscriberSubmitID" placeholder="Subscriber ID" style="width:100%">
-                        </fieldset>  
-                        <fieldset style="border:0">
-                        <input type="text" name="imageOfBurialSite" id="imageOfBurialSite" placeholder="Image Of Burial Site" style="width:100%">
-                        </fieldset>
-                        <input type="button" name="postUnpublishedListing" id="postUnpublishedListing" value="Submit">
-	                </form>
+                    <form style="width:45%; margin-left:5%;" id="data">
+                        <table width = '90%' align='center' border='1px'>
+                            <tr><th>Description</th><th>Input</th></tr>
+                            <tr><td>First Name</td><td><input type="text" placeholder="First Name" name="firstName" id="firstName" style="width:100%"></td> </tr>
+                            <tr><td>Last Name</td><td><input type="text" name="lastName" id="lastName" placeholder="Last Name" style="width:100%"></td> </tr>
+                            <tr><td>Maiden Name</td><td><input type="text" name="maidenName" id="maidenName" placeholder="Maiden Name" style="width:100%"></td> </tr>
+                            <tr><td>Gender</td><td><select name="gender" id="gender" style="width:100%"> 
+                                        <option value="volvo">Male</option>
+                                        <option value="saab">Female</option></select></td> </tr>
+                            <tr><td>Date Of Birth</td><td><input type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date Of Birth" style="width:100%"></td> </tr>
+                            <tr><td>Date Of Death</td><td><input type="text" name="dateOfDeath" id="dateOfDeath" placeholder="Date Of Death" style="width:100%"></td> </tr>
+                            <tr><td>Grave Number</td><td><input type="text" name="graveNumber" id="graveNumber" placeholder="Grave Number" style="width:100%"></td> </tr>
+                            <tr><td>&nbsp;</td><td><label></label></td> </tr>
+                            <tr><td>Grave Inscription</td><td><textarea name="graveInscription" id="graveInscription" placeholder="Grave Inscription" style="width:100%; height : auto"></textarea></td> </tr>
+                            <tr><td>Last Known Contact Name</td><td><input type="text" name="lastKnownContactName" id="lastKnownContactName" placeholder="Last Known Contact Name" style="width:100%"></td> </tr>
+                            <tr><td>Last Known Contact Number</td><td><input type="text" name="lastKnownContactNumber" id="lastKnownContactNumber" placeholder="Last Known Contact Number" style="width:100%"></td> </tr>
+                            <tr><td>cemeteryName</td><td><select name="cemeteryName" id="cemeteryName" style="width:100%;"></select></td> </tr>
+                            <tr><td>Town</td><td><label>Grave Inscription</label></td> </tr>
+                            <tr><td>Other Names</td><td><textarea name="otherNames" id="otherNames" placeholder="Other Names, seperated by a comma, end with a full stop" style="width:100%; height : auto"></textarea></td> </tr>
+                            <tr><td>Subscriber ID</td><td><input type="text" name="subscriberSubmitID" id="subscriberSubmitID" placeholder="Subscriber ID" style="width:100%"></td> </tr>
+                                <tr><td>Image Of Burial Site</td><td>
+                                <form action="demo_form.asp">
+                                    Select a file: <input type="file" name="img">                                    
+                                  </form> </td> </tr>
+                            
+                        </table>  
+                        <br>
+                        <input type="button" name="postUnpublishedListing" id="postUnpublishedListing" value="Submit" > 
+                    </form>
                     
                     
                    <select name="cemeteryID" id="cemeteryID" style="width:10%; visibility: hidden"></select>
