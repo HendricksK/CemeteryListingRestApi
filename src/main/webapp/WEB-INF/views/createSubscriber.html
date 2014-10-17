@@ -50,27 +50,46 @@
         
         <script type="text/javascript">
         	console.log('createSubscriber javascript start');
-                var checkUserName = "true";
+                //var checkUserName = "true";
+                var check;
         	//{"country":"America","province_State":"New Jersey","district_state":"Washington","town":"Marlboro","cemeteryName":"Palm Springs","locationOfCemetery":"12.06.12:45.63.89"},"contactName":"jack daniels","contactNumber":"0215917865"
         	$('#createButton').on('click', function() {
                     
-                $.ajax({
-                        type: "GET", 
-                        url: "/CemeteryListingsWebApp/api/auth/getUserDetails",
-                        data: {"username": $('#uname').val()},
-                        dataType: "JSON",
-                        success: function (data, status, jqXHR) {
-                            console.log(data);
-                                if(data.username === $('#uname').val()){
-                                    alert('username is not available please try again');
-                                }else{
-                                    subscribe();
-                                } 
-                                    
-                            }
-                    });
+                    if($('#uname').val() == ""){
+                        alert('Please enter a user name');
+                    }else  if($('#first').val() == ""){
+                        alert('Please enter your first name');
+                    }else if($('#surname').val() == ""){
+                        alert('Please enter your last name');
+                    }else if($('#email').val() == ""){
+                        alert('Please enter your email');
+                    }else if($('#pword').val() == ""){
+                        alert('Please a password');
+                    }else if($('#pword').val() != $('#pwd2').val()){
+                        alert('Please ensure your passwords match');
+                    }else{
+                            $.ajax({
+                                    type: "GET", 
+                                    url: "/CemeteryListingsWebApp/api/auth/getUserDetails",
+                                    data: {"username": $('#uname').val()},
+                                    dataType: "JSON",
+                                    success: function (data, status, jqXHR) {
+                                       
+                                              
+                                        },
 
-               function subscribe(){
+                                    error: function (data,jqXHR, status) {
+                                      if(data.username === $('#uname').val()){
+                                                alert('Username is not available please try again');
+                                            }else{
+                                                subscribe();
+                                                
+                                            } 
+                                    }
+         
+                                });
+                                
+                                function subscribe(){
                                     console.log('too late');
                                      $.ajax({
                                       type: "POST", 
@@ -82,14 +101,17 @@
                                      contentType: "application/json",
                                      success: function (status, jqXHR) {
 
-                                                              //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                                          window.location.href = "/CemeteryListingsWebApp/";
                                      },
 
                                      error: function (jqXHR, status) {
-                                                             //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                                        window.location.href = "/CemeteryListingsWebApp/";
                                 }
                             });
                         }
+                    }
+
+               
             
     });
 
