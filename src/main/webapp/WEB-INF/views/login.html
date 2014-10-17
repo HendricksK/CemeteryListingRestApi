@@ -34,7 +34,7 @@
                             <label class="loginLabel" id="pwordLabel">Password (required)</label>
                             <input type="password" id="password" class="loginInput" name="cpassword">
                             <input type="button" id="sign-in" class="loginButton" value="Login">
-                            <input type="button" id="register" class="register" value="Register">
+                            <input type="button" id="register" class="loginButton" value="Register">
                		</form>
                    
                </div>
@@ -48,7 +48,7 @@
         <script type="text/javascript">
         	//console.log('hi');
                 
-                $('.register').click(function() {
+                $('#register').click(function() {
                     
                     window.location.href = "/CemeteryListingsWebApp/api/auth/register";
                 });

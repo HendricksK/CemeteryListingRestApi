@@ -61,6 +61,22 @@ $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/ceme
     '<td> <button class="goToDetails" text="details" value='+obj.publishedListingID+'>' + '</td>' + "</tr>"); 
  
                         }
+                        
+                        
+                    $('button').click(function() {
+                             if(localStorage.username == ""){
+                                window.location.href = "/CemeteryListingsWebApp/api/auth/login";
+                                }else{
+                                            var htmlString = $( this ).eq();	
+                                    console.log(htmlString);
+                                    console.log(htmlString.context.value);
+
+                                    localStorage.publishedListingsID = htmlString.context.value;
+
+                                    window.location="/CemeteryListingsWebApp/api/DeceasedListing/publishedListingsDetails";
+                                }
+                    });
+                    
                                 },
 
                                 error: function (data,jqXHR, status) {
@@ -97,6 +113,20 @@ $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/ceme
     '<td> <button class="goToDetails" text="details" value='+obj.publishedListingID+'>' + '</td>' + "</tr>"); 
  
                         }
+                        
+                          $('button').click(function() {
+                             if(localStorage.username == ""){
+                                window.location.href = "/CemeteryListingsWebApp/api/auth/login";
+                                }else{
+                                            var htmlString = $( this ).eq();	
+                                    console.log(htmlString);
+                                    console.log(htmlString.context.value);
+
+                                    localStorage.publishedListingsID = htmlString.context.value;
+
+                                    window.location="/CemeteryListingsWebApp/api/DeceasedListing/publishedListingsDetails";
+                                }
+                    });
                                 },
 
                                 error: function (data,jqXHR, status) {
