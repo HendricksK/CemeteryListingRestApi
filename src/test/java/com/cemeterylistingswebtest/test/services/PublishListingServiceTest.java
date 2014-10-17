@@ -38,7 +38,7 @@ public class PublishListingServiceTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    private static Long id, subID, userRoleID;
+    private static Long id,id2, subID, userRoleID;
     public static ApplicationContext ctx;
     public static SubscriberRepository repo;
     public static CemeteryRepository cemRepo;
@@ -53,6 +53,7 @@ public class PublishListingServiceTest {
          repo = ctx.getBean(SubscriberRepository.class);  
          repoList = ctx.getBean(RequiresApprovalDeceasedListingRepository.class);
          userRepo = ctx.getBean(UserRoleRepository.class);
+         pubRepo = ctx.getBean(PublishedDeceasedListingRepository.class);
          
          //Initialise date
          Calendar calendar = Calendar.getInstance();
@@ -105,12 +106,13 @@ public class PublishListingServiceTest {
          repoList.save(newListing);
          id = newListing.getRequiresApprovalDeceasedListingID();   
          
-         pubServ.publishListings(newListing);
-        //boolean empty = pubRepo.findAll().isEmpty();
-         Assert.assertEquals(repoList.findAll().size(), 1);
-          //Assert.assertTrue(empty);
-         //Assert.assertFalse(empty);
+         id2 = pubServ.publishListingsReturn(newListing);
+        boolean empty = pubRepo.findAll().isEmpty();
+         //Assert.assertEquals(repoList.findAll().size(), 1);
+          Assert.assertFalse(empty);
+         Assert.assertFalse(repoList.findAll().isEmpty());
          repoList.delete(id);
+         pubRepo.delete(id2);
          repo.delete(subID);
          
          

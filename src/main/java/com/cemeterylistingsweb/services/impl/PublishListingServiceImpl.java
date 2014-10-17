@@ -75,4 +75,26 @@ public class PublishListingServiceImpl implements PublishListingService{
         //waitRepo.delete(listing);
         
     }
+     public Long publishListingsReturn(RequiresApprovalDeceasedListing listing){
+        long id;
+         PublishedDeceasedListing newListing = new PublishedDeceasedListing.Builder()
+                 .setFirstName(listing.getFirstName())
+                 .setSurname(listing.getSurname())
+                 .setMaidenName(listing.getMaidenName())
+                 .setGender(listing.getGender())
+                 .setDateOfBirth(listing.getDateOfBirth())
+                 .setDateOfDeath(listing.getDateOfDeath())
+                 .setGraveInscription(listing.getGraveInscription())
+                 .setGraveNumber(listing.getGraveNumber())
+                 .setImageOfBurialSite(listing.getImageOfBurialSite())
+                 .setLastKnownContactName(listing.getLastKnownContactName())
+                 .setLastKnownContactNumber(listing.getLastKnownContactNumber())
+                 .setSubscriberSubmitID(listing.getSubscriberSubmitID())
+                 .build();
+                
+        publishRepo.save(newListing);
+        
+        //waitRepo.delete(listing);
+        return id=newListing.getPublishedListingID();
+    }
 }
