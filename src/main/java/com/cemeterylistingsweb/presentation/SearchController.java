@@ -5,6 +5,7 @@
  */
 package com.cemeterylistingsweb.presentation;
 
+import com.cemeterylistingsweb.services.ViewListingByGraveNumberService;
 import com.cemeterylistingsweb.services.ViewListingByMaidenNameService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class SearchController {
     @Autowired
     ViewListingByMaidenNameService searchName;
     
+    @Autowired
+    ViewListingByGraveNumberService graveNumber;
+    
     @RequestMapping(value = "siteSearch", method = RequestMethod.GET)
     public String login(){
         return "searchDetailsPage";
@@ -34,6 +38,12 @@ public class SearchController {
     @ResponseBody
     public List test(@RequestParam String name) { 
         return searchName.findListingByMaidenName(name);
+    }
+    
+    @RequestMapping(value = "graveNumSearch",method = RequestMethod.GET) //http://localhost:8084/askweb/api/club/1234
+    @ResponseBody
+    public List graveNumber(@RequestParam String graveNum) { 
+        return graveNumber.findListingByGraveNumber(graveNum);
     }
     
     @RequestMapping(value = "contactus",method = RequestMethod.GET) //http://localhost:8084/askweb/api/club/1234
