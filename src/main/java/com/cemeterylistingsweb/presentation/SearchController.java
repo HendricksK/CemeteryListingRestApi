@@ -35,4 +35,9 @@ public class SearchController {
     public List test(@RequestParam String name) { 
         return searchName.findListingByMaidenName(name);
     }
+    
+    @RequestMapping(value = "contactus",method = RequestMethod.GET) //http://localhost:8084/askweb/api/club/1234
+    public String contactus() { 
+        return "contact";
+    }
 }

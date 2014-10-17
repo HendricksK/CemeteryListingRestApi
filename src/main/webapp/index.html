@@ -2,22 +2,79 @@
 <!DOCTYPE html>
 <html>
   <head>
+     <title>Cemetery Listings</title>
     <link rel="stylesheet" type="text/css" href="resources/css/blackAndWhite.css">
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/scripts/script.js"></script>
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/plugins/cookies-plugin/jquery.cookie.js"></script>
+    <link rel="icon" 
+      type="image/png" 
+      href="resources/images/favicon.ico">
+    
+    
+<script type="text/javascript">
+    $(function() 
+    {
+        setInterval("rotateImages()", 2000);
+    });
+    function rotateImages() 
+    {
+        var curPhoto = $("#photoshow div.current");
+        var nextPhoto = curPhoto.next();
+        if(nextPhoto.length == 0) 
+        {
+            nextPhoto = $("#photoshow div:first");
+        }
+    curPhoto.removeClass('current').addClass('previous');
+    nextPhoto.css({opacity:0.0}).addClass('current').animate({opacity: 1.0}, 1000, function() 
+    {
+        curPhoto.removeClass('previous');
+    });
+
+    }
+</script>
+<style>
+#photoshow 
+{
+    
+   
+    margin-left : 3%;
+    width:900px;
+    height: 500px;
+    border:2px solid #000;
+    overflow:hidden;
+
+}
+#photoshow div 
+{
+    position:absolute;
+    z-index:0;
+    width:900px;
+    height: 500px;
+    overflow:hidden;
+}
+#photoshow div.previous 
+{
+    z-index: 1;
+}
+#photoshow div.current 
+{
+    z-index: 2;
+}
+</style>
 </head>
 
 <body class="siteWrapper">
     <div class="pageHeader">
      
-        <a href="#" class="logo"><img src="resources/images/logo3.jpg"></a>
+        <a href="/CemeteryListingsWebApp/" class="logo"><img src="resources/images/logo3.jpg"></a>
                 <ul class="navList" style="width : 100%">
                     <li><a href="/CemeteryListingsWebApp/">Home</a></li>
                     <li><a href="/CemeteryListingsWebApp/api/cemetery/cemeterylistings">Cemetery Listings</a></li>
-                    <li><a href="#">Deceased Listings</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user">Login</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/DeceasedListing/publishedlistings">Deceased Listings</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/search/contactus">Contact Us</a></li>
+                    <li><a href="#" style="margin-left:10% !important;" class="user" id="user">Login</a></li>
+                    <li><a href = "/CemeteryListingsWebApp/" class="logout" id="logout">Logout</a>
                 </ul>   
         <!--
                 <ul class="socialListNav">
@@ -35,14 +92,37 @@
         <input type="button" id="searchButton" class="searchbutton" value="S">
     </div>
     <div class="pageWrapper">
-        
+        &nbsp;
         <div class="contentWrapper">
-                <div class="contentHeader"><img src="resources/images/background.jpg" class="contentHeaderImage"></div>
+                <!--<div class="contentHeader"><img src="resources/images/background.jpg" class="contentHeaderImage"></div>
+                <div class="contentHeader">
+                    <div id="contentHeaderImage"></div>
+                    <!-- IMAGES APPEAR IN HERE
+                </div> -->
+                    
+                <div id="photoshow"  >
+                    <div class="current">
+                        <img src="resources/images/background.jpg"  />
+                        </div>
+                        <div>
+                        <img src="resources/images/background2.jpg" />
+                        </div>
+                        
+                    </div>
+                    <div class="siteContent" align='center'>  <!-- this is the beginning of site content will contain all the content --> 
+                        <h1>~ Welcome to Cemetery Listings ~</h1>
+                        <p>The Genealogical Society of South Africa (GSSA) maintains and expands a database of deceased listings 
+                            transcribed from the memorial stones found mainly in SA graveyards. 
+                            This website is a portal for it's customers to view such listings in a modern way.  </p>
+                    
+                    </div>
+                </div>
                 <table class="contentTable">
                     <tr><td><div class="contentPanel"><img src="" class=""></div></td><td><div class="contentPanel"><img src=""></div></td></tr>
 
                 </table>
         </div>
+        
     </div>
     <div class="siteFooter">
         <ul class="socialList">
@@ -55,13 +135,6 @@
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
         
-        $('#searchButton').click(function() {
-            localStorage.nameSearch = $('.searchBar').val();
-            //alert(localStorage.search);
-            window.location.href = "/CemeteryListingsWebApp/api/search/siteSearch";
-           
-        });
-        
         var x = localStorage.username;
 
         if($('.user') != null){
@@ -72,6 +145,27 @@
                 $('.user').text(x);
             }
         }
+        
+        $('#logout').click(function(){
+            localStorage.username = "";
+        });
+        
+        $('#searchButton').click(function() {
+            localStorage.nameSearch = $('.searchBar').val();
+            //alert(localStorage.search);
+            window.location.href = "/CemeteryListingsWebApp/api/search/siteSearch";
+           
+        });
+        
+        $('#user').click(function() {
+                if(localStorage.username == ""){
+                    window.location.href = "/CemeteryListingsWebApp/api/auth/login";
+                }else{
+                     window.location.href = "/CemeteryListingsWebApp/api/subscriber/subscriberDetails";
+                }
+        });
+        
+        
     </script>
 
 </body>

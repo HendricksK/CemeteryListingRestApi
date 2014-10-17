@@ -140,6 +140,7 @@
    border : none !important;
    font-family: sans-serif;
    font-size: 1em;
-   position : fixed;
+   
+   position: relative;
    margin-top: 5px;
 }

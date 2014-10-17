@@ -31,6 +31,16 @@ public class DisplayDeceasedController {
     @Autowired
     PublishListingService cs;
     
+    @RequestMapping(value = "publishedlistings", method = RequestMethod.GET)
+    public String testing(){
+        return "publishedListings";
+    }
+    
+    @RequestMapping(value = "publishedListingsDetails", method = RequestMethod.GET)
+    public String details(){
+        return "publishedListingsDetails";
+    }
+    
     @RequestMapping(value = "create",method = RequestMethod.POST) // This the uri e.g http://localhost:8084/askweb/api/club/create
     @ResponseBody //Converts output or response to JSON String
     public String create(@RequestBody PublishedDeceasedListing PDL) { // @RequestBody for converting incoming JSON call to Object

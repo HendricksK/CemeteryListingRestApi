@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cemetery Listings</title>
+      <title>Cemetery Listings</title>
     <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/listing-pages.css">
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/scripts/script.js"></script>
@@ -12,15 +12,20 @@
 <body class="siteWrapper">
     <div class="pageHeader">
         <a href="/CemeteryListingsWebApp/" class="logo"><img src="/CemeteryListingsWebApp/resources/images/logo3.jpg"></a>
-                <ul class="navList" style="width : 100%">
-                    <li><a href="/CemeteryListingsWebApp/api/auth/loggedIn">Admin</a></li>
-                </ul>   
+                <ul class="navList"  style="width : 100%">
+                    <li><a href="/CemeteryListingsWebApp/">Home</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/cemetery/cemeterylistings">Cemetery Listings</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/DeceasedListing/publishedlistings">Deceased Listings</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user">Login</a></li>
+                   <li><a href="/CemeteryListingsWebApp/api/auth/loggedIn">Admin</a></li>
+                </ul>     
             </div>
             <div class="dummyHeader"></div>
     <div class="pageWrapper">
        
         <div class="siteContent">
-             <h1> Unpublished Listings Details </h1>
+             <h1> Published Listings Details </h1>
              <div class="details" style = "width : 100%; margin-left : 20%">
                  <form style="width:50%;" id="data">
                         <fieldset style="border:0">
@@ -67,8 +72,6 @@
                         <fieldset style="border:0">
                         <input disabled type="text" name="subscriberSubmitID" id="subscriberSubmitID" placeholder="Subscriber ID" style="width:50%">
                         </fieldset>
-                        <input type="button" name="publishListing" id="publishListing" value="Submit" style="margin-left : 30%">
-                        <input type="button" name="deleteUnpublishedListing" id="deleteUnpublishedListing" value="Delete">
 	                </form>
              </div>
              <table class="listings"></table>
@@ -78,89 +81,31 @@
     </div>
         <!-- Script begins here -->
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
-        
+            
         <script type="text/javascript">
-          var ID = localStorage.unpublishedID;
-          //console.log(ID);
-          var obj = null;
+            
+            var ID = localStorage.publishedListingsID;
+             var login = localStorage.username;
 
-           $('#publishListing').click(function() {
-                    var names = JSON.parse(localStorage["otherNames"]);
-                     $.ajax({ // ajax call to retrieve all cemeteries json objects 
-                        type: "POST",
-                        url: "/CemeteryListingsWebApp/api/publishedListings/create",
-                        data: JSON.stringify({"firstName":$('#firstName').val(),
-                            "surname":$('#lastName').val(),
-                            "maidenName":$('#maidenName').val(),
-                            "gender":$('#gender').val(),
-                            "dateOfBirth":$('#dateOfBirth').val(),
-                            "dateOfDeath":$('#dateOfDeath').val(),
-                            "graveInscription":$('#graveInscription').val(),
-                            "graveNumber":$('#graveNumber').val(),
-                            "imageOfBurialSite": $('#imageOfBurialSite').val(),
-                            "lastKnownContactName":$('#lastKnownContactName').val(),
-                            "lastKnownContactNumber":$('#lastKnownContactNumber').val(),
-                            "cemeteryID": $('#cemeteryID').val(),
-                            "subscriberApprovedID":null,
-                            "subscriberSubmitID":$('#subscriberSubmitID').val(),
-                            "names":names}),
-                        dataType: "JSON",
-                        contentType: "application/json",
-                        success: function (data) {
-                            console.log('success');
-                            console.log(data);
-                            }
-                                });
-                                
-                                $.ajax({ // ajax call to retrieve all cemeteries json objects 
-                                    type: "POST",
-                                    url: "/CemeteryListingsWebApp/api/unpublishedListings/delete/"+obj.requiresApprovalDeceasedListingID+"",
-                                    success: function (data) {
-                                        console.log('success');
-                                        console.log(data);
-                                        }
-                                });
-                                
-                            window.location.href = "/CemeteryListingsWebApp/api/auth/loggedIn";
-                        });
+                if($('.user') != null){
+                    if(login == ""){
+                        $('.user').text("Login");
+                    }else{
+
+                        $('.user').text(login);
+                    }
+                }
                 
-                $('#deleteUnpublishedListing').click(function() {
-                    $('#firstName').val("");
-                    $('#lastName').val("");
-                    $('#maidenName').val("");
-                    $('#gender').val("");
-                    $('#dateOfBirth').val("");
-                    $('#dateOfDeath').val("");
-                    $('#graveNumber').val("");
-                    $('#graveInscription').val("");
-                    $('#lastKnownContactName').val("");
-                    $('#lastKnownContactNumber').val("");
-                    $('#cemeteryID').val("");
-                    $('#otherNames').val("");
-                    $('#imageOfBurialSite').val("");
-                    $('#subscriberSubmitID').val("");
-                    
-                    
-                    $.ajax({ // ajax call to retrieve all cemeteries json objects 
-                    type: "POST",
-                    url: "/CemeteryListingsWebApp/api/unpublishedListings/delete/"+obj.requiresApprovalDeceasedListingID+"",
-                    success: function (data) {
-                        console.log('success');
-                        console.log(data);
-                        }
-                            });
-                    });
-
-          $.ajax({ // ajax call to retrieve all cemeteries json objects 
+         $.ajax({ // ajax call to retrieve all cemeteries json objects 
                     type: "GET",
-                    url: "/CemeteryListingsWebApp/api/unpublishedListings/id/"+ID+"",
+                    url: "/CemeteryListingsWebApp/api/DeceasedListing/id/"+ID+"",
                     dataType: "json",
                     success: function (data) {
                         console.log('success');
                         console.log(data);
             
                            obj  = data;
-                                                console.log(obj.requiresApprovalDeceasedListingID);
+                                                console.log(obj.publishedListingID);
                                                 console.log(obj.firstName);
                                                 console.log(obj.surname);
                                                 console.log(obj.maidenName);

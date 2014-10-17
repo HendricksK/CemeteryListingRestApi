@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <title>Cemetery Listings</title>
     <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/listing-pages.css">
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/scripts/script.js"></script>
      <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/plugins/cookies-plugin/jquery.cookie.js"></script>
+      <link rel="icon"  type="image/png"  href="/CemeteryListingsWebApp/resources/images/favicon.ico">
 </head>
 
 <body class="siteWrapper">
     <div class="pageHeader">
-        <a href="#" class="logo"><img src="/CemeteryListingsWebApp/resources/images/logo3.jpg"></a>
+        <a href="/CemeteryListingsWebApp/" class="logo"><img src="/CemeteryListingsWebApp/resources/images/logo3.jpg"></a>
                 <ul class="navList" style="width : 100%">
                     <li><a href="/CemeteryListingsWebApp/">Home</a></li>
                     <li><a href="/CemeteryListingsWebApp/api/cemetery/cemeterylistings">Cemetery Listings</a></li>
@@ -39,14 +41,57 @@
                                 <tr><td>Subscription Date</td><td><input type="password" name="subscriptionDate" id="subscriptionDate" placeholder="" style="width:100%"> </td></tr>
                                 <tr><td>validUntil</td><td><input type="password" name="validUntil" id="validUntil" placeholder="" style="width:100%"> </td></tr>
                            </table>                            
-                           <input type="button" name="post" value="Save Changes (is this what this screen does?)" id="createButton" style="margin-left: 20%">
+                           <input type="button" name="update" value="Save Changes (is this what this screen does?)" id="update" style="margin-left: 20%">
                     </form>
                 </div>
             </div>
     </div>
         <!-- Script begins here -->
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
-        
+        <script>
+            
+            $.ajax({
+                    type: "GET", 
+                    url: "/CemeteryListingsWebApp/api/auth/getUserDetails",
+                    data: {"username": localStorage.username},
+                    dataType: "JSON",
+                    success: function (data, status, jqXHR) {
+                        console.log(data);
+                        $('#username').val(data.username);
+                        $('#firstName').val(data.firstName);
+                        $('#surname').val(data.surname);
+                        $('#email').val(data.email);
+                        $('#pwd').val(data.pwd);
+                        $('#lastContributionYear').val(data.lastContributionYear);
+                        $('#subscriptionDate').val(data.subscriptionDate);
+                        $('#validUntil').val(data.validUntil);
+                    },
+
+                    error: function (jqXHR, status) {
+                       //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                    }
+                 });
+            $('#update').click(function() {
+                $.ajax({
+                        type: "PUT", 
+                        url: "/CemeteryListingsWebApp/api/Subscriber/update",
+                        // data: JSON.stringify({"UserRole":{"email":$('#email').val(),"first":$('#first').val(),"surname":$('#surname').val(),"uname":$('#uname').val(),"pword":$('#pword').val(),"sqlDate":null},"roleLevel":null}),
+                        //Kurvin's data: JSON.stringify({"UserRole":{"level":null}, "email":$('#email').val(),"firstName":$('#first').val(),"surname":$('#surname').val(),"username":$('#uname').val(),"pwd":$('#pword').val(),"lastContributionYear":null, "subscriptionDate": null, "validUntil" : null}),
+                        data: JSON.stringify({ "email":$('#email').val(),"firstName":$('#first').val(),"surname":$('#surname').val(),"username":$('#uname').val(),"pwd":$('#pword').val(),"lastContributionYear":null, "subscriptionDate": null, "validUntil" : null}),
+                        dataType: "JSON",
+                        contentType: "application/json",
+                        success: function (status, jqXHR) {
+
+                                                                  //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                        },
+
+                        error: function (jqXHR, status) {
+                                                                 //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                        }
+                    });
+            });
+            
+        </script>
         <!-- FANCY SCRIPT GOES HERE -->
 </body> 
 </html>
