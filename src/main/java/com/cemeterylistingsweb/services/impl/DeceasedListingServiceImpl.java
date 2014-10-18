@@ -57,7 +57,7 @@ public class DeceasedListingServiceImpl implements DeceasedListingService{
     
     
     @Override
-    public void updateDeceasedListing(Long id){
+    public void updateDeceasedListing( Long id){
         RequiresApprovalDeceasedListing oldListing = deadRepo.findOne(id);
          
          RequiresApprovalDeceasedListing updateListing = new RequiresApprovalDeceasedListing.Builder()
