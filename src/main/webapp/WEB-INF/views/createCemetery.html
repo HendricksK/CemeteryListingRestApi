@@ -57,21 +57,21 @@
                 console.log($("#contactNumber").val());
                     
                     if($('#cemeteryName').val() == ""){
-                        alert('Please a Cemetery Name');
+                        alert('Please enter a cemetery name');
                     }else if($('#contactName').val() == ""){
-                        alert('Please a Contact Name');
+                        alert('Please enter a contact name');
                     }else if($('#contactNumber').val() == ""){
-                        alert('Please a Contact Number');
+                        alert('Please a contact number');
                     }else if($('#country').val() == ""){
-                        alert('Please enter a Country');
+                        alert('Please enter a country');
                     }else if($('#town').val() == ""){
-                        alert('Please enter a Town');
+                        alert('Please enter a town');
                     }else if($('#district_state').val() == ""){
                         alert('Please enter a District / County / Suburb');
                     }else  if($('#province_State').val() == ""){
                         alert('Please enter a Province / State');
                     }else if($('#locationOfCemetery').val() == ""){
-                        alert('Please the location of the Cemetery');
+                        alert('Please enter the location of the Cemetery');
                     }else{
         	$.ajax({
                     type: "POST", 
@@ -81,12 +81,15 @@
                     contentType: "application/json",
                     success: function (status, jqXHR) 
                     {
-
+                              Alert("Cemetery Created");
                         window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
                     },
 
                     error: function (jqXHR, status) 
                     {
+                        console.log('fail');
+                        console.log(jqXHR);
+                        console.log('fail ' + status.code);
                        //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
                     }
                  });

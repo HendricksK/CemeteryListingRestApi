@@ -67,8 +67,8 @@
                             <tr><td>Last Name</td><td><input type="text" name="lastName" id="lastName" placeholder="Last Name" style="width:100%"></td> </tr>
                             <tr><td>Maiden Name</td><td><input type="text" name="maidenName" id="maidenName" placeholder="Maiden Name" style="width:100%"></td> </tr>
                             <tr><td>Gender</td><td><select name="gender" id="gender" style="width:100%"> 
-                                        <option value="volvo">Male</option>
-                                        <option value="saab">Female</option></select></td> </tr>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option></select></td> </tr>
                             <tr><td>Date Of Birth</td><td><input type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date Of Birth" style="width:100%"></td> </tr>
                             <tr><td>Date Of Death</td><td><input type="text" name="dateOfDeath" id="dateOfDeath" placeholder="Date Of Death" style="width:100%"></td> </tr>
                             <tr><td>Grave Number</td><td><input type="text" name="graveNumber" id="graveNumber" placeholder="Grave Number" style="width:100%"></td> </tr>
@@ -102,6 +102,7 @@
               var names = new Array();
               var selectedCemeteryID;
               
+              var size = 0;
                 $("#otherNames").keypress(function(e){
                     var value = $(this).val().replace(" ", "");
                     var words = value.split(",");
@@ -121,17 +122,24 @@
                                 //console.log(data[0]['contactName']);
                                 countData = data.length;
 
-
+                                size = data.length;
+                               // localStorage.cemeteryItems = new Array(size);
                                 for(var i = 0; i < data.length; i++) 
                                 {
                                     var obj = data[i];
-                                        console.log(obj.id);
+                                    console.log(obj.id);
 
-                                        console.log(obj.location.cemeteryName);
-                                        $('#cemeteryID').append('<option>' + obj.id + '</option>');
-                                        $('#cemeteryName').append('<option>' + obj.location.cemeteryName + '</option>');
+                                    console.log(obj.location.cemeteryName);
+                                    $('#cemeteryID').append('<option>' + obj.id + '</option>');
+                                    $('#cemeteryName').append('<option>' + obj.location.cemeteryName + '</option>');
+                                  // localStorage.cemeteryItems[i] = [obj.id,obj.location.cemeteryName];
+                                   
 
-                                }                            
+                                }   
+                              /*  for(var i = 0; i < data.length; i++) 
+                                {
+                                    console.log("Items"+localStorage.cemeteryItems[i][0]+", "+localStorage.cemeteryItems[i][1])
+                                }*/
 
                             },
                             error: function (jqXHR, status) {
@@ -145,14 +153,27 @@
 
 
                   var x = $( "#cemeteryName option:selected" ).text();
+                  var y = $( "#cemeteryID option:selected" ).text();
                   console.log(x);
-
+                  console.log(y);
                   $('#cemeteryName').click( function() {
                     //$('.second').children().eq(0);
                         console.log($( "#cemeteryName option:selected" ).text());
-                         console.log($( "#cemeteryName option:selected" ).index());
-                         selectedCemeteryID = $("#cemeteryName option:selected" ).index();
-                         console.log($('#cemeteryID').children().eq(x).val());
+                        console.log($( "#cemeteryName option:selected" ).index());
+                         //check the .text = to the array and then set the selectedcemid to that one's index
+                       /* for(var i = 0; i < size; i++) 
+                        {
+                            console.log("i:"+i+", "+size);
+                               if(localStorage.cemeteryItems[i][1]===x)
+                               {
+                                   selectedCemeteryID = localStorage.cemeteryItems[i][0];
+                                   console.log("selectedCemeteryID1"+cemeteryItems[i][0]);
+                               }
+                        }*/
+                        selectedCemeteryID = $('#cemeteryID').children().eq($( "#cemeteryName option:selected" ).index()).val();
+                        console.log($('#cemeteryID').children().eq(x).val());
+                        console.log($('#cemeteryID').children().eq($( "#cemeteryName option:selected" ).index()).val());
+                        console.log("selectedCemeteryID"+selectedCemeteryID);
                          
                   });
 
@@ -189,9 +210,17 @@
                                             dataType: "JSON",
                                             contentType: "application/json",
                                             success: function (data) {
+                                                console.log("Just checking: "+selectedCemeteryID);
                                                 console.log('success');
                                                 console.log(data);
-                                                }
+                                                },
+                                            error: function (jqXHR, status) {
+                                                console.log("Just checking failed: "+selectedCemeteryID);
+                                                console.log('fail');
+                                               console.log(jqXHR);
+                                               console.log('fail ' + status.code);
+                                }
+                                
                                                     });
                                     window.location.href = "/CemeteryListingsWebApp/api/DeceasedListing/publishedlistings";
                                             }

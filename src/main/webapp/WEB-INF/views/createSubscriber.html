@@ -105,6 +105,9 @@
                                      },
 
                                      error: function (jqXHR, status) {
+                                         console.log('fail');
+                                        console.log(jqXHR);
+                                        console.log('fail ' + status.code);
                                         window.location.href = "/CemeteryListingsWebApp/";
                                 }
                             });
