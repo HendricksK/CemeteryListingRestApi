@@ -155,7 +155,7 @@ public class ViewListingByMaidenNameTest {
             deadRepo.delete(newListing2);
             deadRepo.delete(newListing3);
             deadRepo.delete(newListing4);
-            repo.delete(newCemetery); 
+            repo.delete(newCemetery);
      }
 
     @BeforeClass

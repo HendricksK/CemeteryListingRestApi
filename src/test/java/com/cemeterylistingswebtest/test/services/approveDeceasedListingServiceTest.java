@@ -98,6 +98,8 @@ public class approveDeceasedListingServiceTest {
          id = newListing.getRequiresApprovalDeceasedListingID();   
          boolean approve = adserv.approveDeceasedListing(id);
          Assert.assertFalse(approve);
+         repoList.delete(newListing);
+         repo.delete(newSub);
       
          
       
