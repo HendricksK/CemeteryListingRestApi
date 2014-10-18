@@ -101,7 +101,7 @@ public class approveDeceasedListingServiceTest {
          repoList.delete(newListing);
          repo.delete(newSub);
       
-      
+         
       
   }
 

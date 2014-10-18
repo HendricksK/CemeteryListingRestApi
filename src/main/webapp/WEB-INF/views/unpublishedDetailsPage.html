@@ -63,7 +63,20 @@
           var ID = localStorage.unpublishedID;
           //console.log(ID);
           var obj = null;
+            var login = localStorage.username;
 
+            if($('.user') != null){
+                if(login == ""){
+                    $('.user').text("Login");
+                }else{
+
+                    $('.user').text(login);
+                }
+            }
+
+             $('#logout').click(function(){
+            localStorage.username = "";
+            });
            $('#publishListing').click(function() {
                     var names = JSON.parse(localStorage["otherNames"]);
                      $.ajax({ // ajax call to retrieve all cemeteries json objects 
@@ -86,7 +99,7 @@
                             "names":names}),
                         dataType: "JSON",
                         contentType: "application/json",
-                        success: function (data) {
+                        success: function (data) {//when the listing was approved
                             console.log('success');
                             console.log(data);
                             }
@@ -104,7 +117,7 @@
                             window.location.href = "/CemeteryListingsWebApp/api/auth/loggedIn";
                         });
                 
-                $('#deleteUnpublishedListing').click(function() {
+                $('#deleteUnpublishedListing').click(function() {//when delete listing was pressed
                     $('#firstName').val("");
                     $('#lastName').val("");
                     $('#maidenName').val("");
@@ -127,6 +140,7 @@
                     success: function (data) {
                         console.log('success');
                         console.log(data);
+                        window.location="/CemeteryListingsWebApp/api/auth/loggedIn";
                         }
                             });
                     });

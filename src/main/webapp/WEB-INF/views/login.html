@@ -47,7 +47,9 @@
         
         <script type="text/javascript">
         	//console.log('hi');
-                
+                $('#logout').click(function(){
+                localStorage.username = "";
+                });
                 $('#register').click(function() {
                     
                     window.location.href = "/CemeteryListingsWebApp/api/auth/register";
