@@ -1,16 +1,125 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>  
+        <title>Cemetery Listings</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/listing-pages.css">
+         <link rel="icon"  type="image/png"  href="/CemeteryListingsWebApp/resources/images/favicon.ico">
     </head>
-    <body>
-        <div>TODO write content</div>
+    <body class="siteWrapper">
+         <div class="pageHeader">
+        <a href="/CemeteryListingsWebApp/" class="logo"><img src="/CemeteryListingsWebApp/resources/images/logo3.jpg"></a>
+                <ul class="navList"  style="width : 100%">
+                    <li><a href="/CemeteryListingsWebApp/">Home</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/cemetery/cemeterylistings">Cemetery Listings</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/DeceasedListing/publishedlistings">Deceased Listings</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/search/contactus">Contact Us</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user" id="user">Login</a></li>
+                    <li><a href = "/CemeteryListingsWebApp/" class="logout" id="logout">Logout</a>
+                </ul>   
+<!--
+                <ul class="socialListNav">
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/fbbtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/instagrambtn.png" class="simpleLogo"></a></li>
+                    <li><a href="#"><img src="/CemeteryListingsWebApp/resources/images/tweetbtn.png" class="simpleLogo"></a></li>
+                </ul>   
+-->
+            </div>
+            <div class="dummyHeader"></div>
+                <div class="pageWrapper">        <!-- this is the beginning of site wrapper will contain the entire pages html -->       
+                    <div class="siteContent" align='center'> 
+                        <h2>All Deceased Listings</h2>
+                        <input type="button" id="createDeceasedListingButton" value="Create new deceased listing" align='center'>
+                        <table class="listings" border='1px'>
+                            <tr><th>First Name</th><th>Surname</th><th>Maiden Name</th><th>Grave Number</th><th>Date Of Birth</th><th>Date Of Death</th><th>&nbsp;</th></tr>
+                            
+                        </table><!-- this is the beginning of site content will contain all the content --> 
+                        <!--<h1>Jquery Test</h1>
+                        <input type="button" name="post" value="post" id="me"> -->
+                    </div>
+                </div>
+        <!-- Script begins here -->
+        <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
+        
+        <script type="text/javascript">
+                var login = localStorage.username;
+
+                if($('.user') != null){
+                    if(login == ""){
+                        $('.user').text("Login");
+                    }else{
+
+                        $('.user').text(login);
+                    }
+                }
+                $('#logout').click(function(){
+                    localStorage.username = "";
+                });
+            $('#createDeceasedListingButton').click(function () {
+                if(localStorage.username == ""){
+                                window.location.href = "/CemeteryListingsWebApp/api/auth/login";
+                                }else{
+                                    window.location.href = "/CemeteryListingsWebApp/api/unpublishedListings/newUnpublished";
+                                }
+            })
+           $.ajax({ // ajax call to retrieve all cemeteries json objects 
+                    type: "GET",
+                    url: "/CemeteryListingsWebApp/api/DeceasedListing/show",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log('success');
+                        console.log(data);
+            
+                        for(var x = 0; x < data.length; x++){
+                            
+                        var obj = data[x]; 
+                           
+                                console.log(obj.requiresApprovalDeceasedListingID);
+                                console.log(obj.firstName);
+                                console.log(obj.surname);
+                                console.log(obj.maidenName);
+                                console.log(obj.dateOfDeath);
+                                console.log(obj.graveNumber);
+                                console.log(obj.imageOfBurialSite);
+                
+                //'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.publishedListingID+'">' + '</a>
+                                $(".listings").append(' <tr>'
+                                         + '<td>' + obj.firstName +      '</td>'
+                                    + '<td>' + obj.surname +        '</td>' 
+                                    + '<td>' + obj.maidenName +     '</td>'
+                                    + '<td>' + obj.graveNumber +    '</td>' 
+                                    + '<td>' + obj.dateOfBirth +    '</td>'
+                                    + '<td>' + obj.dateOfDeath +    '</td>' +
+                                        + ' <td>'  + obj.publishedListingID+ '</td>' + 
+                                    '<td> <button class="post" text="details" value='+obj.publishedListingID+'>View and make changes</button>' + '</td>' + "</tr>");
+                        }
+                        
+                        $('button').click(function() {
+                             if(localStorage.username == ""){
+                                window.location.href = "/CemeteryListingsWebApp/api/auth/login";
+                                }else{
+                                            var htmlString = $( this ).eq();	
+                                    console.log(htmlString);
+                                    console.log(htmlString.context.value);
+
+                                    localStorage.publishedListingsID = htmlString.context.value;
+
+                                    window.location="/CemeteryListingsWebApp/api/publishedListings/adminDeceasedListingsDetails";
+                                }
+                    });
+                            
+                },
+            error: function (jqXHR, status) {
+                       
+                    }
+                 });
+
+                       
+
+        console.log($('li').size());
+
+        	
+
+        </script>
     </body>
 </html>

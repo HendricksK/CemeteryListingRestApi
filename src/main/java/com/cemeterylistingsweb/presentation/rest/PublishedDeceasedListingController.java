@@ -62,4 +62,17 @@ public class PublishedDeceasedListingController {
         return "adminApprovedListings";
     }
     
+    @RequestMapping(value = "adminDeceasedListingsDetails", method = RequestMethod.GET)
+    public String adminListingsDetails(){
+        return "adminApprovedListingsDetails";
+    }
+    
+    @RequestMapping(value = "delete/{id}",method = RequestMethod.POST) //http://localhost:8084/askweb/api/club/1234
+    @ResponseBody
+    public String deleteClub(@PathVariable Long id) { //@PathVariable used to bind the id value
+        PublishedDeceasedListing deleteME = ps.find(id);
+        ps.remove(deleteME);
+        return "deleted";
+    }
+    
 }

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Cemetery Listings</title>
+    <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/listing-pages.css">
+    <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/scripts/script.js"></script>
+     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/plugins/cookies-plugin/jquery.cookie.js"></script>
+      <link rel="icon"  type="image/png"  href="/CemeteryListingsWebApp/resources/images/favicon.ico">
+</head>
+
+<body class="siteWrapper">
+    <div class="pageHeader">
+        <a href="/CemeteryListingsWebApp/" class="logo"><img src="/CemeteryListingsWebApp/resources/images/logo3.jpg"></a>
+                <ul class="navList"  style="width : 100%">
+                    <li><a href="/CemeteryListingsWebApp/">Home</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/cemetery/cemeterylistings">Cemetery Listings</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/DeceasedListing/publishedlistings">Deceased Listings</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/search/contactus">Contact Us</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user" id="user">Login</a></li>
+                    <li><a href = "/CemeteryListingsWebApp/" class="logout" id="logout">Logout</a>
+                </ul>     
+            </div>
+            <div class="dummyHeader"></div>
+    <div class="pageWrapper">
+       
+        <div class="siteContent">
+             <h1 align='center'>Admin - Listings Details </h1>
+             <div class="details" style = "width : 100%; " align="center">
+                 <form style="width:55%; " id="data">
+                      <table width = '90%' align='center' border='1px'>
+                            <tr><th>Description </th><th>Input </th></tr>
+                            <tr><td>First Name</td><td><input  type="text" placeholder="First Name" name="firstName" id="firstName" style="width:100%"></td> </tr>
+                            <tr><td>Last Name</td><td><input type="text" name="lastName" id="lastName" placeholder="Last Name" style="width:100%"></td> </tr>
+                            <tr><td>Maiden Name</td><td><input  type="text" name="maidenName" id="maidenName" placeholder="Maiden Name" style="width:100%"></td> </tr>
+                            <tr><td>Gender</td><td><input  type="text" name="gender" id="gender" placeholder="Gender" style="width:100%"></td> </tr>
+                            <tr><td>Date Of Birth</td><td><input  type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date Of Birth" style="width:100%"></td> </tr>
+                            <tr><td>Date Of Death</td><td><input type="text" name="dateOfDeath" id="dateOfDeath" placeholder="Date Of Death" style="width:100%"></td> </tr>
+                            <tr><td>Grave Number</td><td><input  type="text" name="graveNumber" id="graveNumber" placeholder="Grave Number" style="width:100%"></td> </tr>
+                            <tr><td>Grave Inscription</td><td><textarea  name="graveInscription" id="graveInscription" placeholder="Grave Inscription" style="width:100%; height : auto"></textarea></td> </tr>
+                            <tr><td>Last Known Contact Name</td><td><input  type="text" name="lastKnownContactName" id="lastKnownContactName" placeholder="Last Known Contact Name" style="width:100%"></td> </tr>
+                            <tr><td>Last Known Contact Number</td><td><input  type="text" name="lastKnownContactNumber" id="lastKnownContactNumber" placeholder="Last Known Contact Number" style="width:100%"></td> </tr>
+                            <tr><td>Cemtery ID</td><td><input  type="text" name="cemeteryID" id="cemeteryID" placeholder="Cemtery ID" style="width:100%"></td> </tr>
+                            <tr><td>Other Names</td><td><textarea  name="otherNames" id="otherNames" placeholder="Other Names, seperated by a comma, end with a full stop" style="width:100%; height : auto"></textarea></td> </tr>
+                            <tr><td>Image Of Burial Site</td><td><input  type="text" name="imageOfBurialSite" id="imageOfBurialSite" placeholder="Image Of Burial Site" style="width:100"></td> </tr>
+                            <tr><td>Subscriber ID</td><td><input  type="text" name="subscriberSubmitID" id="subscriberSubmitID" placeholder="Subscriber ID" style="width:100%"></td> </tr>
+                            
+                        </table>     
+                        <input  type="button" name="saveChanges" id="saveChanges" value="Save Changes" >
+                        <input type="button" name="DeleteListing" id="DeleteListing" value="Delete Listing" align='center'>
+	                </form>
+                 <br>
+                        
+                        <br>
+                 <br>
+             </div>
+             <table class="listings"></table>
+        </div>
+    </div>
+    <div class="siteFooter"> 
+    </div>
+        <!-- Script begins here -->
+        <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
+            
+        <script type="text/javascript">
+           
+                             
+            $('#saveChanges').on('click', function() 
+            {
+                     alert("hi");
+                     console.log("SAVE");
+            });
+            var ID = localStorage.publishedListingsID;
+             var login = localStorage.username;
+
+                if($('.user') != null)
+                {
+                    if(login == ""){
+                        $('.user').text("Login");
+                    }else{
+
+                        $('.user').text(login);
+                    }
+                }
+                $('#logout').click(function()
+                {
+                    localStorage.username = "";
+                });
+                 
+                
+                
+         $.ajax({ // ajax call to retrieve json objects 
+                    type: "GET",
+                    url: "/CemeteryListingsWebApp/api/DeceasedListing/id/"+ID+"",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log('success');
+                        console.log(data);
+            
+                           obj  = data;
+                                                console.log(obj.publishedListingID);
+                                                console.log(obj.firstName);
+                                                console.log(obj.surname);
+                                                console.log(obj.maidenName);
+                                                console.log(obj.dateOfDeath);
+                                                console.log(obj.graveNumber);
+                                                console.log(obj.imageOfBurialSite);
+                                                
+                                                localStorage.otherNames = JSON.stringify(obj.names);
+                                                
+                // building html objects here
+                $('#firstName').val(obj.firstName);
+                $('#lastName').val(obj.surname);
+                $('#maidenName').val(obj.maidenName);
+                $('#gender').val(obj.gender);
+                $('#dateOfBirth').val(obj.dateOfBirth);
+                $('#dateOfDeath').val(obj.dateOfDeath);
+                $('#graveNumber').val(obj.graveNumber);
+                $('#graveInscription').val(obj.graveInscription);
+                $('#lastKnownContactName').val(obj.lastKnownContactName);
+                $('#lastKnownContactNumber').val(obj.lastKnownContactNumber);
+                $('#cemeteryID').val(obj.cemeteryID);
+                $('#otherNames').val(obj.names);
+                $('#imageOfBurialSite').val(obj.imageOfBurialSite);
+                $('#subscriberSubmitID').val(obj.subscriberSubmitID);
+                
+                
+                                /*$(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.requiresApprovalDeceasedListingID+'">' + '</a></td>' + '<td> Name : ' + obj.firstName + '</td>' + ' <td> Last Name : ' + obj.surname + 
+                                    '</td>' + '</a></td>' + '<td>Mainden Name : ' + obj.maidenName + '</td>' +
+                                    '</td>' + '</a></td>' + '<td>Grave Number: ' + obj.graveNumber + '</td>' +
+                                    '</td>' + '</a></td>' + '<td>Date Of Birth: ' + obj.dateOfBirth + '</td>' +
+                                    '</td>' + '</a></td>' + '<td>Date Of Death: ' + obj.dateOfDeath + '</td>' +
+                                    '<td> <button class="post" text="details" value='+obj.requiresApprovalDeceasedListingID+'>' + '</td>' + "</tr>"); */
+                            
+                },
+            error: function (jqXHR, status) {
+                       //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                    }
+                 });
+                
+                 
+                 $('#DeleteListing').click(function() 
+                {
+                    console.log("hi");
+                    $.ajax({ // ajax call to retrieve all cemeteries json objects 
+                        type: "POST",
+                        url: "/CemeteryListingsWebApp/api/publishedListings/delete/"+ID+"",
+                        success: function (data) {
+                            console.log('success');
+                            console.log(data);
+                            window.location="/CemeteryListingsWebApp/api/publishedListings/adminDeceasedListings";
+                            },error: function (jqXHR, status) {
+                            // error handler
+                            console.log(jqXHR);
+                            alert('fail' + status.code);
+                            }
+                    });    
+                });
+</script>      
+</body>
+</html>
