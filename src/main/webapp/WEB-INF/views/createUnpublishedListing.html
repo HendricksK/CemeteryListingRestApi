@@ -82,7 +82,7 @@
                             <tr><td>Subscriber ID</td><td><input type="text" name="subscriberSubmitID" id="subscriberSubmitID" placeholder="Subscriber ID" style="width:100%"></td> </tr>
                                 <tr><td>Image Of Burial Site</td><td>
                                 <form action="demo_form.asp">
-                                    Select a file: <input type="file" name="img">                                    
+                                    Select a file: <input type="file"  name="imageOfBurialSite" id='imageOfBurialSite'>                                    
                                 </form></td> </tr>
                             
                         </table>  
@@ -153,9 +153,11 @@
                          console.log($( "#cemeteryName option:selected" ).index());
                          selectedCemeteryID = $("#cemeteryName option:selected" ).index();
                          console.log($('#cemeteryID').children().eq(x).val());
+                         
                   });
 
                         $('#postUnpublishedListing').on('click', function() {
+                            console.log($('#imageOfBurialSite').val());
                             //var value = $(this).val().replace(" ", "");
                              if($('#firstName').val() == ""){
                                     alert('Please include the first name of the deceased');
@@ -165,14 +167,14 @@
                                     alert('Please include the date of death of the deceased');
                                 }else{
                                     
-                                
+                                    
                                     $.ajax({ // ajax call to retrieve all cemeteries json objects 
                                             type: "POST",
                                             url: "/CemeteryListingsWebApp/api/unpublishedListings/create",
                                             data: JSON.stringify({"firstName":$('#firstName').val(),
                                                 "surname":$('#lastName').val(),
                                                 "maidenName":$('#maidenName').val(),
-                                                "gender":$('#gender').val(),
+                                                "gender":$("#gender option:selected" ).text(),
                                                 "dateOfBirth":$('#dateOfBirth').val(),
                                                 "dateOfDeath":$('#dateOfDeath').val(),
                                                 "graveInscription":$('#graveInscription').val(),

@@ -26,6 +26,7 @@
         
         <div class="siteContent" align='center'>
             <h2>Submitted listings awaiting approval</h2>
+             <input type="button" id="createCemetery" value="Create new cemetery" align='center'>
             <table class="listings">
                 <tr><th>First Name</th><th>Surname</th><th>Maiden Name</th><th>Grave Number</th><th>Date Of Birth</th><th>Date Of Death</th><th>&nbsp;</th></tr>
                             
@@ -39,6 +40,11 @@
      <!--<script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script> -->
         
         <script type="text/javascript">
+            
+            $('#createCemetery').click(function () {
+                window.location.href = "/CemeteryListingsWebApp/api/cemetery/newcemetery";
+            })
+            
         	$.ajax({
                                 type: "GET", 
                                 url: "/CemeteryListingsWebApp/api/unpublishedListings/show",

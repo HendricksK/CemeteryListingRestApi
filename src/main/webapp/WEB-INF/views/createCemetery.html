@@ -34,12 +34,13 @@
                                 <tr><td>Contact Name </td><td><input type="text" name="contactName" id="contactName" placeholder="Contact Name" style="width:100%"> </td> </tr>
                                 <tr><td>Contact Number </td><td><input type="text" name="contactNumber" id="contactNumber" placeholder="Contact Number" style="width:100%"> </td></tr>
                                 <tr><td>Country </td><td><input type="text" name="country" id="country" placeholder="Country" style="width:100%"> </td></tr>
-                                <tr><td>District </td><td><input type="text" name="district_state" id="district_state" placeholder="District" style="width:100%"> </td></tr>
-                                <tr><td>Location Of Cemetery eg 12.06.12:45.63.89 </td><td><input type="text" name="locationOfCemetery" id="locationOfCemetery" placeholder="Cemetery Location" style="width:100%"> </td></tr>
-                                <tr><td>Province/State</td><td><input type="text" name="province_state" id="province_state" placeholder="Province/State" style="width:100%"></td> </tr>
                                 <tr><td>Town</td><td><input type="text" name="town" id="town" placeholder="Town" style="width:100%"></td> </tr>
+                                <tr><td>District / County </td><td><input type="text" name="district_state" id="district_state" placeholder="District / County" style="width:100%"> </td></tr>
+                                <tr><td>Province / State</td><td><input type="text" name="province_state" id="province_state" placeholder="Province / State" style="width:100%"></td> </tr>
+                                <tr><td>GPS Location Of Cemetery eg 12.06.12:45.63.89 </td><td><input type="text" name="locationOfCemetery" id="locationOfCemetery" placeholder="Cemetery Location" style="width:100%"> </td></tr>
+                                                                
                         </table>
-                        <input type="button" name="post" value="Create cemetery" id="createButton" style="margin-left: 20%">
+                        <input type="button" name="post" value="Create new cemetery" id="createButton" style="margin-left: 20%">
                     </form>
                 </div>
             </div>
@@ -49,25 +50,47 @@
         
         <script type="text/javascript">
         	console.log('one love');
+                
         	//{"country":"America","province_State":"New Jersey","district_state":"Washington","town":"Marlboro","cemeteryName":"Palm Springs","locationOfCemetery":"12.06.12:45.63.89"},"contactName":"jack daniels","contactNumber":"0215917865"
-        	$('#createButton').on('click', function() {
-
+        	$('#createButton').on('click', function() 
+                {console.log($("#contactName").val());
+                console.log($("#contactNumber").val());
+                    
+                    if($('#cemeteryName').val() == ""){
+                        alert('Please a Cemetery Name');
+                    }else if($('#contactName').val() == ""){
+                        alert('Please a Contact Name');
+                    }else if($('#contactNumber').val() == ""){
+                        alert('Please a Contact Number');
+                    }else if($('#country').val() == ""){
+                        alert('Please enter a Country');
+                    }else if($('#town').val() == ""){
+                        alert('Please enter a Town');
+                    }else if($('#district_state').val() == ""){
+                        alert('Please enter a District / County / Suburb');
+                    }else  if($('#province_State').val() == ""){
+                        alert('Please enter a Province / State');
+                    }else if($('#locationOfCemetery').val() == ""){
+                        alert('Please the location of the Cemetery');
+                    }else{
         	$.ajax({
                     type: "POST", 
                     url: "/CemeteryListingsWebApp/api/cemetery/create",
                     data: JSON.stringify({"location":{"country":$('#country').val(),"province_State":$('#province_state').val(),"district_state":$('#district_state').val(),"town":$('#town').val(),"cemeteryName":$('#cemeteryName').val(),"locationOfCemetery":$('#locationOfCemetery').val()},"contactName":$('#contactName').val(),"contactNumber":$('#contactNumber').val()}),
                     dataType: "JSON",
                     contentType: "application/json",
-                    success: function (status, jqXHR) {
+                    success: function (status, jqXHR) 
+                    {
 
-                        //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                        indow.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
                     },
 
-                    error: function (jqXHR, status) {
+                    error: function (jqXHR, status) 
+                    {
                        //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
                     }
                  });
-
+                 }
 			});
 
         </script>
