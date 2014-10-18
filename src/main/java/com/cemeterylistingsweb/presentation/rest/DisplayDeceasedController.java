@@ -11,8 +11,6 @@ package com.cemeterylistingsweb.presentation.rest;
  * @author Zaakir
  */
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
-import com.cemeterylistingsweb.domain.Subscriber;
-import com.cemeterylistingsweb.services.LoginService;
 import com.cemeterylistingsweb.services.PublishListingService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
