@@ -50,7 +50,9 @@
         <!-- Script begins here -->
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
         <script>
-            
+            $('#logout').click(function(){
+                localStorage.username = "";
+            });
             $.ajax({
                     type: "GET", 
                     url: "/CemeteryListingsWebApp/api/auth/getUserDetails",

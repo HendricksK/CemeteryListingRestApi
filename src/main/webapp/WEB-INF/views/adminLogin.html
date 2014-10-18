@@ -48,7 +48,19 @@
         
         <script type="text/javascript">
         	console.log('hi');
+                 $('#logout').click(function(){
+                    localStorage.username = "";
+                });
+                var login = localStorage.username;
 
+                if($('.user') != null){
+                    if(login == ""){
+                        $('.user').text("Login");
+                    }else{
+
+                        $('.user').text(login);
+                    }
+                }
         	$('.loginButton').click(function() {
         		console.log('i have been clicked');
 

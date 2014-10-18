@@ -42,11 +42,6 @@
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
         
         <script type="text/javascript">
-            
-            $('#createDeceasedListingButton').click(function () {
-                window.location.href = "/CemeteryListingsWebApp/api/unpublishedListings/newUnpublished";
-            })
-            
                 var login = localStorage.username;
 
                 if($('.user') != null){
@@ -57,7 +52,16 @@
                         $('.user').text(login);
                     }
                 }
-                
+                $('#logout').click(function(){
+                    localStorage.username = "";
+                });
+            $('#createDeceasedListingButton').click(function () {
+                if(localStorage.username == ""){
+                                window.location.href = "/CemeteryListingsWebApp/api/auth/login";
+                                }else{
+                                    window.location.href = "/CemeteryListingsWebApp/api/unpublishedListings/newUnpublished";
+                                }
+            })
            $.ajax({ // ajax call to retrieve all cemeteries json objects 
                     type: "GET",
                     url: "/CemeteryListingsWebApp/api/DeceasedListing/show",

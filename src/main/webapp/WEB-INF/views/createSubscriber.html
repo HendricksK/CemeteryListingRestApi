@@ -49,6 +49,20 @@
         <!-- FANCY SCRIPT GOES HERE -->
         
         <script type="text/javascript">
+            var login = localStorage.username;
+
+            if($('.user') != null){
+                if(login == ""){
+                    $('.user').text("Login");
+                }else{
+
+                    $('.user').text(login);
+                }
+            }
+
+             $('#logout').click(function(){
+            localStorage.username = "";
+            });
         	console.log('createSubscriber javascript start');
                 //var checkUserName = "true";
                 var check;

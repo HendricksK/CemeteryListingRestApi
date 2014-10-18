@@ -38,7 +38,19 @@
         
         <script type="text/javascript">
             var nameSearch = localStorage.nameSearch;
-            
+            $('#logout').click(function(){
+                localStorage.username = "";
+            });
+            var login = localStorage.username;
+
+                if($('.user') != null){
+                    if(login == ""){
+                        $('.user').text("Login");
+                    }else{
+
+                        $('.user').text(login);
+                    }
+                }
                      $.ajax({
                                 type: "GET", 
                                 url: "/CemeteryListingsWebApp/api/search/nameSearch",

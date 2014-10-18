@@ -49,8 +49,21 @@
         
         <script type="text/javascript">
           console.log('let me give');
+          var login = localStorage.username;
           var ID = localStorage.cemeteryID;
           console.log(ID);
+          
+          if($('.user') != null){
+                    if(login == ""){
+                        $('.user').text("Login");
+                    }else{
+
+                        $('.user').text(login);
+                    }
+                }
+            $('#logout').click(function(){
+                localStorage.username = "";
+            });
 
           $.ajax({ // ajax call to retrieve all cemeteries json objects 
                     type: "GET",

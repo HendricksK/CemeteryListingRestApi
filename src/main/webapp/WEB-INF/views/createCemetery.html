@@ -49,7 +49,21 @@
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
         
         <script type="text/javascript">
-        	console.log('one love');
+            console.log('one love');
+            var login = localStorage.username;
+
+            if($('.user') != null){
+                if(login == ""){
+                    $('.user').text("Login");
+                }else{
+
+                    $('.user').text(login);
+                }
+            }
+
+             $('#logout').click(function(){
+            localStorage.username = "";
+            });
                 
         	//{"country":"America","province_State":"New Jersey","district_state":"Washington","town":"Marlboro","cemeteryName":"Palm Springs","locationOfCemetery":"12.06.12:45.63.89"},"contactName":"jack daniels","contactNumber":"0215917865"
         	$('#createButton').on('click', function() 

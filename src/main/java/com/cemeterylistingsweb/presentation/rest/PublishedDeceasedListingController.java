@@ -57,4 +57,9 @@ public class PublishedDeceasedListingController {
         return ps.find(id);
     }
     
+    @RequestMapping(value = "adminDeceasedListings", method = RequestMethod.GET)
+    public String adminListings(){
+        return "adminApprovedListings";
+    }
+    
 }

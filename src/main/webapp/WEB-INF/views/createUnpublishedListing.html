@@ -102,6 +102,20 @@
               var names = new Array();
               var selectedCemeteryID;
               
+              var login = localStorage.username;
+
+                if($('.user') != null){
+                    if(login == ""){
+                        $('.user').text("Login");
+                    }else{
+
+                        $('.user').text(login);
+                    }
+                }
+                $('#logout').click(function(){
+                    localStorage.username = "";
+                });
+              
               var size = 0;
                 $("#otherNames").keypress(function(e){
                     var value = $(this).val().replace(" ", "");
