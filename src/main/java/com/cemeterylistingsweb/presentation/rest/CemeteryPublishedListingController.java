@@ -10,6 +10,7 @@ import com.cemeterylistingsweb.services.ViewListingByCemetery;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,9 +26,9 @@ public class CemeteryPublishedListingController {
     @Autowired
     ViewListingByCemetery vbc;
     
-    @RequestMapping(value = "getListingsByCemeteryID/{id}",method = RequestMethod.GET) //http://localhost:8084/askweb/api/club/1234
+    @RequestMapping(value = "showList/{id}",method = RequestMethod.GET) //http://localhost:8084/askweb/api/club/1234
     @ResponseBody
-    public List<PublishedDeceasedListing> getListingsByCemeteryID(@RequestParam Long id) { //@PathVariable used to bind the id value
+    public List<PublishedDeceasedListing> getListingsByCemeteryID(@PathVariable Long id) { //@PathVariable used to bind the id value
         System.out.println(" ID called ");
         return vbc.findListingByCemetery(id);
     }

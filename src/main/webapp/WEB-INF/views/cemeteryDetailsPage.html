@@ -89,7 +89,7 @@
         
         $.ajax({ // ajax call to retrieve all cemeteries json objects 
                     type: "GET",
-                    url: "/CemeteryListingsWebApp/api/cemeteryPublishedListings/getListingsByCemeteryID/"+ID+"",
+                    url: "/CemeteryListingsWebApp/api/cemeteryPublishedListings/showList/"+ID+"",
                     //url: "/CemeteryListingsWebApp/api/cemetery/id/"+ID+"",
                     dataType: "json",
                     success: function (data) {
