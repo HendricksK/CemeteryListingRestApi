@@ -5,10 +5,8 @@
  */
 package com.cemeterylistingsweb.presentation.rest;
 
-import com.cemeterylistingsweb.domain.Cemetery;
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import com.cemeterylistingsweb.services.PublishListingService;
-import com.cemeterylistingsweb.services.ViewListingByCemetery;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,9 +27,7 @@ public class PublishedDeceasedListingController {
     
     @Autowired
     PublishListingService ps;
-   /* @Autowired
-    ViewListingByCemetery vbc;
-    */
+   
     @RequestMapping(value = "create",method = RequestMethod.POST) // This the uri e.g http://localhost:8084/askweb/api/club/create
     @ResponseBody //Converts output or response to JSON String
     public String create(@RequestBody PublishedDeceasedListing pdl) { // @RequestBody for converting incoming JSON call to Object
@@ -61,11 +57,5 @@ public class PublishedDeceasedListingController {
         System.out.println(" ID called ");
         return ps.find(id);
     }
-    /*
-    @RequestMapping(value = "getListingsByCemeteryID/{id}",method = RequestMethod.GET) //http://localhost:8084/askweb/api/club/1234
-    @ResponseBody
-    public List<PublishedDeceasedListing> getListingsByCemeteryID(@PathVariable Long id) { //@PathVariable used to bind the id value
-        System.out.println(" ID called ");
-        return vbc.findListingByCemetery(id);
-    }*/
+    
 }
