@@ -193,14 +193,14 @@ public class cemeteryListingsServiceTest {
          
          
          //removal
-         /*repo.delete(repo.findOne(id));
+         repo.delete(repo.findOne(id));
          repo.delete(repo.findOne(id2));
          repo.delete(repo.findOne(id3));
          deadRepo.delete(newListing);
          deadRepo.delete(newListing2);
          deadRepo.delete(newListing3);
          deadRepo.delete(newListing4);
-         //repo.delete(repo.findOne(id));*/
+         //repo.delete(repo.findOne(id));
          
     }
 
