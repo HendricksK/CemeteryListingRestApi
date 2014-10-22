@@ -54,6 +54,7 @@ public class ViewListingByMaidenNameServiceImpl implements ViewListingByMaidenNa
         return publishRepo.findAll();
     }
     
+    @Override
     public List<PublishedDeceasedListing> findListingByMaidenName(String name){
          List<PublishedDeceasedListing> names = new ArrayList();
        
@@ -77,6 +78,7 @@ public class ViewListingByMaidenNameServiceImpl implements ViewListingByMaidenNa
                 return names;
     }
     
+    @Override
     public List<PublishedDeceasedListing> findListingByMaidenName(String name, Long subID){
         List<PublishedDeceasedListing> names = new ArrayList();
        

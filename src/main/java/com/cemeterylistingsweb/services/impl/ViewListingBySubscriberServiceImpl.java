@@ -8,7 +8,6 @@ package com.cemeterylistingsweb.services.impl;
 
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import com.cemeterylistingsweb.domain.Subscriber;
-import com.cemeterylistingsweb.repository.CemeteryRepository;
 import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
 import com.cemeterylistingsweb.repository.SubscriberRepository;
 import com.cemeterylistingsweb.services.ViewListingBySubscriberService;
@@ -61,6 +60,7 @@ public class ViewListingBySubscriberServiceImpl implements ViewListingBySubscrib
         return SubscrRepo.findAll();
     }
     
+    @Override
     public List<PublishedDeceasedListing> findListingBySubscriber(java.sql.Date subDate, java.sql.Date validDate){
         List<PublishedDeceasedListing> publists=publishRepo.findAll();
         //find listing by dob
@@ -91,6 +91,7 @@ public class ViewListingBySubscriberServiceImpl implements ViewListingBySubscrib
         return list;
     }
     
+    @Override
      public List<PublishedDeceasedListing> findListingBySubscriber(Long subID){
         List<PublishedDeceasedListing> publists=publishRepo.findAll();
         //find listing by dob
