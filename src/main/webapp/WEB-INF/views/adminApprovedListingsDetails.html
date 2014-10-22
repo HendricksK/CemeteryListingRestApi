@@ -8,25 +8,7 @@
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/plugins/cookies-plugin/jquery.cookie.js"></script>
         <link rel="icon"  type="image/png"  href="/CemeteryListingsWebApp/resources/images/favicon.ico">
 
-        <link rel="stylesheet" href="/CemeteryListingsWebApp/resources/js/jquery-ui.css">
-        <script src="/CemeteryListingsWebApp/resources/js/jquery-1.10.2.js"></script>
-        <script src="/CemeteryListingsWebApp/resources/js/jquery-ui.js"></script>
-        <script>
-            $(function() 
-            {
-                $( "#dateOfBirth" ).datepicker();
-                $( "#dateOfDeath" ).datepicker();
-
-            });
-        </script>
-        <script>
-            function myFunction() 
-            {
-                var x = document.createElement("INPUT");
-                x.setAttribute("type", "file");
-                document.body.appendChild(x);
-            }
-        </script>
+        
 </head>
 
 <body class="siteWrapper">
@@ -51,31 +33,26 @@
                       <table width = '90%' align='center' border='1px'>
                            <tr><th>Description</th><th>Input</th></tr>
                             <tr><td>ID</td><td><input Disabled type="text" placeholder="ID" name="pubID" id="pubID" style="width:100%"></td> </tr>
-                            <tr><td>First Name</td><td><input type="text" placeholder="First Name" name="firstName" id="firstName" style="width:100%"></td> </tr>
-                            <tr><td>Last Name</td><td><input type="text" name="lastName" id="lastName" placeholder="Last Name" style="width:100%"></td> </tr>
-                            <tr><td>Maiden Name</td><td><input type="text" name="maidenName" id="maidenName" placeholder="Maiden Name" style="width:100%"></td> </tr>
-                            <tr><td>Gender</td><td><select name="gender" id="gender" style="width:100%"> 
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option></select></td> </tr>
-                            <tr><td>Date Of Birth</td><td><input type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date Of Birth" style="width:100%"></td> </tr>
-                            <tr><td>Date Of Death</td><td><input type="text" name="dateOfDeath" id="dateOfDeath" placeholder="Date Of Death" style="width:100%"></td> </tr>
-                            <tr><td>Grave Number</td><td><input type="text" name="graveNumber" id="graveNumber" placeholder="Grave Number" style="width:100%"></td> </tr>
+                            <tr><td>First Name</td><td><input Disabled type="text" placeholder="First Name" name="firstName" id="firstName" style="width:100%"></td> </tr>
+                            <tr><td>Last Name</td><td><input Disabled type="text" name="lastName" id="lastName" placeholder="Last Name" style="width:100%"></td> </tr>
+                            <tr><td>Maiden Name</td><td><input Disabled type="text" name="maidenName" id="maidenName" placeholder="Maiden Name" style="width:100%"></td> </tr>
+                            <tr><td>Gender</td><td><input Disabled name="gender" id="gender" placeholder="Gender" style="width:100%"></td> </tr>
+                                      
+                            <tr><td>Date Of Birth</td><td><input Disabled type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date Of Birth" style="width:100%"></td> </tr>
+                            <tr><td>Date Of Death</td><td><input Disabled type="text" name="dateOfDeath" id="dateOfDeath" placeholder="Date Of Death" style="width:100%"></td> </tr>
+                            <tr><td>Grave Number</td><td><input Disabled type="text" name="graveNumber" id="graveNumber" placeholder="Grave Number" style="width:100%"></td> </tr>
                             <tr><td>&nbsp;</td><td><label></label></td> </tr>
-                            <tr><td>Grave Inscription</td><td><textarea name="graveInscription" id="graveInscription" placeholder="Grave Inscription" style="width:100%; height : auto"></textarea></td> </tr>
-                            <tr><td>Last Known Contact Name</td><td><input type="text" name="lastKnownContactName" id="lastKnownContactName" placeholder="Last Known Contact Name" style="width:100%"></td> </tr>
-                            <tr><td>Last Known Contact Number</td><td><input type="text" name="lastKnownContactNumber" id="lastKnownContactNumber" placeholder="Last Known Contact Number" style="width:100%"></td> </tr>
-                            <tr><td>Cemetery Name</td><td><select name="cemeteryName" id="cemeteryName" style="width:100%;"></select></td> </tr>
-                            <tr><td>Town</td><td><label>Grave Inscription</label></td> </tr>
-                            <tr><td>Other Names</td><td><textarea name="otherNames" id="otherNames" placeholder="Other Names, seperated by a comma, end with a full stop" style="width:100%; height : auto"></textarea></td> </tr>
-                            <tr><td>Subscriber ID</td><td><input type="text" name="subscriberSubmitID" id="subscriberSubmitID" placeholder="Subscriber ID" style="width:100%"></td> </tr>
-                                <tr><td>Image Of Burial Site</td><td>
-                                <form action="demo_form.asp">
-                                    Select a file: <input type="file"  name="imageOfBurialSite" id='imageOfBurialSite'>                                    
-                                </form></td> </tr>
-                                <tr><td>Image URL</td><td><input type="text" name="imageURL" id="imageURL" placeholder="image URL" style="width:100%"></td> </tr>
+                            <tr><td>Grave Inscription</td><td><textarea  Disabled name="graveInscription" id="graveInscription" placeholder="Grave Inscription" style="width:100%; height : auto"></textarea></td> </tr>
+                            <tr><td>Last Known Contact Name</td><td><input Disabled type="text" name="lastKnownContactName" id="lastKnownContactName" placeholder="Last Known Contact Name" style="width:100%"></td> </tr>
+                            <tr><td>Last Known Contact Number</td><td><input Disabled type="text" name="lastKnownContactNumber" id="lastKnownContactNumber" placeholder="Last Known Contact Number" style="width:100%"></td> </tr>
+                            <tr><td>Cemetery Name</td><td><select Disabled name="cemeteryName" id="cemeteryName" style="width:100%;"></select></td> </tr>
+                            
+                            <tr><td>Other Names</td><td><textarea Disabled name="otherNames" id="otherNames" placeholder="Other Names, seperated by a comma, end with a full stop" style="width:100%; height : auto"></textarea></td> </tr>
+                            <tr><td>Subscriber ID</td><td><input Disabled type="text" name="subscriberSubmitID" id="subscriberSubmitID" placeholder="Subscriber ID" style="width:100%"></td> </tr>
+                                <tr><td>Image Of Burial Site</td><td><input disabled type="text" name="imageOfBurialSite" id="imageOfBurialSite" placeholder="Image Of Burial Site" style="width:100"></td> </tr>
                             
                         </table>   
-                        <input  type="button" name="saveChanges" id="saveChanges" value="Save Changes" >
+                    <!--    <input  type="button" name="saveChanges" id="saveChanges" value="Save Changes" > -->
                         <input type="button" name="DeleteListing" id="DeleteListing" value="Delete Listing" align='center'>
 	                </form>
                  <br>
@@ -97,6 +74,7 @@
             
             var ID = localStorage.publishedListingsID;
             var login = localStorage.username;
+            var selectedCemeteryID = localStorage.selectedCemeteryID;
 
             if($('.user') != null)
             {
@@ -234,7 +212,7 @@
                        //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
                     }
                  });
-                $('#saveChanges').click(function()
+             /*   $('#saveChanges').click(function()
                 {
                         
                     console.log("UPDATE REQUEST");
@@ -285,7 +263,7 @@
                               // window.location.href = "/CemeteryListingsWebApp/api/publishedListings/adminDeceasedListings";
                                        }
                                    });
-                 
+                 */
                  $('#DeleteListing').click(function() 
                 {
                     console.log("hi");
@@ -301,8 +279,8 @@
                             console.log(jqXHR);
                             alert('fail' + status.code);
                             }
-                    });    
-                });
+                    });  
+                });  
 </script>      
 </body>
 </html>
