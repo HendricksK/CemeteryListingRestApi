@@ -14,7 +14,7 @@ import java.util.List;
  * @author Ryno
  */
 public interface AdminUpdatePublishedListingService extends Services<PublishedDeceasedListing, Long>{
-    public void updatePublishedlisting(Long pubId, String fname, String lname, String maidenName, String gender, String dob, String dod, String gInscrip, String gNum, String image, String lastContact, String lastContactNum,Long cemID, List<PersonOtherNames> names );
-    public Long updatePublishedlistingReturn(Long pubId, String fname, String lname, String maidenName, String gender, String dob, String dod, String gInscrip, String gNum, String image, String lastContact, String lastContactNum,Long cemID, List<PersonOtherNames> names );
+    public void updatePublishedlisting(PublishedDeceasedListing entity );
+    public Long updatePublishedlistingReturn(PublishedDeceasedListing entity );
 
 }

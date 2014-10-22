@@ -47,9 +47,9 @@ public class AdminPublishedListingServiceTest {
      @Test
      public void hello() {
      pubRepo = ctx.getBean(PublishedDeceasedListingRepository.class);
-    updatePubserv = ctx.getBean(AdminUpdatePublishedListingService.class);
-    subRepo = ctx.getBean(SubscriberRepository.class);
-    userRepo = ctx.getBean(UserRoleRepository.class);
+     updatePubserv = ctx.getBean(AdminUpdatePublishedListingService.class);
+     subRepo = ctx.getBean(SubscriberRepository.class);
+     userRepo = ctx.getBean(UserRoleRepository.class);
          
          //Initialise date
          Calendar calendar = Calendar.getInstance();
@@ -105,12 +105,38 @@ public class AdminPublishedListingServiceTest {
          pubRepo.save(newListing);
          listingId=newListing.getPublishedListingID();
          
-         id = updatePubserv.updatePublishedlistingReturn(listingId, "Sam", "Winchester", "", "Male", "20/07/1980", "14/10/2014", "Came back", "2474", "/images/004.jpg", "Dean", "07255718927", subID, null);
+         PublishedDeceasedListing updateListing = new PublishedDeceasedListing.Builder()    
+                 .PublishedDeceasedListing(newListing)
+                 .setFirstName("Sam")
+                 .setSurname(newListing.getSurname())
+                 .setMaidenName(newListing.getMaidenName())
+                 .setGender(newListing.getGender())
+                 .setDateOfBirth(newListing.getDateOfBirth())
+                 .setDateOfDeath(newListing.getDateOfDeath())
+                 .setGraveInscription(newListing.getGraveInscription())
+                 .setGraveNumber(newListing.getGraveNumber())
+                 .setLastKnownContactName(newListing.getLastKnownContactName())
+                 .setLastKnownContactNumber(newListing.getLastKnownContactNumber())
+                 .setCemeteryID(newListing.getCemeteryID())                 
+                 .setSubscriberApprovedID(newListing.getSubscriberApprovedID())
+                 .setSubscriberSubmitID(newListing.getSubscriberSubmitID())
+                 .setNames(newListing.getNames())
+
+                 .setSubscriberSubmitID(subID)
+                 .build();
+         //listingId, "Sam", "Winchester", "", "Male", "20/07/1980", "14/10/2014", "Came back", "2474", "/images/004.jpg", "Dean", "07255718927", subID, null
+         id = updatePubserv.updatePublishedlistingReturn(updateListing);
+         
+         PublishedDeceasedListing pubUpdate = updatePubserv.find(id);
+         Assert.assertNotNull(updatePubserv.find(id));
+         Assert.assertEquals(pubUpdate.getFirstName(), "Sam");
+         
          PublishedDeceasedListing pub = pubRepo.findOne(listingId);
          Assert.assertNotNull(pubRepo.findOne(listingId));
          Assert.assertEquals(pub.getFirstName(), "Sam");
          pubRepo.delete(newListing);
          subRepo.delete(newSub);
+         updatePubserv.remove(updateListing);
      }
 
     @BeforeClass

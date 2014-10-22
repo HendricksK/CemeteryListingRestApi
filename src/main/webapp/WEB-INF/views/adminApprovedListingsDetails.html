@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <title>Cemetery Listings</title>
-    <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/listing-pages.css">
-    <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/scripts/script.js"></script>
-    <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/plugins/cookies-plugin/jquery.cookie.js"></script>
-    <link rel="icon"  type="image/png"  href="/CemeteryListingsWebApp/resources/images/favicon.ico">
-      
-    <link rel="stylesheet" href="/CemeteryListingsWebApp/resources/js/jquery-ui.css">
-    <script src="/CemeteryListingsWebApp/resources/js/jquery-1.10.2.js"></script>
-    <script src="/CemeteryListingsWebApp/resources/js/jquery-ui.js"></script>
-    <script>
-        $(function() 
-        {
-            $( "#dateOfBirth" ).datepicker();
-            $( "#dateOfDeath" ).datepicker();
+        <title>Cemetery Listings</title>
+        <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/listing-pages.css">
+        <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/scripts/script.js"></script>
+        <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/plugins/cookies-plugin/jquery.cookie.js"></script>
+        <link rel="icon"  type="image/png"  href="/CemeteryListingsWebApp/resources/images/favicon.ico">
 
-        });
-    </script>
-    <script>
-        function myFunction() 
-        {
-            var x = document.createElement("INPUT");
-            x.setAttribute("type", "file");
-            document.body.appendChild(x);
-        }
-    </script>
+        <link rel="stylesheet" href="/CemeteryListingsWebApp/resources/js/jquery-ui.css">
+        <script src="/CemeteryListingsWebApp/resources/js/jquery-1.10.2.js"></script>
+        <script src="/CemeteryListingsWebApp/resources/js/jquery-ui.js"></script>
+        <script>
+            $(function() 
+            {
+                $( "#dateOfBirth" ).datepicker();
+                $( "#dateOfDeath" ).datepicker();
+
+            });
+        </script>
+        <script>
+            function myFunction() 
+            {
+                var x = document.createElement("INPUT");
+                x.setAttribute("type", "file");
+                document.body.appendChild(x);
+            }
+        </script>
 </head>
 
 <body class="siteWrapper">
@@ -50,6 +50,7 @@
                  <form style="width:55%; " id="data">
                       <table width = '90%' align='center' border='1px'>
                            <tr><th>Description</th><th>Input</th></tr>
+                            <tr><td>ID</td><td><input Disabled type="text" placeholder="ID" name="pubID" id="pubID" style="width:100%"></td> </tr>
                             <tr><td>First Name</td><td><input type="text" placeholder="First Name" name="firstName" id="firstName" style="width:100%"></td> </tr>
                             <tr><td>Last Name</td><td><input type="text" name="lastName" id="lastName" placeholder="Last Name" style="width:100%"></td> </tr>
                             <tr><td>Maiden Name</td><td><input type="text" name="maidenName" id="maidenName" placeholder="Maiden Name" style="width:100%"></td> </tr>
@@ -178,7 +179,7 @@
                                    console.log("selectedCemeteryID1"+cemeteryItems[i][0]);
                                }
                         }*/
-                        selectedCemeteryID = $('#cemeteryID').children().eq($( "#cemeteryName option:selected" ).index()).val();
+                        localstorage.selectedCemeteryID = $('#cemeteryID').children().eq($( "#cemeteryName option:selected" ).index()).val();
                         console.log($('#cemeteryID').children().eq(x).val());
                         console.log($('#cemeteryID').children().eq($( "#cemeteryName option:selected" ).index()).val());
                         console.log("selectedCemeteryID"+selectedCemeteryID);
@@ -204,6 +205,7 @@
                                                 localStorage.otherNames = JSON.stringify(obj.names);
                                                 
                 // building html objects here
+                $('#pubID').val(obj.publishedListingID);
                 $('#firstName').val(obj.firstName);
                 $('#lastName').val(obj.surname);
                 $('#maidenName').val(obj.maidenName);
@@ -245,26 +247,49 @@
                            }else{
 
 
-                               $.ajax({ // ajax call to retrieve all cemeteries json objects 
+                              /* $.ajax({ // ajax call to retrieve all cemeteries json objects 
                                        type: "POST",
-                                       url: "/CemeteryListingsWebApp/api/unpublishedListings/create",
-                                       data: JSON.stringify({"firstName":$('#firstName').val(),
-                                           "surname":$('#lastName').val(),
-                                           "maidenName":$('#maidenName').val(),
-                                           "gender":$("#gender option:selected" ).text(),
-                                           "dateOfBirth":$('#dateOfBirth').val(),
-                                           "dateOfDeath":$('#dateOfDeath').val(),
-                                           "graveInscription":$('#graveInscription').val(),
-                                           "graveNumber":$('#graveNumber').val(),
-                                           "imageOfBurialSite": $('#imageURL').val(),
-                                           "lastKnownContactName":$('#lastKnownContactName').val(),
-                                           "lastKnownContactNumber":$('#lastKnownContactNumber').val(),
-                                           "cemeteryID": selectedCemeteryID,
-                                           "subscriberApprovedID":null,
-                                           "subscriberSubmitID":$('#subscriberSubmitID').val(),
-                                           "names":[]}),
-                                       dataType: "JSON",
-                                       contentType: "application/json",
+                                       // @PathVariable String lname, @PathVariable String maidenName, @PathVariable String gender,@PathVariable String dob,@PathVariable String dod,@PathVariable String gInscrip, @PathVariable String gNum, @PathVariable String image, @PathVariable String lastContact, @PathVariable String lastContactNum, @PathVariable Long cemID, @PathVariable List<PersonOtherNames> names) 
+                                       url: "/CemeteryListingsWebApp/api/AdminUpdateListing/update/"
+                                               +$('#pubID').val()+"/"
+                                               +$('#firstName').val()+"/"
+                                               +$('#lastName').val()+"/"
+                                               +$("#gender option:selected" ).text()+"/"
+                                               +$('#dateOfBirth').val()+"/"
+                                               +$('#dateOfDeath').val()+"/"
+                                               +$('#graveInscription').val()+"/"
+                                               +$('#graveNumber').val()+"/"
+                                               +$('#imageURL').val()+"/"
+                                               +$('#lastKnownContactName').val()+"/"
+                                               +$('#lastKnownContactNumber').val()+"/"
+                                               +localStorage.selectedCemeteryID+"/"
+                                               +null+"/"
+                                               +[]+"",
+                                        dataType: "json",*/
+                            $.ajax({ // ajax call to retrieve all cemeteries json objects 
+                                            type: "PUT",//        listingId, "Sam", "Winchester", "", "Male", "20/07/1980", "14/10/2014", "Came back", "2474", "/images/004.jpg", "Dean", "07255718927", subID, null
+
+                                            url: "/CemeteryListingsWebApp/api/AdminUpdateListing/update",
+                                            data: JSON.stringify({
+                                                "PublishedListingID":$('#pubID').val(),
+                                                "firstName":$('#firstName').val(),
+                                                "surname":$('#lastName').val(),
+                                                "maidenName":$('#maidenName').val(),
+                                                "gender":$("#gender option:selected" ).text(),
+                                                "dateOfBirth":$('#dateOfBirth').val(),
+                                                "dateOfDeath":$('#dateOfDeath').val(),
+                                                "graveInscription":$('#graveInscription').val(),
+                                                "graveNumber":$('#graveNumber').val(),
+                                                "imageOfBurialSite": $('#imageURL').val(),
+                                                "lastKnownContactName":$('#lastKnownContactName').val(),
+                                                "lastKnownContactNumber":$('#lastKnownContactNumber').val(),
+                                                "cemeteryID": localStorage.selectedCemeteryID,//could be the issue
+                                                "subscriberApprovedID":"",
+                                                "subscriberSubmitID":$('#subscriberSubmitID').val()}),
+                                                //"names":["a", "b"]}),
+                                            dataType: "JSON",
+                                            contentType: "application/json",
+                                      
                                        success: function (data) {
                                            console.log("Just checking: "+selectedCemeteryID);
                                            console.log('success');
@@ -275,12 +300,12 @@
                                            console.log('fail');
                                           console.log(jqXHR);
                                           console.log('fail ' + status.code);
-                           }
+                                        }
 
-                                               });
-                               window.location.href = "/CemeteryListingsWebApp/api/publishedListings/adminDeceasedListings";
+                                    });
+                              // window.location.href = "/CemeteryListingsWebApp/api/publishedListings/adminDeceasedListings";
                                        }
-                });
+                                   });
                  
                  $('#DeleteListing').click(function() 
                 {

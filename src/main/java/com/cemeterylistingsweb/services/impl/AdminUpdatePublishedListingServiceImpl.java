@@ -53,23 +53,27 @@ public class AdminUpdatePublishedListingServiceImpl implements AdminUpdatePublis
     }
     
     @Override
-    public void updatePublishedlisting(Long pubId, String fname, String lname, String maidenName, String gender, String dob, String dod, String gInscrip, String gNum, String image, String lastContact, String lastContactNum, Long cemID, List<PersonOtherNames> names){
-     PublishedDeceasedListing oldListing = publishRepo.findOne(pubId);
+    public void updatePublishedlisting(PublishedDeceasedListing entity){
+        //Long pubId, String fname, String lname, String maidenName, String gender, String dob, String dod, String gInscrip, String gNum, String image, String lastContact, String lastContactNum, Long cemID, List<PersonOtherNames> names
+ 
+        PublishedDeceasedListing oldListing = publishRepo.findOne(entity.getPublishedListingID());
          
          PublishedDeceasedListing updateListing = new PublishedDeceasedListing.Builder()
                  .PublishedDeceasedListing(oldListing)
-                 .setFirstName(fname)
-                 .setSurname(lname)
-                 .setMaidenName(maidenName)
-                 .setGender(gender)
-                 .setDateOfBirth(dob)
-                 .setDateOfDeath(dod)
-                 .setGraveInscription(gInscrip)
-                 .setGraveNumber(gNum)
-                 .setLastKnownContactName(lastContact)
-                 .setLastKnownContactNumber(lastContactNum)
-                 .setCemeteryID(cemID)
-                 .setNames(names)
+                 .setFirstName(entity.getFirstName())
+                 .setSurname(entity.getSurname())
+                 .setMaidenName(entity.getMaidenName())
+                 .setGender(entity.getGender())
+                 .setDateOfBirth(entity.getDateOfBirth())
+                 .setDateOfDeath(entity.getDateOfDeath())
+                 .setGraveInscription(entity.getGraveInscription())
+                 .setGraveNumber(entity.getGraveNumber())
+                 .setLastKnownContactName(entity.getLastKnownContactName())
+                 .setLastKnownContactNumber(entity.getLastKnownContactNumber())
+                 .setCemeteryID(entity.getCemeteryID())                 
+                 .setSubscriberApprovedID(entity.getSubscriberApprovedID())
+                 .setSubscriberSubmitID(entity.getSubscriberSubmitID())
+                // .setNames(entity.getNames())
                  .build();
          
          publishRepo.save(updateListing);   
@@ -77,23 +81,25 @@ public class AdminUpdatePublishedListingServiceImpl implements AdminUpdatePublis
     }
     
     @Override
-    public Long updatePublishedlistingReturn(Long pubId, String fname, String lname, String maidenName, String gender, String dob, String dod, String gInscrip, String gNum, String image, String lastContact, String lastContactNum, Long cemID, List<PersonOtherNames> names){
-     PublishedDeceasedListing oldListing = publishRepo.findOne(pubId);
+    public Long updatePublishedlistingReturn(PublishedDeceasedListing entity){
+     PublishedDeceasedListing oldListing = publishRepo.findOne(entity.getPublishedListingID());
          Long id;
          PublishedDeceasedListing updateListing = new PublishedDeceasedListing.Builder()
                  .PublishedDeceasedListing(oldListing)
-                 .setFirstName(fname)
-                 .setSurname(lname)
-                 .setMaidenName(maidenName)
-                 .setGender(gender)
-                 .setDateOfBirth(dob)
-                 .setDateOfDeath(dod)
-                 .setGraveInscription(gInscrip)
-                 .setGraveNumber(gNum)
-                 .setLastKnownContactName(lastContact)
-                 .setLastKnownContactNumber(lastContactNum)
-                 .setCemeteryID(cemID)
-                 .setNames(names)
+                 .setFirstName(entity.getFirstName())
+                 .setSurname(entity.getSurname())
+                 .setMaidenName(entity.getMaidenName())
+                 .setGender(entity.getGender())
+                 .setDateOfBirth(entity.getDateOfBirth())
+                 .setDateOfDeath(entity.getDateOfDeath())
+                 .setGraveInscription(entity.getGraveInscription())
+                 .setGraveNumber(entity.getGraveNumber())
+                 .setLastKnownContactName(entity.getLastKnownContactName())
+                 .setLastKnownContactNumber(entity.getLastKnownContactNumber())
+                 .setCemeteryID(entity.getCemeteryID())                 
+                 .setSubscriberApprovedID(entity.getSubscriberApprovedID())
+                 .setSubscriberSubmitID(entity.getSubscriberSubmitID())
+                 .setNames(entity.getNames())
                  .build();
          
          publishRepo.save(updateListing);   
