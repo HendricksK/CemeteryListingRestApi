@@ -41,16 +41,19 @@
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
         
         <script type="text/javascript">
-           console.log('hi');
-    	   
+          $('#logout').click(function(){
+            localStorage.username = "";
+            window.location.href = "/CemeteryListingsWebApp/";
+           });
+           
     	   var countData = 0;
                $.ajax({ // ajax call to retrieve all cemeteries json objects 
                     type: "GET",
                     url: "/CemeteryListingsWebApp/api/cemetery/show",
                     dataType: "json",
                     success: function (data) {
-                        console.log('success');
-                        console.log(data);
+                        //console.log('success');
+                        //console.log(data);
                         //console.log(data[0]['contactName']);
                         countData = data.length;
                         
@@ -58,7 +61,7 @@
                         for(var i = 0; i < data.length; i++) 
                         {
                             var obj = data[i];
-                                console.log(obj.id);
+                                /*console.log(obj.id);
                                 console.log(obj.location.country);
                                 console.log(obj.location.province_State);
                                 console.log(obj.location.district_state);
@@ -66,7 +69,7 @@
                                 console.log(obj.location.cemeteryName);
                                 console.log(obj.location.locationOfCemetery);
                                 console.log(obj.contactName);
-                                console.log(obj.contactNumber);
+                                console.log(obj.contactNumber);*/
 // building html objects here
 
                                 $(".listings").append(' <tr>' 
@@ -87,9 +90,7 @@
                     if(localStorage.username == ""){
                         window.location.href = "/CemeteryListingsWebApp/api/auth/login";
                     }else{
-				var htmlString = $( this ).eq();	
-        		console.log(htmlString);
-        		console.log(htmlString.context.value);
+				var htmlString = $( this ).eq();
 
         		localStorage.cemeteryID = htmlString.context.value;
     
@@ -103,7 +104,7 @@
 
                     error: function (jqXHR, status) {
                         // error handler
-                        console.log(jqXHR);
+                        //console.log(jqXHR);
                         alert('fail' + status.code);
                     }
                  });

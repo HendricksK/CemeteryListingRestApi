@@ -45,13 +45,13 @@
                                   countData = data.length;
                         for(var i = 0; i < data.length; i++) {
                             var obj = data[i];
-                                console.log(obj.publishedListingID);
+                                /*console.log(obj.publishedListingID);
                                 console.log(obj.firstName);
                                 console.log(obj.surname);
                                 console.log(obj.maidenName);
                                 console.log(obj.dateOfDeath);
                                 console.log(obj.graveNumber);
-                                console.log(obj.imageOfBurialSite);
+                                console.log(obj.imageOfBurialSite);*/
 // building html objects here
 $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.publishedListingID+'">' + '</a></td>' + '<td> Name : ' + obj.firstName + '</td>' + ' <td> Last Name : ' + obj.surname + 
     '</td>' + '</a></td>' + '<td>Mainden Name : ' + obj.maidenName + '</td>' +
@@ -68,8 +68,8 @@ $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/ceme
                                 window.location.href = "/CemeteryListingsWebApp/api/auth/login";
                                 }else{
                                             var htmlString = $( this ).eq();	
-                                    console.log(htmlString);
-                                    console.log(htmlString.context.value);
+                                    //console.log(htmlString);
+                                    //console.log(htmlString.context.value);
 
                                     localStorage.publishedListingsID = htmlString.context.value;
 
@@ -81,9 +81,9 @@ $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/ceme
 
                                 error: function (data,jqXHR, status) {
                                     // error handler
-                                    console.log('fail');
-                                    console.log(jqXHR);
-                                    console.log('fail ' + status.code);
+                                    //console.log('fail');
+                                    //console.log(jqXHR);
+                                    //console.log('fail ' + status.code);
                                 }
                              });
                              
@@ -92,18 +92,18 @@ $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/ceme
                                 url: "/CemeteryListingsWebApp/api/search/graveNumSearch",
                                 data: {"graveNum": nameSearch},
                                 success: function (data, status, jqXHR) {
-                                  console.log(data);
+                                  //console.log(data);
                                   
                                   countData = data.length;
                         for(var i = 0; i < data.length; i++) {
                             var obj = data[i];
-                                console.log(obj.publishedListingID);
+                                /*console.log(obj.publishedListingID);
                                 console.log(obj.firstName);
                                 console.log(obj.surname);
                                 console.log(obj.maidenName);
                                 console.log(obj.dateOfDeath);
                                 console.log(obj.graveNumber);
-                                console.log(obj.imageOfBurialSite);
+                                console.log(obj.imageOfBurialSite);*/
 // building html objects here
 $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.publishedListingID+'">' + '</a></td>' + '<td> Name : ' + obj.firstName + '</td>' + ' <td> Last Name : ' + obj.surname + 
     '</td>' + '</a></td>' + '<td>Mainden Name : ' + obj.maidenName + '</td>' +
@@ -119,8 +119,8 @@ $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/ceme
                                 window.location.href = "/CemeteryListingsWebApp/api/auth/login";
                                 }else{
                                             var htmlString = $( this ).eq();	
-                                    console.log(htmlString);
-                                    console.log(htmlString.context.value);
+                                    //console.log(htmlString);
+                                    //console.log(htmlString.context.value);
 
                                     localStorage.publishedListingsID = htmlString.context.value;
 
@@ -131,9 +131,9 @@ $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/ceme
 
                                 error: function (data,jqXHR, status) {
                                     // error handler
-                                    console.log('fail');
-                                    console.log(jqXHR);
-                                    console.log('fail ' + status.code);
+                                    //console.log('fail');
+                                    //console.log(jqXHR);
+                                    //console.log('fail ' + status.code);
                                 }
                              });
         </script>

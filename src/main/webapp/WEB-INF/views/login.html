@@ -66,8 +66,8 @@
                     $('#pwordLabel').text("Please enter a password");
                 }else{
 
-                        console.log(username);
-                        console.log(password);
+                        //console.log(username);
+                        //console.log(password);
 
                                     $.ajax({
                                 type: "POST", 
@@ -87,9 +87,9 @@
 
                                 error: function (data,jqXHR, status) {
                                     // error handler
-                                    console.log('fail');
-                                    console.log(jqXHR);
-                                    console.log('fail ' + status.code);
+                                    //console.log('fail');
+                                    //console.log(jqXHR);
+                                    //console.log('fail ' + status.code);
                                 }
                              });
 

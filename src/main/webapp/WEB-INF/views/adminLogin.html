@@ -44,10 +44,10 @@
      <!--<script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script> -->
         
         <script type="text/javascript">
-        	console.log('hi');
+        	//console.log('hi');
 
         	$('.loginButton').click(function() {
-        		console.log('i have been clicked');
+        		//console.log('i have been clicked');
 
                 var id = $('#userID').val();
         	var username = $('#username').val();
@@ -65,9 +65,9 @@
                     $('#pwordLabel').text("Please enter a password");
                 }else{
 
-                        console.log(username);
-                        console.log(password);
-                        console.log(id);
+                        //console.log(username);
+                        //console.log(password);
+                        //console.log(id);
                         
                          $.ajax({
                                 type: "GET", 
@@ -90,9 +90,9 @@
 
                                 error: function (data,jqXHR, status) {
                                     // error handler
-                                    console.log('fail');
-                                    console.log(jqXHR);
-                                    console.log('fail ' + status.code);
+                                    //console.log('fail');
+                                    //console.log(jqXHR);
+                                    //console.log('fail ' + status.code);
                                 }
                              });
 
