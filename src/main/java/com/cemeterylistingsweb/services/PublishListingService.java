@@ -18,4 +18,5 @@ import org.springframework.stereotype.Service;
 public interface PublishListingService extends Services<PublishedDeceasedListing, Long>{
     public void publishListings(RequiresApprovalDeceasedListing listing);
     public Long publishListingsReturn(RequiresApprovalDeceasedListing listing);
+    
 }

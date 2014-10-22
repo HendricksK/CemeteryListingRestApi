@@ -29,7 +29,9 @@
                     function checkDrink() {
                         console.log(beer);
                     }   */
-    
+                $('#logout').click(function(){
+                localStorage.username = "";
+                });
                $.ajax({ // ajax call to retrieve all cemeteries json objects 
                     type: "GET",
                     url: "/CemeteryListingsWebApp/api/publishedListings/show",

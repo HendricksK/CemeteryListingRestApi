@@ -65,7 +65,7 @@ public class ViewListingByMaidenNameTest {
                  .build();
          
          Cemetery newCemetery = new Cemetery.Builder()
-                 .setContactName("Palm Springs")
+                 .setContactName("Palm Waters")
                  .setContactNumber("0215698412")
                  .setLocation(local)
                  .build();
@@ -155,6 +155,7 @@ public class ViewListingByMaidenNameTest {
             deadRepo.delete(newListing2);
             deadRepo.delete(newListing3);
             deadRepo.delete(newListing4);
+            repo.delete(newCemetery);
      }
 
     @BeforeClass

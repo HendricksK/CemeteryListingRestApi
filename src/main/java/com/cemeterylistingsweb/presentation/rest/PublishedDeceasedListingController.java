@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -27,7 +26,7 @@ public class PublishedDeceasedListingController {
     
     @Autowired
     PublishListingService ps;
-    
+   
     @RequestMapping(value = "create",method = RequestMethod.POST) // This the uri e.g http://localhost:8084/askweb/api/club/create
     @ResponseBody //Converts output or response to JSON String
     public String create(@RequestBody PublishedDeceasedListing pdl) { // @RequestBody for converting incoming JSON call to Object
@@ -57,4 +56,25 @@ public class PublishedDeceasedListingController {
         System.out.println(" ID called ");
         return ps.find(id);
     }
+    
+    @RequestMapping(value = "adminDeceasedListings", method = RequestMethod.GET)
+    public String adminListings(){
+        return "adminApprovedListings";
+    }
+    
+    @RequestMapping(value = "adminDeceasedListingsDetails", method = RequestMethod.GET)
+    public String adminListingsDetails(){
+        return "adminApprovedListingsDetails";
+    }
+    
+    @RequestMapping(value = "delete/{id}",method = RequestMethod.POST) //http://localhost:8084/askweb/api/club/1234
+    @ResponseBody
+    public String deleteClub(@PathVariable Long id) { //@PathVariable used to bind the id value
+        PublishedDeceasedListing deleteME = ps.find(id);
+        ps.remove(deleteME);
+        return "deleted";
+    }
+    
+    
+    
 }

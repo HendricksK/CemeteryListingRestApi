@@ -2,7 +2,7 @@
 <html>
   <head>
       <title>Cemetery Listings</title>
-    <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/blackAndWhite.css">
+    <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/listing-pages.css">
     <link rel="stylesheet" type="text/css" href="/CemeteryListingsWebApp/resources/css/login.css">
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/scripts/script.js"></script>
@@ -47,7 +47,19 @@
         
         <script type="text/javascript">
         	//console.log('hi');
-                
+                $('#logout').click(function(){
+                localStorage.username = "";
+                });
+                 var login = localStorage.username;
+
+                if($('.user') != null){
+                    if(login == ""){
+                        $('.user').text("Login");
+                    }else{
+
+                        $('.user').text(login);
+                    }
+                }
                 $('#register').click(function() {
                     
                     window.location.href = "/CemeteryListingsWebApp/api/auth/register";

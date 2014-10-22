@@ -6,13 +6,14 @@
 
 .pageWrapper{
 
-	height:auto;
+	height:1000px;
 	width:70%;
         margin-top: 3%;
 	margin-left: 15%;
 	margin-right: 15%;
 	background-color: white;
-	display: bloack;
+	display: black;
+        
 }
 
 .pageHeader{

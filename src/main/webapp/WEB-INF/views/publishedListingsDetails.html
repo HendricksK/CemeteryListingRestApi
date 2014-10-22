@@ -71,6 +71,9 @@
                         $('.user').text(login);
                     }
                 }
+                $('#logout').click(function(){
+                    localStorage.username = "";
+                });
                 
          $.ajax({ // ajax call to retrieve all cemeteries json objects 
                     type: "GET",

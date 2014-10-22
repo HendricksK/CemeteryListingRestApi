@@ -91,7 +91,7 @@
                                     + '<td>' + obj.dateOfBirth +    '</td>'
                                     + '<td>' + obj.dateOfDeath +    '</td>' +
                                         + ' <td>'  + obj.publishedListingID+ '</td>' + 
-                                    '<td> <button class="post" text="details" value='+obj.publishedListingID+'>View Listing</button>' + '</td>' + "</tr>");
+                                    '<td> <button class="post" text="details" value='+obj.publishedListingID+'>View and make changes</button>' + '</td>' + "</tr>");
                         }
                         
                         $('button').click(function() {
@@ -104,7 +104,7 @@
 
                                     localStorage.publishedListingsID = htmlString.context.value;
 
-                                    window.location="/CemeteryListingsWebApp/api/DeceasedListing/publishedListingsDetails";
+                                    window.location="/CemeteryListingsWebApp/api/publishedListings/adminDeceasedListingsDetails";
                                 }
                     });
                             
