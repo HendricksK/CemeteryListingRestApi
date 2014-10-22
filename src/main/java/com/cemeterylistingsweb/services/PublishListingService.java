@@ -8,7 +8,6 @@ package com.cemeterylistingsweb.services;
 
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import com.cemeterylistingsweb.domain.RequiresApprovalDeceasedListing;
-import org.springframework.stereotype.Service;
 
 /**
  *

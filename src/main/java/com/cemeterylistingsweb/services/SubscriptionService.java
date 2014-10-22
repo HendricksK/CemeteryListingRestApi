@@ -7,7 +7,6 @@
 package com.cemeterylistingsweb.services;
 
 import com.cemeterylistingsweb.domain.Subscriber;
-import java.sql.Date;
 
 /**
  *

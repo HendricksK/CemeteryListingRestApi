@@ -7,7 +7,6 @@
 package com.cemeterylistingsweb.services;
 
 import com.cemeterylistingsweb.domain.Cemetery;
-import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import java.util.List;
 
 /**
