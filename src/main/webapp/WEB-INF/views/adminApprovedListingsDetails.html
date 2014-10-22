@@ -179,7 +179,7 @@
                                    console.log("selectedCemeteryID1"+cemeteryItems[i][0]);
                                }
                         }*/
-                        localstorage.selectedCemeteryID = $('#cemeteryID').children().eq($( "#cemeteryName option:selected" ).index()).val();
+                        localStorage.selectedCemeteryID = $('#cemeteryID').children().eq($( "#cemeteryName option:selected" ).index()).val();
                         console.log($('#cemeteryID').children().eq(x).val());
                         console.log($('#cemeteryID').children().eq($( "#cemeteryName option:selected" ).index()).val());
                         console.log("selectedCemeteryID"+selectedCemeteryID);
@@ -291,12 +291,12 @@
                                             contentType: "application/json",
                                       
                                        success: function (data) {
-                                           console.log("Just checking: "+selectedCemeteryID);
+                                           console.log("Just checking: "+localStorage.selectedCemeteryID);
                                            console.log('success');
                                            console.log(data);
                                            },
                                        error: function (jqXHR, status) {
-                                           console.log("Just checking failed: "+selectedCemeteryID);
+                                           console.log("Just checking failed: "+localStorage.selectedCemeteryID);
                                            console.log('fail');
                                           console.log(jqXHR);
                                           console.log('fail ' + status.code);
