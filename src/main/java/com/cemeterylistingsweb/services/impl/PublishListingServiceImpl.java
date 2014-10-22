@@ -38,8 +38,13 @@ public class PublishListingServiceImpl implements PublishListingService{
 
     @Override
     public PublishedDeceasedListing merge(PublishedDeceasedListing entity) {
+        System.out.println("-------------------------------------------------------------BEFORE ");
+        System.out.println(entity.getFirstName());
+        System.out.println(entity.getPublishedListingID());
         if(entity.getPublishedListingID()!=null){
-            return publishRepo.save(entity);
+            System.out.println("-------------------------------------------------------------INSIDE");
+            System.out.println(entity.getFirstName());
+            return publishRepo.save(entity);            
         }
         return null;
     }

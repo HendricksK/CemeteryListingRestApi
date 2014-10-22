@@ -43,7 +43,8 @@ public class PublishedDeceasedListingController {
     
     @RequestMapping(value = "update",method = RequestMethod.PUT) //This the uri e.g http://localhost:8084/askweb/api/club/update
     @ResponseBody
-    public String update(@RequestBody PublishedDeceasedListing pdl) {
+    public String update(@RequestBody PublishedDeceasedListing pdl) {        
+       
         ps.merge(pdl);
         System.out.println(" Update Called ");
         return "Club Update";

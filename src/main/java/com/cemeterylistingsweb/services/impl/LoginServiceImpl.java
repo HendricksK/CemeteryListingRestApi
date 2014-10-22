@@ -37,7 +37,13 @@ public class LoginServiceImpl implements LoginService{
 
     @Override
     public Subscriber merge(Subscriber entity) {
+        System.out.println("-------------------------------------------------------------BEFORE IF ");
+        System.out.println(entity.getFirstName());
+        System.out.println(entity.getSubscriberID());
         if(entity.getUsername()!=null){
+            System.out.println("-------------------------------------------------------------INSIDE");
+            System.out.println(entity.getFirstName());
+            System.out.println(entity.getSubscriberID());
             return SubscrRepo.save(entity);
         }
         return null;

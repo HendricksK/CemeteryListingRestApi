@@ -34,4 +34,13 @@ public class AdminRegisterListingController {
         System.out.println(" Update Called ");
         return "listing updated";
     }
+    
+    @RequestMapping(value = "update2",method = RequestMethod.PUT) //This the uri e.g http://localhost:8084/askweb/api/club/update
+    @ResponseBody
+    public String update2(@RequestBody PublishedDeceasedListing pdl) {
+        
+        aupls.merge(pdl);
+        System.out.println(" Update Called ");
+        return "Published Listing updated";
+    }
 }

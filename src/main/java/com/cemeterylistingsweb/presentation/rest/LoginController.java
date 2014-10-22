@@ -47,6 +47,7 @@ public class LoginController {
     @RequestMapping(value = "update",method = RequestMethod.PUT) //This the uri e.g http://localhost:8084/askweb/api/club/update
     @ResponseBody
     public String update(@RequestBody Subscriber sub) {
+        
         cs.merge(sub);
         System.out.println(" Update Called ");
         return "subscriber updated";

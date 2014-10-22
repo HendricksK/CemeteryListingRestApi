@@ -32,17 +32,17 @@
                         Filled in by admin --subscriptionDate, validUntil  -->
                             <table width = '90%' align='center'>
                                 <tr><th> </th></tr>
-                                <tr><td>User name</td><td><input type="text" name="username" id="username" placeholder="" style="width:100%"></td> </tr>
+                                <tr><td>User name</td><td><input disabled type="text" name="username" id="username" placeholder="" style="width:100%"></td> </tr>
                                 <tr><td>First Name </td><td><input type="text" name="firstName" id="firstName" placeholder="" style="width:100%"> </td> </tr>
                                 <tr><td>Surname </td><td><input type="text" name="surname" id="surname" placeholder="" style="width:100%"> </td></tr>
                                 <tr><td>E-mail </td><td><input type="text" name="email" id="email" placeholder="" style="width:100%"> </td></tr>
                                 <tr><td>Password </td><td><input type="password" name="pwd" id="pwd" placeholder="" style="width:100%"> </td></tr>
-                                <tr><td>last Contribution Year</td><td><input type="text" name="lastContributionYear" id="lastContributionYear" placeholder="" style="width:100%"> </td></tr>
-                                <tr><td>user Role</td><td><input type="password" name="userRole" id="userRole"  style="width:100%"> </td></tr>
-                                <tr><td>Subscription Date</td><td><input type="password" name="subscriptionDate" id="subscriptionDate" placeholder="" style="width:100%"> </td></tr>
-                                <tr><td>validUntil</td><td><input type="password" name="validUntil" id="validUntil" placeholder="" style="width:100%"> </td></tr>
+                                <tr><td>last Contribution Year</td><td><input disabled type="text" name="lastContributionYear" id="lastContributionYear" placeholder="" style="width:100%"> </td></tr>
+                                <tr><td>user Role</td><td><input type="text" disabled name="userRole" id="userRole"  style="width:100%"> </td></tr>
+                                <tr><td>Subscription Date</td><td><input disabled type="text" name="subscriptionDate" id="subscriptionDate" placeholder="" style="width:100%"> </td></tr>
+                                <tr><td>validUntil</td><td><input disabled type="text" name="validUntil" id="validUntil" placeholder="" style="width:100%"> </td></tr>
                            </table>                            
-                           <input type="button" name="update" value="Save Changes (is this what this screen does?)" id="update" style="margin-left: 20%">
+                           <input align="center" type="button" name="update" value="Save Changes" id="update" style="margin-left: 20%">
                     </form>
                 </div>
             </div>
@@ -82,7 +82,18 @@
                 $.ajax({
                         type: "PUT", 
                         url: "/CemeteryListingsWebApp/api/Subscriber/update",
-                        data: JSON.stringify({"userRoleID":{"userRoleID":localStorage.userRoleID,"level":localStorage.userLevel}, "subscriberID":localStorage.mySubID,"email":$('#email').val(),"firstName":$('#firstName').val(),"surname":$('#surname').val(),"username":$('#username').val(),"pwd":$('#pwd').val(),"lastContributionYear":$('#lastContributionYear').val(), "subscriptionDate": $('#subscriptionDate').val(), "validUntil" : $('#validUntil').val()}),
+                        data: JSON.stringify({"userRoleID":{
+                                "userRoleID":localStorage.userRoleID,
+                                "level":localStorage.userLevel}, 
+                                "subscriberID":localStorage.mySubID,
+                                "email":$('#email').val(),
+                                "firstName":$('#firstName').val(),
+                                "surname":$('#surname').val(),
+                                "username":$('#username').val(),
+                                "pwd":$('#pwd').val(),
+                                "lastContributionYear":$('#lastContributionYear').val(), 
+                                "subscriptionDate": $('#subscriptionDate').val(), 
+                                "validUntil" : $('#validUntil').val()}),
                         dataType: "JSON",
                         contentType: "application/json",
                         success: function (status, jqXHR) {

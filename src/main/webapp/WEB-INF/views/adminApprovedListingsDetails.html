@@ -234,10 +234,10 @@
                        //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
                     }
                  });
-                $('#saveChanges').on('click', function() 
+                $('#saveChanges').click(function()
                 {
                         
-                    console.log("SAVE");
+                    console.log("UPDATE REQUEST");
                     if($('#firstName').val() == ""){
                                alert('Please include the first name of the deceased');
                            }else if($('#lastName').val() == ""){ 
@@ -246,30 +246,10 @@
                                alert('Please include the date of death of the deceased');
                            }else{
 
-
-                              /* $.ajax({ // ajax call to retrieve all cemeteries json objects 
-                                       type: "POST",
-                                       // @PathVariable String lname, @PathVariable String maidenName, @PathVariable String gender,@PathVariable String dob,@PathVariable String dod,@PathVariable String gInscrip, @PathVariable String gNum, @PathVariable String image, @PathVariable String lastContact, @PathVariable String lastContactNum, @PathVariable Long cemID, @PathVariable List<PersonOtherNames> names) 
-                                       url: "/CemeteryListingsWebApp/api/AdminUpdateListing/update/"
-                                               +$('#pubID').val()+"/"
-                                               +$('#firstName').val()+"/"
-                                               +$('#lastName').val()+"/"
-                                               +$("#gender option:selected" ).text()+"/"
-                                               +$('#dateOfBirth').val()+"/"
-                                               +$('#dateOfDeath').val()+"/"
-                                               +$('#graveInscription').val()+"/"
-                                               +$('#graveNumber').val()+"/"
-                                               +$('#imageURL').val()+"/"
-                                               +$('#lastKnownContactName').val()+"/"
-                                               +$('#lastKnownContactNumber').val()+"/"
-                                               +localStorage.selectedCemeteryID+"/"
-                                               +null+"/"
-                                               +[]+"",
-                                        dataType: "json",*/
                             $.ajax({ // ajax call to retrieve all cemeteries json objects 
                                             type: "PUT",//        listingId, "Sam", "Winchester", "", "Male", "20/07/1980", "14/10/2014", "Came back", "2474", "/images/004.jpg", "Dean", "07255718927", subID, null
 
-                                            url: "/CemeteryListingsWebApp/api/AdminUpdateListing/update",
+                                            url: "/CemeteryListingsWebApp/api/publishedListings/update",
                                             data: JSON.stringify({
                                                 "PublishedListingID":$('#pubID').val(),
                                                 "firstName":$('#firstName').val(),
@@ -283,10 +263,10 @@
                                                 "imageOfBurialSite": $('#imageURL').val(),
                                                 "lastKnownContactName":$('#lastKnownContactName').val(),
                                                 "lastKnownContactNumber":$('#lastKnownContactNumber').val(),
-                                            //    "cemeteryID": localStorage.selectedCemeteryID,//could be the issue
+                                                "cemeteryID": localStorage.selectedCemeteryID,//could be the issue
                                                 "subscriberApprovedID":"",
                                                 "subscriberSubmitID":$('#subscriberSubmitID').val()}),
-                                                //"names":["a", "b"]}),
+                                               // "names":["a", "b"]}),
                                             dataType: "JSON",
                                             contentType: "application/json",
                                       
@@ -297,7 +277,6 @@
                                            },
                                        error: function (jqXHR, status) {
                                            console.log("Just checking failed: "+localStorage.selectedCemeteryID);
-                                           console.log('fail');
                                           console.log(jqXHR);
                                           console.log('fail ' + status.code);
                                         }
