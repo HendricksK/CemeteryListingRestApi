@@ -42,7 +42,7 @@ public class ViewListingByCemeteryImpl implements ViewListingByCemetery{
         List<PublishedDeceasedListing> deceasedList = deadRepo.findAll();
         List<PublishedDeceasedListing> Listings = new ArrayList();
         for(PublishedDeceasedListing listing : deceasedList){
-            if(listing.getCemeteryID().equals(cemId)){
+            if(cemId.equals(listing.getCemeteryID())){//listing.getCemeteryID().equals(cemId)){
                 //add to list
                 Listings.add(listing);
             }
