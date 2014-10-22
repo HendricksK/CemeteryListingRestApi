@@ -55,7 +55,7 @@ public class AdminUpdatePublishedListingServiceImpl implements AdminUpdatePublis
     @Override
     public void updatePublishedlisting(PublishedDeceasedListing entity){
         //Long pubId, String fname, String lname, String maidenName, String gender, String dob, String dod, String gInscrip, String gNum, String image, String lastContact, String lastContactNum, Long cemID, List<PersonOtherNames> names
- 
+
         PublishedDeceasedListing oldListing = publishRepo.findOne(entity.getPublishedListingID());
          
          PublishedDeceasedListing updateListing = new PublishedDeceasedListing.Builder()
