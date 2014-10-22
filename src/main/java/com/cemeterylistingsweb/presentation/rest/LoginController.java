@@ -49,7 +49,7 @@ public class LoginController {
     public String update(@RequestBody Subscriber sub) {
         cs.merge(sub);
         System.out.println(" Update Called ");
-        return "Club Update";
+        return "subscriber updated";
     }
     
     @RequestMapping(value = "id/{id}",method = RequestMethod.GET) //http://localhost:8084/askweb/api/club/1234

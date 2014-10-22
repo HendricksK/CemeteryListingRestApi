@@ -48,7 +48,17 @@
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
         
         <script type="text/javascript">
-          console.log('let me give');
+          var login = localStorage.username;
+
+                if($('.user') != null){
+                    if(login == ""){
+                        $('.user').text("Login");
+                    }else{
+
+                        $('.user').text(login);
+                    }
+                }
+                
           var login = localStorage.username;
           var ID = localStorage.cemeteryID;
           console.log(ID);
