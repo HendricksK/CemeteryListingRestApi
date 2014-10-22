@@ -7,10 +7,8 @@
 package com.cemeterylistingsweb.services.impl;
 
 import com.cemeterylistingsweb.domain.RequiresApprovalDeceasedListing;
-import com.cemeterylistingsweb.domain.Subscriber;
 import com.cemeterylistingsweb.repository.CemeteryRepository;
 import com.cemeterylistingsweb.repository.RequiresApprovalDeceasedListingRepository;
-import com.cemeterylistingsweb.repository.SubscriberRepository;
 import com.cemeterylistingsweb.services.DeceasedListingService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

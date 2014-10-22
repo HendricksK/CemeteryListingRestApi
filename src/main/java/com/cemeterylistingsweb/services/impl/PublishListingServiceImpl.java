@@ -59,6 +59,7 @@ public class PublishListingServiceImpl implements PublishListingService{
         return publishRepo.findAll();
     }
     
+    @Override
     public void publishListings(RequiresApprovalDeceasedListing listing){
         PublishedDeceasedListing newListing = new PublishedDeceasedListing.Builder()
                  .setFirstName(listing.getFirstName())
@@ -80,6 +81,7 @@ public class PublishListingServiceImpl implements PublishListingService{
         //waitRepo.delete(listing);
         
     }
+    @Override
      public Long publishListingsReturn(RequiresApprovalDeceasedListing listing){
         long id;
          PublishedDeceasedListing newListing = new PublishedDeceasedListing.Builder()

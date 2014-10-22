@@ -8,10 +8,8 @@ package com.cemeterylistingsweb.services.impl;
 
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
-import com.cemeterylistingsweb.repository.RequiresApprovalDeceasedListingRepository;
 import com.cemeterylistingsweb.repository.SubscriberRepository;
 import com.cemeterylistingsweb.services.ViewListingByDateOfBirthService;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +54,7 @@ public class ViewListingByDateOfBirthServiceImpl implements ViewListingByDateOfB
     public List<PublishedDeceasedListing> findAll() {
         return publishRepo.findAll();
     }
+    @Override
     public List<PublishedDeceasedListing> findListingByDOB(String dob){
         
         List<PublishedDeceasedListing> lists=publishRepo.findAll();

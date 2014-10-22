@@ -7,21 +7,12 @@
 package com.cemeterylistingsweb.services.impl;
 
 import com.cemeterylistingsweb.domain.Cemetery;
-import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
-import com.cemeterylistingsweb.domain.Subscriber;
 import com.cemeterylistingsweb.repository.CemeteryRepository;
 import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
 import com.cemeterylistingsweb.repository.SubscriberRepository;
 import com.cemeterylistingsweb.services.CemeteryListingService;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 /**

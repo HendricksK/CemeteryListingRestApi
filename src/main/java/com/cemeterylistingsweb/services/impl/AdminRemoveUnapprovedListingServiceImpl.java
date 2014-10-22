@@ -6,7 +6,6 @@
 
 package com.cemeterylistingsweb.services.impl;
 
-import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import com.cemeterylistingsweb.domain.RequiresApprovalDeceasedListing;
 import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
 import com.cemeterylistingsweb.repository.RequiresApprovalDeceasedListingRepository;
@@ -54,6 +53,7 @@ public class AdminRemoveUnapprovedListingServiceImpl implements AdminRemoveUnapp
         return waitRepo.findAll();
     }
     
+    @Override
     public void removeRequiresApprovalListing(Long subId){
         
         waitRepo.delete(waitRepo.findOne(subId));

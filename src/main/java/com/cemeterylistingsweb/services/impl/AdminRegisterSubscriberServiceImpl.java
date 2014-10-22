@@ -53,6 +53,7 @@ public class AdminRegisterSubscriberServiceImpl implements AdminRegisterSubscrib
         return SubscrRepo.findAll();
     }
     
+    @Override
     public void registerSubscriber(String email, String first, String surname, String uname, String pword, Date sqlDate,int roleLevel  ){
         /*Calendar calendar = Calendar.getInstance();
           calendar.set(Calendar.YEAR, 2008);
@@ -83,6 +84,7 @@ public class AdminRegisterSubscriberServiceImpl implements AdminRegisterSubscrib
          SubscrRepo.save(newSub);
     }
     
+    @Override
     public Long registerSubscriberReturn(String email, String first, String surname, String uname, String pword, Date sqlDate,int roleLevel  ){
         /*Calendar calendar = Calendar.getInstance();
           calendar.set(Calendar.YEAR, 2008);

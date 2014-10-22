@@ -7,11 +7,8 @@
 package com.cemeterylistingsweb.services.impl;
 
 import com.cemeterylistingsweb.domain.Subscriber;
-import com.cemeterylistingsweb.domain.UserRole;
-import com.cemeterylistingsweb.repository.CemeteryRepository;
 import com.cemeterylistingsweb.repository.SubscriberRepository;
 import com.cemeterylistingsweb.services.SubscriptionService;
-import java.sql.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,6 +53,7 @@ public class SubscriptionServiceImpl implements SubscriptionService{
     
    
     
+    @Override
     public void updateSubscriber(Long subId){
         Subscriber entity = SubscrRepo.findOne(subId);
         if(entity.getUsername()!=null){
@@ -66,6 +64,7 @@ public class SubscriptionServiceImpl implements SubscriptionService{
         }
         
     }
+    @Override
     public void deleteSubscriber(Long subId){
         SubscrRepo.delete(subId);
     }

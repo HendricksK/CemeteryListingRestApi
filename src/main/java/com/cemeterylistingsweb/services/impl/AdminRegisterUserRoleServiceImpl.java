@@ -6,9 +6,7 @@
 
 package com.cemeterylistingsweb.services.impl;
 
-import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import com.cemeterylistingsweb.domain.UserRole;
-import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
 import com.cemeterylistingsweb.repository.UserRoleRepository;
 import com.cemeterylistingsweb.services.AdminRegisterUserRoleService;
 import java.util.List;

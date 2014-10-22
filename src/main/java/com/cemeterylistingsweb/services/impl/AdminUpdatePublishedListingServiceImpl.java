@@ -5,7 +5,6 @@
  */
 package com.cemeterylistingsweb.services.impl;
 
-import com.cemeterylistingsweb.domain.PersonOtherNames;
 import com.cemeterylistingsweb.domain.PublishedDeceasedListing;
 import com.cemeterylistingsweb.repository.PublishedDeceasedListingRepository;
 import com.cemeterylistingsweb.services.AdminUpdatePublishedListingService;

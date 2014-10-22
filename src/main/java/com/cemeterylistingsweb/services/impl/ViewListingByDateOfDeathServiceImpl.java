@@ -55,6 +55,7 @@ public class ViewListingByDateOfDeathServiceImpl implements ViewListingByDateOfD
         return publishRepo.findAll();
     }
     
+    @Override
     public List<PublishedDeceasedListing> findListingByDOD(String dod){
         List<PublishedDeceasedListing> lists=publishRepo.findAll();
         //find listing by dob

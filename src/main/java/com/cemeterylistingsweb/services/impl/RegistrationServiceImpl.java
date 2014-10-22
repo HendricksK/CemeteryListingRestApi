@@ -14,7 +14,6 @@ import com.cemeterylistingsweb.repository.CemeteryRepository;
 import com.cemeterylistingsweb.repository.SubscriberRepository;
 import com.cemeterylistingsweb.services.CemeteryRegistrationService;
 import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -87,6 +86,7 @@ public class RegistrationServiceImpl implements CemeteryRegistrationService{
          
          SubscrRepo.save(newSub);
     }
+    @Override
      public Long registerCemeteryReturn(Location local, String contactName, String contactNumber){
          Long id; 
          Cemetery newCemetery = new Cemetery.Builder()
@@ -101,6 +101,7 @@ public class RegistrationServiceImpl implements CemeteryRegistrationService{
          
      }
     
+    @Override
     public void registerCemetery(Location local, String contactName, String contactNumber){
         /*Location local = new Location.Builder()
                  .setCemeteryName("Palm Springs")
@@ -122,6 +123,7 @@ public class RegistrationServiceImpl implements CemeteryRegistrationService{
         cemRepo.save(newCemetery);
     }
     
+    @Override
     public Location registerLocation(String cemName, String Country, String state, String gps, String prov, String town){
         Location local = new Location.Builder()
                  .setCemeteryName(cemName)
@@ -134,6 +136,7 @@ public class RegistrationServiceImpl implements CemeteryRegistrationService{
         return local;
     }
     
+    @Override
     public void registerCemeteryLocation(String cemName, String Country, String state, String gps, String prov, String town,String contactName, String contactNumber ){
          Location local = new Location.Builder()
                  .setCemeteryName(cemName)
