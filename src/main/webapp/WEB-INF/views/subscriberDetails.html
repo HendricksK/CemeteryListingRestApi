@@ -60,6 +60,9 @@
                     dataType: "JSON",
                     success: function (data, status, jqXHR) {
                         console.log(data);
+                        localStorage.mySubID = data.subscriberID; 
+                        localStorage.userRoleID = data.userRoleID.userRoleID;
+                        localStorage.userLevel = data.userRoleID.level;
                         $('#username').val(data.username);
                         $('#firstName').val(data.firstName);
                         $('#surname').val(data.surname);
@@ -75,21 +78,21 @@
                     }
                  });
             $('#update').click(function() {
+                
                 $.ajax({
                         type: "PUT", 
                         url: "/CemeteryListingsWebApp/api/Subscriber/update",
-                        // data: JSON.stringify({"UserRole":{"email":$('#email').val(),"first":$('#first').val(),"surname":$('#surname').val(),"uname":$('#uname').val(),"pword":$('#pword').val(),"sqlDate":null},"roleLevel":null}),
-                        //Kurvin's data: JSON.stringify({"UserRole":{"level":null}, "email":$('#email').val(),"firstName":$('#first').val(),"surname":$('#surname').val(),"username":$('#uname').val(),"pwd":$('#pword').val(),"lastContributionYear":null, "subscriptionDate": null, "validUntil" : null}),
-                        data: JSON.stringify({ "email":$('#email').val(),"firstName":$('#first').val(),"surname":$('#surname').val(),"username":$('#uname').val(),"pwd":$('#pword').val(),"lastContributionYear":null, "subscriptionDate": null, "validUntil" : null}),
+                        data: JSON.stringify({"userRoleID":{"userRoleID":localStorage.userRoleID,"level":localStorage.userLevel}, "subscriberID":localStorage.mySubID,"email":$('#email').val(),"firstName":$('#firstName').val(),"surname":$('#surname').val(),"username":$('#username').val(),"pwd":$('#pwd').val(),"lastContributionYear":$('#lastContributionYear').val(), "subscriptionDate": $('#subscriptionDate').val(), "validUntil" : $('#validUntil').val()}),
                         dataType: "JSON",
                         contentType: "application/json",
                         success: function (status, jqXHR) {
-
-                                                                  //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                                console.log(status);
+                                console.log(jqXHR);                //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
                         },
 
                         error: function (jqXHR, status) {
-                                                                 //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
+                                console.log(status);
+                                console.log(jqXHR);                                 //window.location.href = "/CemeteryListingsWebApp/api/cemetery/cemeterylistings";
                         }
                     });
             });

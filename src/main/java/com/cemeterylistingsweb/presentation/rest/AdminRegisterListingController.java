@@ -32,6 +32,6 @@ public class AdminRegisterListingController {
     public String update(@RequestBody PublishedDeceasedListing pdl) {
         aupls.updatePublishedlisting(pdl);
         System.out.println(" Update Called ");
-        return "Club Update";
+        return "listing updated";
     }
 }
