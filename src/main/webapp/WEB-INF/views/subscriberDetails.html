@@ -57,7 +57,7 @@
                     data: {"username": localStorage.username},
                     dataType: "JSON",
                     success: function (data, status, jqXHR) {
-                        //console.log(data);
+                        console.log(data);
                         $('#username').val(data.username);
                         $('#firstName').val(data.firstName);
                         $('#surname').val(data.surname);

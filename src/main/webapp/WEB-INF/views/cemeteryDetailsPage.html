@@ -48,13 +48,9 @@
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
         
         <script type="text/javascript">
-        $('#logout').click(function(){
-            localStorage.username = "";
-            window.location.href = "/CemeteryListingsWebApp/";
-        });
-          //console.log('let me give');
+          console.log('let me give');
           var ID = localStorage.cemeteryID;
-          //console.log(ID);
+          console.log(ID);
 
           $.ajax({ // ajax call to retrieve all cemeteries json objects 
                     type: "GET",
@@ -65,7 +61,7 @@
                         console.log(data);
             
                             var obj = data;
-                                /*console.log(obj.id);
+                                console.log(obj.id);
                                 console.log(obj.location.country);
                                 console.log(obj.location.province_State);
                                 console.log(obj.location.district_state);
@@ -73,7 +69,7 @@
                                 console.log(obj.location.cemeteryName);
                                 console.log(obj.location.locationOfCemetery);
                                 console.log(obj.contactName);
-                                console.log(obj.contactNumber);*/
+                                console.log(obj.contactNumber);
                             // building html objects here
                             $(".cemeteryDetails").append(
                                     '<tr><td>Cemetery ID</td><td>' + obj.id + '</td>'+
@@ -96,20 +92,20 @@
                     url: "/CemeteryListingsWebApp/api/DeceasedListing/show",
                     dataType: "json",
                     success: function (data) {
-                       // console.log('success');
-                       //console.log(data);
+                        console.log('success');
+                        console.log(data);
             
                         for(var x = 0; x < data.length; x++){
                             
                         var obj = data[x]; 
                            
-                                /*console.log(obj.requiresApprovalDeceasedListingID);
+                                console.log(obj.requiresApprovalDeceasedListingID);
                                 console.log(obj.firstName);
                                 console.log(obj.surname);
                                 console.log(obj.maidenName);
                                 console.log(obj.dateOfDeath);
                                 console.log(obj.graveNumber);
-                                console.log(obj.imageOfBurialSite);*/
+                                console.log(obj.imageOfBurialSite);
                 
                 //h<a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.publishedListingID+'"></a>
                                 $(".deceasedListings").append(' <tr>'

@@ -35,7 +35,7 @@
                             <tr><td>Maiden Name</td><td><input disabled type="text" name="maidenName" id="maidenName" placeholder="Maiden Name" style="width:100%"></td> </tr>
                             <tr><td>Gender</td><td><input disabled type="text" name="gender" id="gender" placeholder="Gender" style="width:100%"></td> </tr>
                             <tr><td>Date Of Birth</td><td><input disabled type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date Of Birth" style="width:100%"></td> </tr>
-                            <tr><td>Date Of Death</td><td><input disabled type="text" name="dateOfDeath" id="dateOfDeath" placeholder="Date Of Death" style="width:100%"></td> </tr>
+                            <tr><td>Date Of Death</td><td><input type="text" name="dateOfDeath" id="dateOfDeath" placeholder="Date Of Death" style="width:100%"></td> </tr>
                             <tr><td>Grave Number</td><td><input disabled type="text" name="graveNumber" id="graveNumber" placeholder="Grave Number" style="width:100%"></td> </tr>
                             <tr><td>Grave Inscription</td><td><textarea disabled name="graveInscription" id="graveInscription" placeholder="Grave Inscription" style="width:100%; height : auto"></textarea></td> </tr>
                             <tr><td>Last Known Contact Name</td><td><input disabled type="text" name="lastKnownContactName" id="lastKnownContactName" placeholder="Last Known Contact Name" style="width:100%"></td> </tr>
@@ -59,10 +59,7 @@
         <script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script>
             
         <script type="text/javascript">
-         $('#logout').click(function(){
-            localStorage.username = "";
-            window.location.href = "/CemeteryListingsWebApp/";
-        });
+            
             var ID = localStorage.publishedListingsID;
              var login = localStorage.username;
 
@@ -80,17 +77,17 @@
                     url: "/CemeteryListingsWebApp/api/DeceasedListing/id/"+ID+"",
                     dataType: "json",
                     success: function (data) {
-                        //console.log('success');
-                        //console.log(data);
+                        console.log('success');
+                        console.log(data);
             
                            obj  = data;
-                                                /*console.log(obj.publishedListingID);
+                                                console.log(obj.publishedListingID);
                                                 console.log(obj.firstName);
                                                 console.log(obj.surname);
                                                 console.log(obj.maidenName);
                                                 console.log(obj.dateOfDeath);
                                                 console.log(obj.graveNumber);
-                                                console.log(obj.imageOfBurialSite);*/
+                                                console.log(obj.imageOfBurialSite);
                                                 
                                                 localStorage.otherNames = JSON.stringify(obj.names);
                                                 

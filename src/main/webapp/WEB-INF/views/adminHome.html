@@ -13,9 +13,12 @@
     <div class="pageHeader">
         <a href="/CemeteryListingsWebApp/" class="logo"><img src="/CemeteryListingsWebApp/resources/images/logo3.jpg"></a>
                 <ul class="navList" style="width : 100%">
-                    <li><a href="/CemeteryListingsWebApp/api/auth/loggedIn">Publish Listings</a>
-                    <li><a href="/CemeteryListingsWebApp/api/cemetery/newcemetery">Create Cemetery</a>
-                    <li><a href = "/CemeteryListingsWebApp/api/auth/admin" class="logout" id="logout">Logout</a>
+                   <li><a href="/CemeteryListingsWebApp/">Home</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/cemetery/cemeterylistings">Cemetery Listings</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/DeceasedListing/publishedlistings">Deceased Listings</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/search/contactus">Contact Us</a></li>
+                    <li><a href="/CemeteryListingsWebApp/api/auth/login" style="margin-left:10% !important;" class="user" id="user">Login</a></li>
+                    <li><a href = "/CemeteryListingsWebApp/" class="logout" id="logout">Logout</a>
                 </ul>   
             </div>
             <div class="dummyHeader"></div>
@@ -31,29 +34,23 @@
      <!--<script type="text/javascript" src="/CemeteryListingsWebApp/resources/js/jquery-1.11.1.min.js"></script> -->
         
         <script type="text/javascript">
-            $('#logout').click(function() {
-                //console.log('meeee');
-               localStorage.adminID = ""; 
-               window.location.href = "/CemeteryListingsWebApp/api/auth/admin";
-            });
-            
         	$.ajax({
                                 type: "GET", 
                                 url: "/CemeteryListingsWebApp/api/unpublishedListings/show",
                                 //data: {"name": nameSearch},
                                 success: function (data, status, jqXHR) {
-                                  //console.log(data);
+                                  console.log(data);
                                   
                                   countData = data.length;
                                         for(var i = 0; i < data.length; i++) {
                                             var obj = data[i];
-                                                /*console.log(obj.requiresApprovalDeceasedListingID);
+                                                console.log(obj.requiresApprovalDeceasedListingID);
                                                 console.log(obj.firstName);
                                                 console.log(obj.surname);
                                                 console.log(obj.maidenName);
                                                 console.log(obj.dateOfDeath);
                                                 console.log(obj.graveNumber);
-                                                console.log(obj.imageOfBurialSite);*/
+                                                console.log(obj.imageOfBurialSite);
                 // building html objects here
                                 $(".listings").append(' <tr>'+' <td><a href='+'"/CemeteryListingsWebApp/api/cemetery/id/'+obj.requiresApprovalDeceasedListingID+'">' + '</a></td>' + '<td> Name : ' + obj.firstName + '</td>' + ' <td> Last Name : ' + obj.surname + 
                                     '</td>' + '</a></td>' + '<td>Mainden Name : ' + obj.maidenName + '</td>' +
@@ -66,8 +63,8 @@
                         
                         $('button').click(function() {
 				var htmlString = $( this ).eq();	
-                                //console.log(htmlString);
-                                //console.log(htmlString.context.value);
+                                console.log(htmlString);
+                                console.log(htmlString.context.value);
                                 
                                 localStorage.unpublishedID = htmlString.context.value;
 
@@ -78,7 +75,7 @@
 
                     error: function (jqXHR, status) {
                             // error handler
-                            //console.log(jqXHR);
+                            console.log(jqXHR);
                             alert('fail' + status.code);
                             }
             });
